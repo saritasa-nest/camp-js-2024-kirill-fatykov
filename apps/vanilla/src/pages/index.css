@@ -22,6 +22,60 @@
 
 .main__sidebar {
   grid-area: sidebar;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sidebar__title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.sidebar__search {
+  background-image: url('./img/loop.png');
+  background-repeat: no-repeat;
+  background-color: rgb(0 0 0 /15%);
+  border-radius: 16px;
+  background-position: 19px 15px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
+  border: none;
+  padding: 8px 16px 8px 48px;
+}
+
+.sidebar__select {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
+  background-color: rgb(0 0 0 /15%);
+  padding: 8px 20px 8px 16px;
+  border-radius: 16px;
+  width: 100%;
+  border: none;
+}
+
+.sidebar__select option[selected] {
+  color: red;
+}
+
+.sidebar__checkbox {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
+}
+
+.sidebar__checkbox input {
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(0 0 0 / 15%);
 }
 
 .books__group {
@@ -46,7 +100,7 @@
 
 .books__list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(168px, min-content));
+  grid-template-columns: repeat(5, 1fr);
   gap: 16px;
 }
 

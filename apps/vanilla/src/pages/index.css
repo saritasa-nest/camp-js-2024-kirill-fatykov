@@ -1,12 +1,50 @@
 @import url("../global/index.css");
 
 .header {
-  padding: 0 20px;
+  padding: 20px 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .footer {
+  margin-top: 24px;
   padding-top: 28px;
   padding-bottom: 76px;
   border-top: 1px solid rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer__info {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.footer__copyright {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer__year {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
+}
+
+.footer__nav a {
+  color: black;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24.2px;
+}
+
+.footer__go-top-button {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24.2px;
+  text-align: left;
+  border: none;
+  background-color: white;
+  cursor: pointer;
 }

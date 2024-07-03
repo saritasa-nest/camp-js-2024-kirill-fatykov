@@ -5,6 +5,63 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
+.main {
+  margin-top: 24px;
+  display: grid;
+  grid-template-areas: "books sidebar";
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+}
+
+.books {
+  grid-area: books;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.main__sidebar {
+  grid-area: sidebar;
+}
+
+.books__group {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.books__header {
+  display: flex;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+}
+
+.filter .filter__name {
+  text-transform: uppercase;
+}
+
+.books__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(168px, min-content));
+  gap: 16px;
+}
+
+.books__item {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.books__img {
+  border-radius: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 .footer {
   margin-top: 24px;
   padding-top: 28px;

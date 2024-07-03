@@ -1,4 +1,10 @@
 .container {
-  margin: auto;
+  margin: 0 auto;
   max-width: 1244px;
+}
+
+.app__logo {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
 }

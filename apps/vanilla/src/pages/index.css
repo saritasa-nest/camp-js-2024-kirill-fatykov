@@ -1,5 +1,12 @@
 @import url("../global/index.css");
 
-.title {
-  color: var(--heading-color-1);
+.header {
+  padding: 0 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.footer {
+  padding-top: 28px;
+  padding-bottom: 76px;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
 }

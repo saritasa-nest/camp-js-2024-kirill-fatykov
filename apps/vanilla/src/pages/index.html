@@ -70,9 +70,9 @@
               <div class="books__titie">Implementing Domain-Driven Design</div>
             </li>
             <li class="books__item">
-              <img class="books__img" src="/img/image 8.png" alt="7 Навыков высокэффективных...">
+              <img class="books__img" src="/img/image 8.png" alt="7 Навыков высокэффективных">
 
-              <div class="books__titie">7 Навыков высокэффективных...</div>
+              <div class="books__titie">7 Навыков высокэффективных</div>
             </li>
           </ul>
         </li>
@@ -80,19 +80,21 @@
 
       <aside class="main__sidebar sidebar">
         <div class="sidebar__title">Filters</div>
-        <input class="sidebar__search" type="text" name="search" id="search" placeholder="e.g. “Refactoring”">
-        <form>
-          <select class="sidebar__select" name="sort-select" id="sort-select">
-            <option value="" selected hidden>Choose sort field</option>
-            <option value="Length">Length</option>
-          </select>
-        </form>
+        <div class="sidebar__inputs">
+          <input class="sidebar__search" type="text" name="search" id="search" placeholder="e.g. “Refactoring”">
+          <form>
+            <select class="sidebar__select" name="sort-select" id="sort-select">
+              <option value="" selected hidden>Choose sort field</option>
+              <option value="Length">Length</option>
+            </select>
+          </form>
 
-        <label class="sidebar__checkbox-container">
-          <input class="sidebar__checkbox" type="checkbox" name="Show comics">
-          Show comics
-          <span class="sidebar__checkbox-mark"></span>
-        </label>
+          <label class="sidebar__checkbox-container">
+            <input class="sidebar__checkbox" type="checkbox" name="Show comics">
+            Show comics
+            <span class="sidebar__checkbox-mark"></span>
+          </label>
+        </div>
       </aside>
     </main>
 

@@ -1,5 +1,10 @@
 @import url("../global/index.css");
 
+.container {
+  margin: 0 auto;
+  max-width: 1244px;
+}
+
 /* Header */
 
 .header {
@@ -25,6 +30,8 @@
 }
 
 .main__sidebar {
+  background-color: white;
+  /* position: sticky; */
   grid-area: sidebar;
   display: flex;
   flex-direction: column;
@@ -37,6 +44,12 @@
   line-height: 24px;
   text-align: left;
   text-transform: uppercase;
+}
+
+.sidebar__inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .sidebar__search {
@@ -127,12 +140,20 @@
 
 .books__header {
   position: sticky;
+  top: 0;
+  background-color: white;
   display: flex;
   gap: 8px;
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
   text-align: left;
+}
+
+.books__titie {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
 }
 
 .filter .filter__name {
@@ -194,6 +215,7 @@
 }
 
 .footer__go-top-button {
+  width: 114px;
   font-size: 20px;
   font-weight: 400;
   line-height: 24.2px;
@@ -204,5 +226,55 @@
 }
 
 /* Medias */
+@media screen and (max-width: 1919px) {
+  .container {
+    max-width: 1200px;
+  }
+}
 
-@media screen {}
+@media screen and (max-width: 1279px) {
+  .container {
+    max-width: 738px;
+  }
+
+  .main {
+    grid-template-areas: "sidebar"
+      "books";
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar__inputs {
+    flex-direction: row;
+  }
+
+  .books__list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (max-width: 785px) {
+  .container {
+    max-width: 312px;
+  }
+
+  .sidebar__inputs {
+    flex-direction: column;
+  }
+
+  .books__list {
+    grid-template-columns: repeat(2, 148px);
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .footer__info {
+    justify-content: space-between;
+  }
+
+  .footer__go-top-button {
+    align-self: flex-end;
+  }
+}

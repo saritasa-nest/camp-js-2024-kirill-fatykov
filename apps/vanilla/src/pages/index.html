@@ -17,9 +17,9 @@
     <main class="main">
       <ul class="books">
         <li class="books__group">
-          <header class="books__header filter">
+          <div class="books__header filter">
             <span class="filter__item">2020</span><span class="filter__name">year</span>
-          </header>
+          </div>
           <ul class="books__list">
             <li class="books__item">
               <img class="books__img" src="/img/image 3.png" alt="Refactoring UI">
@@ -40,9 +40,9 @@
           </ul>
         </li>
         <li class="books__group">
-          <header class="books__header filter">
+          <div class="books__header filter">
             <span class="filter__item">1980</span><span class="filter__name">year</span>
-          </header>
+          </div>
           <ul class="books__list">
             <li class="books__item">
               <img class="books__img" src="/img/image 10.png" alt="Yokohama Kaidashi Kikou">
@@ -78,21 +78,22 @@
         </li>
       </ul>
 
-      <div class="main__sidebar sidebar">
+      <aside class="main__sidebar sidebar">
         <div class="sidebar__title">Filters</div>
         <input class="sidebar__search" type="text" name="search" id="search" placeholder="e.g. “Refactoring”">
         <form>
           <select class="sidebar__select" name="sort-select" id="sort-select">
-            <option selected>Choose sort field</option>
+            <option value="" selected hidden>Choose sort field</option>
             <option value="Length">Length</option>
           </select>
         </form>
 
-        <form class="sidebar__checkbox">
-          <input type="checkbox" name="Show comics" id="Show comics">
-          <label for="Show comics">Show comics</label>
-        </form>
-      </div>
+        <label class="sidebar__checkbox-container">
+          <input class="sidebar__checkbox" type="checkbox" name="Show comics">
+          Show comics
+          <span class="sidebar__checkbox-mark"></span>
+        </label>
+      </aside>
     </main>
 
     <footer class="footer">

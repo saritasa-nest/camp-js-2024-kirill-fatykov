@@ -1,9 +1,13 @@
 @import url("../global/index.css");
 
+/* Header */
+
 .header {
   padding: 20px 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
+
+/* Main */
 
 .main {
   margin-top: 24px;
@@ -38,7 +42,7 @@
 .sidebar__search {
   background-image: url('./img/loop.png');
   background-repeat: no-repeat;
-  background-color: rgb(0 0 0 /15%);
+  background-color: rgba(0, 0, 0, 0.05);
   border-radius: 16px;
   background-position: 19px 15px;
   font-size: 20px;
@@ -49,33 +53,69 @@
 }
 
 .sidebar__select {
+  appearance: none;
+  background-image: url('./img/arrow-down.png');
+  background-repeat: no-repeat;
+  background-position: 90% 20px;
+  cursor: pointer;
   font-size: 20px;
   font-weight: 400;
   line-height: 32px;
-  background-color: rgb(0 0 0 /15%);
+  background-color: rgb(0 0 0 / 5%);
+  color: rgb(0 0 0 / 50%);
   padding: 8px 20px 8px 16px;
   border-radius: 16px;
   width: 100%;
   border: none;
 }
 
-.sidebar__select option[selected] {
-  color: red;
-}
 
-.sidebar__checkbox {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+.sidebar__checkbox-container {
+  position: relative;
+  padding-left: 36px;
   font-size: 20px;
   font-weight: 400;
   line-height: 32px;
+  user-select: none;
 }
 
-.sidebar__checkbox input {
-  width: 20px;
+.sidebar__checkbox-container>input {
+  position: absolute;
+  opacity: 0;
+  top: 6px;
+  left: 0;
   height: 20px;
-  border: 1px solid rgba(0 0 0 / 15%);
+  width: 20px;
+}
+
+.sidebar__checkbox-mark {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border-radius: 4px;
+  border: 2px solid rgba(0 0 0 / 15%);
+}
+
+.sidebar__checkbox-mark::before {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 3px;
+  top: 3px;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background-color: #F15924;
+}
+
+.sidebar__checkbox-container input:checked~.sidebar__checkbox-mark::before {
+  display: block;
+}
+
+.sidebar__checkbox-container input:checked~.sidebar__checkbox-mark {
+  border: 2px solid #F15924;
 }
 
 .books__group {
@@ -86,6 +126,7 @@
 }
 
 .books__header {
+  position: sticky;
   display: flex;
   gap: 8px;
   font-size: 18px;
@@ -115,6 +156,8 @@
   border-radius: 24px;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
+
+/* Footer */
 
 .footer {
   margin-top: 24px;
@@ -159,3 +202,7 @@
   background-color: white;
   cursor: pointer;
 }
+
+/* Medias */
+
+@media screen {}

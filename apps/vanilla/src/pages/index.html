@@ -11,7 +11,7 @@
 <body>
   <div class="container">
     <header class="header">
-      <h1 class="app__logo header__logo">📚 Books app</h1>
+      <h1 class="app__logo header__logo"><a href="#">📚 Books app</a></h1>
     </header>
 
     <main class="main">
@@ -78,30 +78,32 @@
         </li>
       </ul>
 
-      <aside class="main__sidebar sidebar">
-        <div class="sidebar__title">Filters</div>
-        <div class="sidebar__inputs">
-          <input class="sidebar__search" type="text" name="search" id="search" placeholder="e.g. “Refactoring”">
-          <form>
-            <select class="sidebar__select" name="sort-select" id="sort-select">
-              <option value="" selected hidden>Choose sort field</option>
-              <option value="Length">Length</option>
-            </select>
-          </form>
+      <div class="main__sidebar-wrapper">
+        <div class="main__sidebar">
+          <div class="sidebar__title">Filters</div>
+          <div class="sidebar__inputs">
+            <input class="sidebar__search" type="text" name="search" id="search" placeholder="e.g. “Refactoring”">
+            <form>
+              <select class="sidebar__select" name="sort-select" id="sort-select">
+                <option value="" selected hidden>Choose sort field</option>
+                <option value="Length">Length</option>
+              </select>
+            </form>
 
-          <label class="sidebar__checkbox-container">
-            <input class="sidebar__checkbox" type="checkbox" name="Show comics">
-            Show comics
-            <span class="sidebar__checkbox-mark"></span>
-          </label>
+            <label class="sidebar__checkbox-container">
+              <input class="sidebar__checkbox" type="checkbox" name="Show comics">
+              Show comics
+              <span class="sidebar__checkbox-mark"></span>
+            </label>
+          </div>
         </div>
-      </aside>
+      </div>
     </main>
 
     <footer class="footer">
       <div class="footer__info">
         <div class="footer__copyright">
-          <div class="app__logo footer__logo">Books app</div>
+          <div class="app__logo footer__logo"><a href="#">Books app</a></div>
           <div class="footer__year">© 2023</div>
         </div>
         <nav class="footer__nav"><a href="#">Github</a></nav>

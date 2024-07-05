@@ -55,7 +55,7 @@
 }
 
 .sidebar__search {
-  background-image: url('./img/loop.png');
+  background-image: url("./img/loop.png");
   background-repeat: no-repeat;
   background-color: var(--surface-overlay);
   border-radius: var(--border-radius-16);
@@ -69,7 +69,7 @@
 
 .sidebar__select {
   appearance: none;
-  background-image: url('./img/arrow-down.png');
+  background-image: url("./img/arrow-down.png");
   background-repeat: no-repeat;
   background-position: 90% var(--space-5);
   cursor: pointer;
@@ -93,7 +93,7 @@
   user-select: none;
 }
 
-.sidebar__checkbox-container>input {
+.sidebar__checkbox-container > input {
   position: absolute;
   opacity: 0;
   top: 6px;
@@ -124,11 +124,11 @@
   background-color: var(--primary);
 }
 
-.sidebar__checkbox-container input:checked~.sidebar__checkbox-mark::before {
+.sidebar__checkbox-container input:checked ~ .sidebar__checkbox-mark::before {
   display: block;
 }
 
-.sidebar__checkbox-container input:checked~.sidebar__checkbox-mark {
+.sidebar__checkbox-container input:checked ~ .sidebar__checkbox-mark {
   border: 2px solid var(--primary);
 }
 
@@ -152,7 +152,7 @@
 }
 
 .books__titie {
-  font-size: var(---font-size-md);
+  font-size: var(--font-size-md);
   font-weight: 500;
   line-height: var(--space-6);
 }
@@ -239,8 +239,7 @@
   }
 
   .main {
-    grid-template-areas: "sidebar"
-      "books";
+    grid-template-areas: "sidebar" "books";
     grid-template-columns: 1fr;
   }
 

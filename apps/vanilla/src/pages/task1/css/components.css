@@ -5,6 +5,6 @@
 }
 
 .app__logo > a {
-	color: black;
+	color: var(--on-surface-color);
 	text-decoration: none;
 }

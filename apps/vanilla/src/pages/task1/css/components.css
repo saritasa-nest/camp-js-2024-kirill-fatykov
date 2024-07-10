@@ -2,9 +2,5 @@
 	font-size: 20px;
 	font-weight: 700;
 	line-height: 24px;
-}
-
-.app__logo > a {
 	color: var(--on-surface-color);
-	text-decoration: none;
 }

@@ -153,6 +153,8 @@
 }
 
 .books__titie {
+	/* for match the page design */
+	/* stylelint-disable-next-line value-no-vendor-prefix */
 	display: -webkit-box;
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
@@ -170,7 +172,7 @@
 
 .books__list {
 	display: grid;
-	grid-template-columns: repeat(5, 1fr);
+	grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
 	gap: var(--space-4);
 }
 
@@ -267,10 +269,6 @@
 	.sidebar__inputs {
 		flex-direction: row;
 	}
-
-	.books__list {
-		grid-template-columns: repeat(4, 1fr);
-	}
 }
 
 @media screen and (max-width: 786px) {
@@ -280,10 +278,6 @@
 
 	.sidebar__inputs {
 		flex-direction: column;
-	}
-
-	.books__list {
-		grid-template-columns: repeat(2, 148px);
 	}
 
 	/* For multiple sticky */

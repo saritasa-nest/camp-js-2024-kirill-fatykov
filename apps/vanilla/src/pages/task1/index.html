@@ -15,11 +15,11 @@
 		</header>
 
 		<main class="content">
-			<ul class="books">
-				<li class="books__group">
-					<div class="books__header filter">
-						<span class="filter__item typography typography__subtitle">2020</span><span class="filter__name typography typography__subtitle">year</span>
-					</div>
+			<section class="books">
+				<div class="books__group">
+					<h2 class="books__header typography typography__subtitle">
+						2020 year
+					</h2>
 					<ul class="books__list">
 						<li class="books__item">
 							<img class="books__img" src="./img/image-3.png" alt="Refactoring UI">
@@ -38,11 +38,11 @@
 						</li>
 
 					</ul>
-				</li>
-				<li class="books__group">
-					<div class="books__header filter">
-						<span class="filter__item typography typography__subtitle">1980</span><span class="filter__name typography typography__subtitle">year</span>
-					</div>
+				</div>
+				<div class="books__group">
+					<h2 class="books__header typography typography__subtitle">
+						1980 year
+					</h2>
 					<ul class="books__list">
 						<li class="books__item">
 							<img class="books__img" src="./img/image-10.png" alt="Yokohama Kaidashi Kikou">
@@ -75,17 +75,17 @@
 							<div class="books__titie typography typography__body_small">7 Навыков высокэффективных</div>
 						</li>
 					</ul>
-				</li>
-			</ul>
+				</div>
+			</section>
 
 			<div class="content__sidebar-wrapper">
-				<div class="content__sidebar">
+				<div class="content__sidebar sidebar">
 					<span class="sidebar__title typography typography__subtitle">Filters</span>
 					<div class="sidebar__inputs">
 						<input class="sidebar__search typography typography__body" type="text" name="search" id="search" placeholder="e.g. “Refactoring”">
 						<form>
 							<select class="sidebar__select typography typography__body" name="sort-select" id="sort-select">
-								<option value="" selected disabled hidden>Choose sort field</option>
+								<option value="" selected disabled>Choose sort field</option>
 								<option value="Length">Length</option>
 								<option value="Short">Short</option>
 							</select>

@@ -9,89 +9,89 @@
 </head>
 
 <body>
-	<div class="container">
-		<header class="header">
-			<h1 class="app__logo header__logo">📚 Books app</h1>
+	<div class="container content-flex-container">
+		<header class="main-header">
+			<h1 class="app-logo main-header__logo typography typography__logo">📚 Books app</h1>
 		</header>
 
-		<main class="main">
+		<main class="content">
 			<ul class="books">
 				<li class="books__group">
 					<div class="books__header filter">
-						<span class="filter__item">2020</span><span class="filter__name">year</span>
+						<span class="filter__item typography typography__subtitle">2020</span><span class="filter__name typography typography__subtitle">year</span>
 					</div>
 					<ul class="books__list">
 						<li class="books__item">
 							<img class="books__img" src="./img/image-3.png" alt="Refactoring UI">
 
-							<div class="books__titie">Refactoring UI</div>
+							<div class="books__titie typography typography__body_small">Refactoring UI</div>
 						</li>
 						<li class="books__item">
 							<img class="books__img" src="./img/image-1.png" alt="Master the Skill of Debugging CSS">
 
-							<div class="books__titie">Master the Skill of Debugging CSS</div>
+							<div class="books__titie typography typography__body_small">Master the Skill of Debugging CSS</div>
 						</li>
 						<li class="books__item">
 							<img class="books__img" src="./img/image-9.png" alt="Blue Period">
 
-							<div class="books__titie">Blue Period</div>
+							<div class="books__titie typography typography__body_small">Blue Period</div>
 						</li>
 
 					</ul>
 				</li>
 				<li class="books__group">
 					<div class="books__header filter">
-						<span class="filter__item">1980</span><span class="filter__name">year</span>
+						<span class="filter__item typography typography__subtitle">1980</span><span class="filter__name typography typography__subtitle">year</span>
 					</div>
 					<ul class="books__list">
 						<li class="books__item">
 							<img class="books__img" src="./img/image-10.png" alt="Yokohama Kaidashi Kikou">
 
-							<div class="books__titie">Yokohama Kaidashi Kikou</div>
+							<div class="books__titie typography typography__body_small">Yokohama Kaidashi Kikou</div>
 						</li>
 						<li class="books__item">
 							<img class="books__img" src="./img/image-4.png" alt="Learning JavaScript Design Patterns">
 
-							<div class="books__titie">Learning JavaScript Design Patterns</div>
+							<div class="books__titie typography typography__body_small">Learning JavaScript Design Patterns</div>
 						</li>
 						<li class="books__item">
 							<img class="books__img" src="./img/image-11.png" alt="Yotsuba to!">
 
-							<div class="books__titie">Yotsuba to!</div>
+							<div class="books__titie typography typography__body_small">Yotsuba to!</div>
 						</li>
 						<li class="books__item">
 							<img class="books__img" src="./img/image-5.png" alt="Domain-Driven Design">
 
-							<div class="books__titie">Domain-Driven Design</div>
+							<div class="books__titie typography typography__body_small">Domain-Driven Design</div>
 						</li>
 						<li class="books__item">
 							<img class="books__img" src="./img/image-6.png" alt="Implementing Domain-Driven">
 
-							<div class="books__titie">Implementing Domain-Driven</div>
+							<div class="books__titie typography typography__body_small">Implementing Domain-Driven</div>
 						</li>
 						<li class="books__item">
 							<img class="books__img" src="./img/image-8.png" alt="7 Навыков высокэффективных">
 
-							<div class="books__titie">7 Навыков высокэффективных</div>
+							<div class="books__titie typography typography__body_small">7 Навыков высокэффективных</div>
 						</li>
 					</ul>
 				</li>
 			</ul>
 
-			<div class="main__sidebar-wrapper">
-				<div class="main__sidebar">
-					<div class="sidebar__title">Filters</div>
+			<div class="content__sidebar-wrapper">
+				<div class="content__sidebar">
+					<span class="sidebar__title typography typography__subtitle">Filters</span>
 					<div class="sidebar__inputs">
-						<input class="sidebar__search" type="text" name="search" id="search" placeholder="e.g. “Refactoring”">
+						<input class="sidebar__search typography typography__body" type="text" name="search" id="search" placeholder="e.g. “Refactoring”">
 						<form>
-							<select class="sidebar__select" name="sort-select" id="sort-select">
+							<select class="sidebar__select typography typography__body" name="sort-select" id="sort-select">
 								<option value="" selected disabled hidden>Choose sort field</option>
 								<option value="Length">Length</option>
 								<option value="Short">Short</option>
 							</select>
 						</form>
 
-						<label class="sidebar__checkbox-container">
+						<label class="sidebar__checkbox-container typography typography__body">
 							<input class="sidebar__checkbox" type="checkbox" name="Show comics">
 							Show comics
 							<span class="sidebar__checkbox-mark"></span>
@@ -101,16 +101,16 @@
 			</div>
 		</main>
 
-		<footer class="footer">
-			<div class="footer__info">
-				<div class="footer__copyright">
-					<div class="app__logo footer__logo">Books app</div>
-					<div class="footer__year">&copy; 2023</div>
+		<footer class="main-footer">
+			<div class="main-footer__info">
+				<div class="main-footer__copyright">
+					<div class="app-logo main-footer__logo typography typography__logo">Books app</div>
+					<div class="main-footer__year typography typography__body">&copy; 2023</div>
 				</div>
-				<nav class="footer__nav"><a href="github.com">Github</a></nav>
+				<nav class="main-footer__nav"><a class="main-footer__nav_link typography typography__body" href="github.com">Github</a></nav>
 			</div>
 
-			<a href="#" class="footer__go-top">Go to top ↑</a>
+			<a href="#" class="main-footer__go-top typography typography__body">Go to top ↑</a>
 		</footer>
 	</div>
 </body>

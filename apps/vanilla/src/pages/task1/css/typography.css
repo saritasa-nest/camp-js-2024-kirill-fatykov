@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+.typography {
+	font-family: Inter, Arial, sans-serif;
+	font-optical-sizing: auto;
+	font-style: normal;
+	font-variation-settings: "slnt" 0;
+}
+
+.typography__logo {
+	font-size: var(--font-size-xl);
+	line-height: 24px;
+	font-weight: 700;
+}
+
+.typography__subtitle {
+	font-size: var(--font-size-lg);
+	line-height: 24px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.typography__body {
+	font-size: var(--font-size-xl);
+	line-height: 32px;
+	font-weight: 400;
+}
+
+.typography__body_small {
+	font-size: var(--font-size-md);
+	line-height: 24px;
+	font-weight: 500;
+}

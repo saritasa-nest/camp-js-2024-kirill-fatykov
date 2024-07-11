@@ -61,7 +61,7 @@
 
 .sidebar__search {
 	width: 100%;
-	background-image: url("./img/loop.png");
+	background-image: url("./img/loop.svg");
 	background-repeat: no-repeat;
 	background-color: var(--surface-overlay-color);
 	border-radius: var(--border-radius-16);
@@ -72,7 +72,7 @@
 
 .sidebar__select {
 	appearance: none;
-	background-image: url("./img/arrow-down.png");
+	background-image: url("./img/arrow-down.svg");
 	background-repeat: no-repeat;
 	background-position: 90% var(--space-5);
 	cursor: pointer;

@@ -148,7 +148,7 @@
 	text-align: left;
 }
 
-.books__titie {
+.book__title {
 	/* for match with the page design */
 	/* stylelint-disable-next-line value-no-vendor-prefix */
 	display: -webkit-box;
@@ -163,20 +163,20 @@
 	text-transform: uppercase;
 }
 
-.books__list {
+.book {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 	gap: var(--space-4);
 }
 
-.books__item {
+.book__item {
 	list-style: none;
 	display: flex;
 	flex-direction: column;
 	gap: var(--space-2);
 }
 
-.books__image {
+.book__image {
 	border-radius: var(--border-radius-lg);
 	border: 1px solid var(--border-color);
 }
@@ -245,7 +245,7 @@
 		top: 120px;
 	}
 
-	.books__list {
+	.book {
 		grid-template-columns: repeat(4, minmax(180px, 1fr));
 	}
 
@@ -268,7 +268,7 @@
 		top: 245px;
 	}
 
-	.books__list {
+	.book {
 		grid-template-columns: repeat(2, minmax(180px, 1fr));
 	}
 

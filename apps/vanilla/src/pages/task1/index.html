@@ -4,75 +4,75 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="./index.css" />
+	<link rel="stylesheet" href="./css/index.css" />
 	<title>Books App</title>
 </head>
 
 <body>
 	<div class="container content-flex-container">
 		<header class="main-header">
-			<h1 class="app-logo main-header__logo typography typography__logo">📚 Books app</h1>
+			<h1 class="books-logo main-header__logo typography__logo">📚 Books app</h1>
 		</header>
 
 		<main class="content">
 			<section class="books">
 				<div class="books__group">
-					<h2 class="books__header typography typography__subtitle">
+					<h2 class="books__header typography__subtitle">
 						2020 year
 					</h2>
 					<ul class="book">
 						<li class="book__item">
-							<img class="book__image" src="./img/image-3.png" alt="Refactoring UI">
+							<img class="book__image" src="./image/image-3.png" alt="Refactoring UI">
 
-							<span class="book__title typography typography__body_small">Refactoring UI</span>
+							<span class="book__title typography__body_small">Refactoring UI</span>
 						</li>
 						<li class="book__item">
-							<img class="book__image" src="./img/image-1.png" alt="Master the Skill of Debugging CSS">
+							<img class="book__image" src="./image/image-1.png" alt="Master the Skill of Debugging CSS">
 
-							<span class="book__title typography typography__body_small">Master the Skill of Debugging CSS</span>
+							<span class="book__title typography__body_small">Master the Skill of Debugging CSS</span>
 						</li>
 						<li class="book__item">
-							<img class="book__image" src="./img/image-9.png" alt="Blue Period">
+							<img class="book__image" src="./image/image-9.png" alt="Blue Period">
 
-							<span class="book__title typography typography__body_small">Blue Period</span>
+							<span class="book__title typography__body_small">Blue Period</span>
 						</li>
 
 					</ul>
 				</div>
 				<div class="books__group">
-					<h2 class="books__header typography typography__subtitle">
+					<h2 class="books__header typography__subtitle">
 						1980 year
 					</h2>
 					<ul class="book">
 						<li class="book__item">
-							<img class="book__image" src="./img/image-10.png" alt="Yokohama Kaidashi Kikou">
+							<img class="book__image" src="./image/image-10.png" alt="Yokohama Kaidashi Kikou">
 
-							<span class="book__title typography typography__body_small">Yokohama Kaidashi Kikou</span>
+							<span class="book__title typography__body_small">Yokohama Kaidashi Kikou</span>
 						</li>
 						<li class="book__item">
-							<img class="book__image" src="./img/image-4.png" alt="Learning JavaScript Design Patterns">
+							<img class="book__image" src="./image/image-4.png" alt="Learning JavaScript Design Patterns">
 
-							<span class="book__title typography typography__body_small">Learning JavaScript Design Patterns</span>
+							<span class="book__title typography__body_small">Learning JavaScript Design Patterns</span>
 						</li>
 						<li class="book__item">
-							<img class="book__image" src="./img/image-11.png" alt="Yotsuba to!">
+							<img class="book__image" src="./image/image-11.png" alt="Yotsuba to!">
 
-							<span class="book__title typography typography__body_small">Yotsuba to!</span>
+							<span class="book__title typography__body_small">Yotsuba to!</span>
 						</li>
 						<li class="book__item">
-							<img class="book__image" src="./img/image-5.png" alt="Domain-Driven Design">
+							<img class="book__image" src="./image/image-5.png" alt="Domain-Driven Design">
 
-							<span class="book__title typography typography__body_small">Domain-Driven Design</span>
+							<span class="book__title typography__body_small">Domain-Driven Design</span>
 						</li>
 						<li class="book__item">
-							<img class="book__image" src="./img/image-6.png" alt="Implementing Domain-Driven">
+							<img class="book__image" src="./image/image-6.png" alt="Implementing Domain-Driven">
 
-							<span class="book__title typography typography__body_small">Implementing Domain-Driven</span>
+							<span class="book__title typography__body_small">Implementing Domain-Driven</span>
 						</li>
 						<li class="book__item">
-							<img class="book__image" src="./img/image-8.png" alt="7 Навыков высокэффективных">
+							<img class="book__image" src="./image/image-8.png" alt="7 Навыков высокэффективных">
 
-							<span class="book__title typography typography__body_small">7 Навыков высокэффективных</span>
+							<span class="book__title typography__body_small">7 Навыков высокэффективных</span>
 						</li>
 					</ul>
 				</div>
@@ -80,23 +80,24 @@
 
 			<div class="content__sidebar-wrapper">
 				<div class="content__sidebar sidebar">
-					<span class="sidebar__title typography typography__subtitle">Filters</span>
-					<div class="sidebar__inputs">
-						<input class="sidebar__search typography typography__body" type="text" name="search" id="search" placeholder="e.g. “Refactoring”">
-						<form>
-							<select class="sidebar__select typography typography__body" name="sort-select" id="sort-select">
-								<option value="" selected disabled>Choose sort field</option>
-								<option value="Length">Length</option>
-								<option value="Short">Short</option>
-							</select>
-						</form>
+					<span class="sidebar__title typography__subtitle">Filters</span>
+					<form class="sidebar__inputs">
+						<input class="sidebar__search typography__body" type="search" name="search"
+							placeholder="e.g. “Refactoring”">
 
-						<label class="sidebar__checkbox-container typography typography__body">
+						<select class="sidebar__select typography__body" name="sort-select">
+							<option value="" selected disabled>Choose sort field</option>
+							<option value="Length">Length</option>
+							<option value="Short">Short</option>
+						</select>
+
+
+						<label class="sidebar__checkbox-container typography__body">
 							<input class="sidebar__checkbox" type="checkbox" name="Show comics">
 							Show comics
 							<span class="sidebar__checkbox-mark"></span>
 						</label>
-					</div>
+					</form>
 				</div>
 			</div>
 		</main>
@@ -104,13 +105,14 @@
 		<footer class="main-footer">
 			<div class="main-footer__info">
 				<div class="main-footer__copyright">
-					<div class="app-logo main-footer__logo typography typography__logo">Books app</div>
-					<div class="main-footer__year typography typography__body">&copy; 2023</div>
+					<div class="app-logo main-footer__logo typography__logo">Books app</div>
+					<div class="main-footer__year typography__body">&copy; 2023</div>
 				</div>
-				<nav class="main-footer__nav"><a class="main-footer__nav_link typography typography__body" href="github.com">Github</a></nav>
+				<nav class="main-footer__nav"><a class="main-footer__nav_link typography__body"
+						href="github.com">Github</a></nav>
 			</div>
 
-			<a href="#" class="main-footer__go-top typography typography__body">Go to top ↑</a>
+			<a href="#" class="main-footer__go-top typography__body">Go to top ↑</a>
 		</footer>
 	</div>
 </body>

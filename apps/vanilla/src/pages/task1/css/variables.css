@@ -23,7 +23,9 @@
 	--space-9: calc(var(--space-base) * 9);
 	--space-10: calc(var(--space-base) * 10);
 	--space-12: calc(var(--space-base) * 12);
+	--space-16: calc(var(--space-base) * 16);
 	--space-19: calc(var(--space-base) * 19);
+	--space-32: calc(var(--space-base) * 32);
 
 	/* Border-radius */
 	--border-radius-sm: 4px;

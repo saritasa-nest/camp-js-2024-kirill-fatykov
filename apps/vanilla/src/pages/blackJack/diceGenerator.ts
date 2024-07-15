@@ -1,13 +1,16 @@
-// eslint-disable-next-line @typescript-eslint/naming-convention
-const SIDES__COUNT = 6;
-
+/** Yeah. */
 export class DiceGenerator {
+	/**
+		* Yeah.
+		* @param sideDice - Asdasd.
+		*/
 
-	constructor(public sideDice: number = SIDES__COUNT) {
+	public constructor(public sideDice = 6) {
 		this.sideDice = sideDice;
 	}
 
-	public rollDice() {
+	/** Yeah. */
+	public rollDice(): number {
 		return Math.floor(Math.random() * this.sideDice) + 1;
 	}
 }

@@ -1,6 +1,6 @@
 /** Yeah. */
 export type Subscriber<T> = {
 
-	/** Yeah. */
+	/** Yeah */
 	update(message: T): void;
 };

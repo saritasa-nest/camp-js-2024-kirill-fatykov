@@ -6,16 +6,15 @@ export class Publisher<T> {
 	public subscribers: Subscriber<T>[] = [];
 
 	/** Yeah. */
-	public subscribe(s: Subscriber<T>): void {
-		const index: number = this.subscribers.indexOf(s);
-		if (!index) {
-			this.subscribers.push(s);
+	public subscribe(sub: Subscriber<T>): void {
+		if (this.subscribers.includes(sub)) {
+			this.subscribers.push(sub);
 		}
 	}
 
 	/** Yeah. */
-	public unsubscribe(s: Subscriber<T>): void {
-		const index: number = this.subscribers.indexOf(s);
+	public unsubscribe(sub: Subscriber<T>): void {
+		const index: number = this.subscribers.indexOf(sub);
 		if (index !== -1) {
 			this.subscribers.splice(index, 1);
 		}

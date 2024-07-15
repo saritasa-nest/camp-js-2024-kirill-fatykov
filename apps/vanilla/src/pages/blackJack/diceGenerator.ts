@@ -1,12 +1,13 @@
+// eslint-disable-next-line @typescript-eslint/naming-convention
 const SIDES__COUNT = 6;
 
-class DiceGenerator {
-	private readonly sideDice: number = SIDES__COUNT;
+export class DiceGenerator {
 
-	rollDice() {
+	constructor(public sideDice: number = SIDES__COUNT) {
+		this.sideDice = sideDice;
+	}
+
+	public rollDice() {
 		return Math.floor(Math.random() * this.sideDice) + 1;
 	}
 }
-
-const a = new DiceGenerator();
-console.log(a.rollDice());

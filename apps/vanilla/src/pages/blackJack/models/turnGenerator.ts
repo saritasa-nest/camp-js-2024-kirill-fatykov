@@ -1,6 +1,6 @@
 import { Publisher } from './publisher';
 
-/** Yeah. */
+/** Turn player index with publsher func. */
 export class TurnGenerator extends Publisher<number> {
 
 	public constructor(public playerCount = 2) {
@@ -8,10 +8,10 @@ export class TurnGenerator extends Publisher<number> {
 		this.playerCount = playerCount;
 	}
 
-	/** Yeah. */
+	/** Start current index. When make next it change. */
 	public currentPlayerIndex = -1;
 
-	/** Yeah. */
+	/** Change index and notify index all subscribers. */
 	public next(): void {
 		if (this.currentPlayerIndex === this.playerCount - 1 || this.currentPlayerIndex === -1) {
 			this.currentPlayerIndex = 0;

@@ -1,15 +1,15 @@
-import { Subscriber } from '../interface/subscriber';
+import { Subscriber } from '../type/subscriber';
 
-/** Yeah. */
+/** All results diceRoll push in this class when he subscribe. */
 export class AllResultsRollDice implements Subscriber<number> {
-	/** Yeah. */
+	/** Array all diceRoll. */
 	public allDice: number[] = [];
 
 	/**
-		* Yeah.
-		* @param message - Asdasd.
+		* Listen publisher and take dice.
+		* @param dice - Number.
 		*/
-	public update(message: number): void {
-		this.allDice.push(message);
+	public update(dice: number): void {
+		this.allDice.push(dice);
 	}
 }

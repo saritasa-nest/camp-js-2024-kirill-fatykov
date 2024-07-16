@@ -1,21 +1,21 @@
-import { Subscriber } from '../interface/subscriber';
+import { Subscriber } from '../type/subscriber';
 
 import { Publisher } from './publisher';
 
-/** Yeah. */
+/** Player with publisher and subscriber func. */
 export class Player extends Publisher<number> implements Subscriber<number> {
-	/** Yeah. */
+	/** All dice results for one player. */
 	public diceResults: number[] = [];
 
 	/**
-	 * Yeah.
-	 * @param dice - Asadas.
+	 * Push result dice roll in general array.
+	 * @param dice - Number.
 		*/
-	public results(dice: number): void {
+	public result(dice: number): void {
 		this.diceResults.push(dice);
 	}
 
-	/** Yeah. */
+	/** Check win status in general array. */
 	public winStatus(): boolean {
 		if (this.diceResults.length === 0) {
 			return false;
@@ -29,21 +29,21 @@ export class Player extends Publisher<number> implements Subscriber<number> {
 	}
 
 	/**
-		* Yeah.
-		* @param playerResult - Asadas.
+		* Take all player's subscribers diceRoll.
+		* @param diceRoll - Number.
 		*/
-	public override notify(playerResult: number): void {
+	public override notify(diceRoll: number): void {
 		this.subscribers.forEach(subscriber => {
-			subscriber.update(playerResult);
+			subscriber.update(diceRoll);
 		});
 	}
 
 	/**
-		* Yeah.
-		* @param diceResult - Asadas.
+		* Give diceRoll from DiceGenerator.
+		* @param diceResult - Number.
 		*/
 	public update(diceResult: number): void {
-		this.diceResults.push(diceResult);
+		this.result(diceResult);
 		this.notify(diceResult);
 	}
 }

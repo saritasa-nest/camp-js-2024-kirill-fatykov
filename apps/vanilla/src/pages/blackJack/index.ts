@@ -3,10 +3,10 @@ import { TurnGenerator } from './models/turnGenerator';
 import { Player } from './models/player';
 import { AllResultsRollDice } from './models/allResultsRollDice';
 
-const btnRollTheDice = document.querySelector('.game__roll-the-dice') as HTMLElement;
-const containerPlayer1 = document.querySelector('.game__content1') as HTMLElement;
-const containerPlayer2 = document.querySelector('.game__content2') as HTMLElement;
-const containerAll = document.querySelector('.game__contentAll') as HTMLElement;
+const btnRollTheDice: HTMLButtonElement | null = document.querySelector('.game__roll-the-dice') as HTMLButtonElement;
+const containerPlayer1: HTMLDivElement | null = document.querySelector('.game__content1') as HTMLDivElement;
+const containerPlayer2: HTMLDivElement | null = document.querySelector('.game__content2') as HTMLDivElement;
+const containerAll: HTMLDivElement | null = document.querySelector('.game__contentAll') as HTMLDivElement;
 
 const turnGenerator = new TurnGenerator();
 const diceGenerator = new DiceGenerator();

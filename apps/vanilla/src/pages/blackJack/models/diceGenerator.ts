@@ -1,27 +1,28 @@
-import { Subscriber } from '../interface/subscriber';
+import { Subscriber } from '../type/subscriber';
 
 import { Publisher } from './publisher';
+const numberDice = 6;
 
-/** Yeah. */
+/** Generat dice with publisher and subscriber func. */
 export class DiceGenerator extends Publisher<number> implements Subscriber<number> {
 	/**
-		* Yeah.
-		* @param sideDice - Asdasd.
+		* Input data.
+		* @param sideDice - Which sides in dice.
 		*/
 
-	public constructor(public sideDice = 6) {
+	public constructor(public sideDice = numberDice) {
 		super();
 		this.sideDice = sideDice;
 	}
 
-	/** Yeah. */
+	/** It's method take random dice. */
 	public rollDice(): number {
 		return Math.floor(Math.random() * this.sideDice) + 1;
 	}
 
 	/**
-		* Yeah.
-		* @param currentPlayerIndex - Asdasd.
+		* Subscriber with cuurent index give info about dice .
+		* @param currentPlayerIndex - Number.
 		*/
 	public override notify(currentPlayerIndex: number): void {
 		this.subscribers.forEach((sub, index) => {
@@ -32,11 +33,11 @@ export class DiceGenerator extends Publisher<number> implements Subscriber<numbe
 	}
 
 	/**
-		* Yeah.
-		* @param message - Asdasd.
+		* Give current player index from TurnGenerator.
+		* @param currentPlayerIndex - Number.
 		*/
-	public update(message: number): void {
-		this.notify(message);
+	public update(currentPlayerIndex: number): void {
+		this.notify(currentPlayerIndex);
 	}
 
 }

@@ -1,13 +1,13 @@
-import { Subscriber } from '../interface/subscriber';
+import { Subscriber } from '../type/subscriber';
 
-/** Yeah. */
+/** General class for all publushers. */
 export class Publisher<T> {
-	/** Yeah. */
+	/** General array subscribers. */
 	public subscribers: Subscriber<T>[] = [];
 
 	/**
-		* Yeah.
-		* @param sub - Yeah.
+		* Method subscribe.
+		* @param sub - Type Subscriber<T>.
 		*/
 	public subscribe(sub: Subscriber<T>): void {
 		if (!this.subscribers.includes(sub)) {
@@ -16,8 +16,8 @@ export class Publisher<T> {
 	}
 
 	/**
-		* Yeah.
-		* @param sub - Yeah.
+		* Method unsubsribe.
+		* @param sub - Type Subscriber<T>.
 		*/
 	public unsubscribe(sub: Subscriber<T>): void {
 		const index: number = this.subscribers.indexOf(sub);
@@ -27,8 +27,8 @@ export class Publisher<T> {
 	}
 
 	/**
-		* Yeah.
-		* @param message - Yeah.
+		* Give message for all subsribers.
+		* @param message - It's generic.
 		*/
 	public notify(message: T): void {
 		this.subscribers.forEach(subscriber => subscriber.update(message));

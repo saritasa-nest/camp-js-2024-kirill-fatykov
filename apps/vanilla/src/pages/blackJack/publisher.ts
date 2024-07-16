@@ -1,7 +1,7 @@
 import { Subscriber } from './interface/subscriber';
 
 /** Yeah. */
-export class ConcretePublisher<T> {
+export class Publisher<T> {
 	/** Yeah. */
 	public subscribers: Subscriber<T>[] = [];
 
@@ -10,7 +10,7 @@ export class ConcretePublisher<T> {
 		* @param sub - Yeah.
 		*/
 	public subscribe(sub: Subscriber<T>): void {
-		if (this.subscribers.includes(sub)) {
+		if (!this.subscribers.includes(sub)) {
 			this.subscribers.push(sub);
 		}
 	}

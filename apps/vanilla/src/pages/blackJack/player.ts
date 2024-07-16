@@ -1,7 +1,17 @@
-import { DiceGenerator } from './diceGenerator';
+import { Publisher } from './publisher';
+import { Subscriber } from './interface/subscriber';
+
+type PlayerResult = {
+
+	/** Yeah. */
+	winStatus: boolean;
+
+	/** Yeah. */
+	diceResult: number;
+};
 
 /** Yeah. */
-export class Player extends DiceGenerator {
+export class Player extends Publisher<PlayerResult> implements Subscriber<number> {
 	/** Yeah. */
 	public diceResults: number[] = [];
 
@@ -24,5 +34,22 @@ export class Player extends DiceGenerator {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Yeah.
+	 * @param playerResult - Asadas.
+		*/
+	public override notify(playerResult: PlayerResult): void {
+		this.subscribers.forEach(sub => sub.update(playerResult));
+	}
+
+	/**
+		* Yeah.
+		* @param diceResult - Asadas.
+		*/
+	public update(diceResult: number): void {
+		this.results(diceResult);
+		this.notify({ winStatus: this.winStatus(), diceResult });
 	}
 }

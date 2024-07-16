@@ -1,5 +1,6 @@
+import { Subscriber } from '../interface/subscriber';
+
 import { Publisher } from './publisher';
-import { Subscriber } from './interface/subscriber';
 
 /** Yeah. */
 export class DiceGenerator extends Publisher<number> implements Subscriber<number> {

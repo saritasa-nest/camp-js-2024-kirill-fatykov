@@ -1,4 +1,4 @@
-import { Subscriber } from './interface/subscriber';
+import { Subscriber } from '../interface/subscriber';
 
 /** Yeah. */
 export class Publisher<T> {

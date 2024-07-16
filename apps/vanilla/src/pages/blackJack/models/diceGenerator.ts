@@ -17,7 +17,10 @@ export class DiceGenerator extends Publisher<number> implements Subscriber<numbe
 
 	/** It's method take random dice. */
 	public rollDice(): number {
-		return Math.floor(Math.random() * this.sideDice) + 1;
+		const { crypto } = window;
+		const array = new Uint8Array(1);
+		crypto.getRandomValues(array);
+		return array[0] % this.sideDice + 1;
 	}
 
 	/**

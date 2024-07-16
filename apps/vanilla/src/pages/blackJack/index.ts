@@ -29,11 +29,11 @@ btnRollTheDice?.addEventListener('click', () => {
 	containerAll.innerText = allResults.allDice.join(' ');
 
 	if (player1.winStatus()) {
-		containerPlayer1.style.backgroundColor = 'red';
+		containerPlayer1.closest('.game__item')?.setAttribute('style', 'background-color:red;');
 		btnRollTheDice.setAttribute('disabled', 'true');
 	}
 	if (player2.winStatus()) {
-		containerPlayer2.style.backgroundColor = 'red';
+		containerPlayer2.closest('.game__item')?.setAttribute('style', 'background-color:red;');
 		btnRollTheDice.setAttribute('disabled', 'true');
 	}
 });

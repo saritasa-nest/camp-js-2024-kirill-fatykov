@@ -5,18 +5,15 @@ const numberDice = 6;
 
 /** Generat dice with publisher and subscriber func. */
 export class DiceGenerator extends Publisher<number> implements Subscriber<number> {
-	/**
-		* Input data.
-		* @param sideDice - Which sides in dice.
-		*/
 
-	public constructor(public sideDice = numberDice) {
+	public constructor(private readonly sideDice = numberDice) {
 		super();
 		this.sideDice = sideDice;
 	}
 
 	/** It's method take random dice. */
 	public rollDice(): number {
+		/** I use crypto beacuse SonarCloud don't recommends use Math.random(). */
 		const { crypto } = window;
 		const array = new Uint8Array(1);
 		crypto.getRandomValues(array);

@@ -4,9 +4,9 @@ import { Player } from './models/player';
 import { AllResultsRollDice } from './models/allResultsRollDice';
 
 const btnRollTheDice: HTMLButtonElement | null = document.querySelector('.game__roll-the-dice') as HTMLButtonElement;
-const containerPlayer1: HTMLDivElement | null = document.querySelector('.game__content1') as HTMLDivElement;
-const containerPlayer2: HTMLDivElement | null = document.querySelector('.game__content2') as HTMLDivElement;
-const containerAll: HTMLDivElement | null = document.querySelector('.game__contentAll') as HTMLDivElement;
+const containerPlayer1: HTMLElement | null = document.querySelector('.game__content1') as HTMLElement;
+const containerPlayer2: HTMLElement | null = document.querySelector('.game__content2') as HTMLElement;
+const containerAll: HTMLElement | null = document.querySelector('.game__contentAll') as HTMLElement;
 
 const turnGenerator = new TurnGenerator();
 const diceGenerator = new DiceGenerator();
@@ -23,17 +23,23 @@ player1.subscribe(allResults);
 player2.subscribe(allResults);
 
 btnRollTheDice?.addEventListener('click', () => {
+
+	/**
+		* Function display in web-site dice resulte of PLayers.
+		* @param player - Class Player.
+		* @param containerPlayer - HTMLElement.
+		*/
+	function displayDiceResultAndWinner(player: Player, containerPlayer: HTMLElement): void {
+		if (player.getWinStatus()) {
+			containerPlayer?.closest('.game__item')?.setAttribute('style', 'background-color:red;');
+			btnRollTheDice?.setAttribute('disabled', 'true');
+		}
+		containerPlayer.innerText = player.diceResults.join(' ');
+	}
+
 	turnGenerator.next();
-	containerPlayer1.innerText = player1.diceResults.join(' ');
-	containerPlayer2.innerText = player2.diceResults.join(' ');
 	containerAll.innerText = allResults.allDice.join(' ');
 
-	if (player1.winStatus()) {
-		containerPlayer1.closest('.game__item')?.setAttribute('style', 'background-color:red;');
-		btnRollTheDice.setAttribute('disabled', 'true');
-	}
-	if (player2.winStatus()) {
-		containerPlayer2.closest('.game__item')?.setAttribute('style', 'background-color:red;');
-		btnRollTheDice.setAttribute('disabled', 'true');
-	}
+	displayDiceResultAndWinner(player1, containerPlayer1);
+	displayDiceResultAndWinner(player2, containerPlayer2);
 });

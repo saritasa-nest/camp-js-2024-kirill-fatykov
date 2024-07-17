@@ -3,7 +3,7 @@ import { Subscriber } from '../type/subscriber';
 /** General class for all publushers. */
 export class Publisher<T> {
 	/** General array subscribers. */
-	public subscribers: Subscriber<T>[] = [];
+	protected subscribers: Subscriber<T>[] = [];
 
 	/**
 		* Method subscribe.

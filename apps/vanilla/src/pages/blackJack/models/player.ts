@@ -1,11 +1,12 @@
 import { Subscriber } from '../type/subscriber';
 
 import { Publisher } from './publisher';
+const winScore = 21;
 
 /** Player with publisher and subscriber func. */
 export class Player extends Publisher<number> implements Subscriber<number> {
 	/** All dice results for one player. */
-	public diceResults: number[] = [];
+	public readonly diceResults: number[] = [];
 
 	/**
 	 * Push result dice roll in general array.
@@ -16,12 +17,8 @@ export class Player extends Publisher<number> implements Subscriber<number> {
 	}
 
 	/** Check win status in general array. */
-	public winStatus(): boolean {
-		if (this.diceResults.length === 0) {
-			return false;
-		}
-
-		if (this.diceResults.reduce((acc, dice) => acc + dice, 0) >= 21) {
+	public getWinStatus(): boolean {
+		if (this.diceResults.reduce((acc, dice) => acc + dice, 0) >= winScore) {
 			return true;
 		}
 

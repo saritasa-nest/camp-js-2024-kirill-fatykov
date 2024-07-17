@@ -4,9 +4,9 @@ import { Player } from './models/player';
 import { AllResultsRollDice } from './models/allResultsRollDice';
 
 const btnRollTheDice: HTMLButtonElement | null = document.querySelector('.game__roll-the-dice') as HTMLButtonElement;
-const containerPlayer1: HTMLElement | null = document.querySelector('.game__content1') as HTMLElement;
-const containerPlayer2: HTMLElement | null = document.querySelector('.game__content2') as HTMLElement;
-const containerAll: HTMLElement | null = document.querySelector('.game__contentAll') as HTMLElement;
+const containerPlayer1: HTMLElement | null = document.getElementById('Player1') as HTMLElement;
+const containerPlayer2: HTMLElement | null = document.getElementById('Player2') as HTMLElement;
+const containerAll: HTMLElement | null = document.getElementById('allResults') as HTMLElement;
 
 const turnGenerator = new TurnGenerator();
 const diceGenerator = new DiceGenerator();

@@ -16,6 +16,11 @@ export class Player extends Publisher<number> implements Subscriber<number> {
 		this.diceResults.push(dice);
 	}
 
+	/** Get sum of all Dices. */
+	public getSumDices(): number {
+		return this.diceResults.reduce((acc, dice) => acc + dice, 0);
+	}
+
 	/** Check win status in general array. */
 	public getWinStatus(): boolean {
 		if (this.diceResults.reduce((acc, dice) => acc + dice, 0) >= winScore) {

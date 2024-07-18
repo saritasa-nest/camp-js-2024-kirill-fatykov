@@ -1,12 +1,12 @@
 import { Subscriber } from '../type/subscriber';
 
 import { Publisher } from './publisher';
-const numberDice = 6;
+const NUMER_DICE = 6;
 
 /** Generat dice with publisher and subscriber func. */
 export class DiceGenerator extends Publisher<number> implements Subscriber<number> {
 
-	public constructor(private readonly sideDice = numberDice) {
+	public constructor(private readonly sideDice = NUMER_DICE) {
 		super();
 		this.sideDice = sideDice;
 	}

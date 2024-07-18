@@ -3,7 +3,7 @@ import { TurnGenerator } from './models/turnGenerator';
 import { Player } from './models/player';
 import { AllResultsRollDice } from './models/allResultsRollDice';
 
-const btnRollTheDice = document.querySelector<HTMLButtonElement>('.game__roll-the-dice');
+const buttonRollTheDice = document.querySelector<HTMLButtonElement>('.game__roll-the-dice');
 const containerPlayer1 = document.querySelector<HTMLElement>('#Player1');
 const containerPlayer2 = document.querySelector<HTMLElement>('#Player2');
 const containerAll = document.querySelector<HTMLElement>('#allResults');
@@ -22,7 +22,7 @@ diceGenerator.subscribe(player2);
 player1.subscribe(allResults);
 player2.subscribe(allResults);
 
-btnRollTheDice?.addEventListener('click', () => {
+buttonRollTheDice?.addEventListener('click', () => {
 
 	turnGenerator.next();
 
@@ -47,7 +47,7 @@ btnRollTheDice?.addEventListener('click', () => {
 function displayDiceResultAndWinner(player: Player, containerPlayer: HTMLElement): void {
 	if (player.getWinStatus()) {
 		containerPlayer.closest('.game__item')?.setAttribute('style', 'background-color:rgb(217 59 59 / 100%);');
-		btnRollTheDice?.setAttribute('disabled', 'true');
+		buttonRollTheDice?.setAttribute('disabled', 'true');
 	}
 	const preveiousElem = containerPlayer.previousElementSibling;
 	const containerPlayerId = containerPlayer?.id;

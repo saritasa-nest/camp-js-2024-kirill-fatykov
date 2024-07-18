@@ -1,7 +1,7 @@
 import { Subscriber } from '../type/subscriber';
 
 import { Publisher } from './publisher';
-const winScore = 21;
+const WIN_SCORE = 21;
 
 /** Player with publisher and subscriber func. */
 export class Player extends Publisher<number> implements Subscriber<number> {
@@ -23,7 +23,7 @@ export class Player extends Publisher<number> implements Subscriber<number> {
 
 	/** Check win status in general array. */
 	public getWinStatus(): boolean {
-		if (this.diceResults.reduce((acc, dice) => acc + dice, 0) >= winScore) {
+		if (this.diceResults.reduce((acc, dice) => acc + dice, 0) >= WIN_SCORE) {
 			return true;
 		}
 

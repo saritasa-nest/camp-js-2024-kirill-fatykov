@@ -15,7 +15,6 @@
 
 .game__item {
 	border: var(--border-main);
-	background-color: var(--bg-color);
 	border-radius: var(--border-radius-lg);
 	padding-left: var(--space-5);
 	height: var(--space-30);

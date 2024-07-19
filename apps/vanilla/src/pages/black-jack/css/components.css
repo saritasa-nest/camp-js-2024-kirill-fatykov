@@ -1,14 +1,9 @@
 .game {
 	height: 100vh;
 	display: flex;
-	align-items: center;
-}
-
-.game__wrapper {
+	justify-content: center;
 	padding: 0 var(--space-10);
-	width: 100%;
 	margin: 0 auto;
-	display: flex;
 	flex-direction: column;
 	gap: var(--space-5);
 }
@@ -22,6 +17,7 @@
 	flex-direction: column;
 	justify-content: center;
 	gap: var(--space-3);
+	width: 100%;
 }
 
 .game__content {
@@ -29,5 +25,10 @@
 }
 
 .game__roll-the-dice {
+	align-self: flex-start;
 	width: var(--space-25);
+}
+
+.game__winner {
+	background-color: var(--winner-color);
 }

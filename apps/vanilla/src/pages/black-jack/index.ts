@@ -4,8 +4,8 @@ import { Player } from './models/player';
 import { AllResultsRollDice } from './models/allResultsRollDice';
 
 const buttonRollTheDice = document.querySelector<HTMLButtonElement>('.game__roll-the-dice');
-const containerPlayer1 = document.querySelector<HTMLElement>('#Player1');
-const containerPlayer2 = document.querySelector<HTMLElement>('#Player2');
+const containerPlayer1 = document.querySelector<HTMLElement>('#player1');
+const containerPlayer2 = document.querySelector<HTMLElement>('#player2');
 const containerAll = document.querySelector<HTMLElement>('#allResults');
 
 const turnGenerator = new TurnGenerator();
@@ -27,10 +27,7 @@ buttonRollTheDice?.addEventListener('click', () => {
 	turnGenerator.next();
 
 	if (containerAll != null) {
-		if (containerAll.previousElementSibling !== null) {
-			containerAll.previousElementSibling.innerHTML = `Dice cap - ${allResults.getSumDices()}`;
-		}
-		containerAll.innerHTML = allResults.allDice.join(' ');
+		displayAllResults(containerAll);
 	}
 
 	if (containerPlayer1 != null && containerPlayer2 != null) {
@@ -40,20 +37,32 @@ buttonRollTheDice?.addEventListener('click', () => {
 });
 
 /**
-	* Function display in web-site dice resulte of PLayers.
-	* @param player - Class Player.
-	* @param containerPlayer - HTMLElement.
+	* Function display in web-site all dice result of PLayers.
+	* @param containerAllResults - Container for print results.
+	*/
+function displayAllResults(containerAllResults: HTMLElement): void {
+	if (containerAllResults.previousElementSibling !== null) {
+		containerAllResults.previousElementSibling.innerHTML = `Dice cap - ${allResults.getSumDices()}`;
+	}
+	containerAllResults.innerHTML = allResults.printResult();
+}
+
+/**
+	* Function display in web-site dice result of PLayers.
+	* @param player - Info about Player.
+	* @param containerPlayer - Container for print results.
 	*/
 function displayDiceResultAndWinner(player: Player, containerPlayer: HTMLElement): void {
-	if (player.getWinStatus()) {
-		containerPlayer.closest('.game__item')?.setAttribute('style', 'background-color:rgb(217 59 59 / 100%);');
+	if (player.getWinner()) {
+		containerPlayer.closest('.game__item')?.classList.add('game__winner');
 		buttonRollTheDice?.setAttribute('disabled', 'true');
 	}
-	const preveiousElem = containerPlayer.previousElementSibling;
+	const previousElement = containerPlayer.previousElementSibling;
 	const containerPlayerId = containerPlayer?.id;
 
-	if (preveiousElem != null) {
-		preveiousElem.innerHTML = `${containerPlayerId} - ${player.getSumDices()}`;
+	if (previousElement != null) {
+		previousElement.innerHTML = `${containerPlayerId[0].toUpperCase()}${containerPlayerId.slice(1)} 
+		- ${player.getScore()}`;
 	}
-	containerPlayer.innerHTML = player.diceResults.join(' ');
+	containerPlayer.innerHTML = player.printResult();
 }

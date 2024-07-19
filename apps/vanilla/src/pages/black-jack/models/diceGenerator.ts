@@ -1,19 +1,18 @@
 import { Subscriber } from '../type/subscriber';
 
 import { Publisher } from './publisher';
-const NUMER_DICE = 6;
+const NUMBER_DICE = 6;
 
-/** Generat dice with publisher and subscriber func. */
+/** Generating dice with publisher and subscriber func. */
 export class DiceGenerator extends Publisher<number> implements Subscriber<number> {
 
-	public constructor(private readonly sideDice = NUMER_DICE) {
+	public constructor(private readonly sideDice = NUMBER_DICE) {
 		super();
-		this.sideDice = sideDice;
 	}
 
 	/** It's method take random dice. */
 	public rollDice(): number {
-		/** I use crypto beacuse SonarCloud don't recommends use Math.random(). */
+		/** I use crypto because SonarCloud don't recommends use Math.random(). */
 		const { crypto } = window;
 		const array = new Uint8Array(1);
 		crypto.getRandomValues(array);
@@ -21,7 +20,7 @@ export class DiceGenerator extends Publisher<number> implements Subscriber<numbe
 	}
 
 	/**
-		* Subscriber with cuurent index give info about dice .
+		* Subscriber with current index give info about dice .
 		* @param currentPlayerIndex - Number.
 		*/
 	public override notify(currentPlayerIndex: number): void {

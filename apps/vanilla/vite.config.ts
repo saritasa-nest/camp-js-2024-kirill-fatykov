@@ -21,7 +21,7 @@ export default defineConfig({
     rollupOptions: {
       input: [
         resolve(root, 'index.html'),
-        resolve(root, 'blackJack', 'index.html'),
+        resolve(root, 'black-jack', 'index.html'),
       ],
     },
   },

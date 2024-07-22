@@ -12,6 +12,7 @@ export class ProfileService {
 	public getAnime(): Object {
 		return this.http.get('https://api.camp-js.saritasa.rocks/api/v1/anime/anime/', {
 			headers: {
+				// eslint-disable-next-line @typescript-eslint/naming-convention
 				'Api-Key': 'c43958c3-a449-40ea-a4e1-4aa46a3f4ad6',
 			},
 		}).subscribe(res => {

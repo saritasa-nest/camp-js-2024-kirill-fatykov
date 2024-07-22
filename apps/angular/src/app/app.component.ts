@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { Component, inject } from '@angular/core';
+
+import { ProfileService } from '../core/services/anime.service';
 
 /** App component. */
 @Component({
@@ -9,4 +11,10 @@ import { RouterModule } from '@angular/router';
 	standalone: true,
 	imports: [RouterModule],
 })
-export class AppComponent {}
+export class AppComponent {
+	private profileService: ProfileService = inject(ProfileService);
+
+	public constructor() {
+		this.profileService.getAnime();
+	}
+}

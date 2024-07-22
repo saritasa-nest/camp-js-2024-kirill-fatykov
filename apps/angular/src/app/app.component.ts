@@ -13,8 +13,4 @@ import { ProfileService } from '../core/services/anime.service';
 })
 export class AppComponent {
 	private profileService: ProfileService = inject(ProfileService);
-
-	public constructor() {
-		this.profileService.getAnime();
-	}
 }

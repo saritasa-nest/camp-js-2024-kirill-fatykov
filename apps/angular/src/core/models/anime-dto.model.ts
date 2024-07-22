@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 /** Array of objects with anime info.*/
-type AnimeResults = {
+export type AnimeDtoResults = {
 
 	/** Id Anime.*/
 	readonly id: number;
@@ -33,14 +33,14 @@ type AnimeResults = {
 	/** Anime type.*/
 	readonly type: string;
 
-	/** Anime finished or not.*/
+	/** Anime status.*/
 	readonly status: string;
 
 	/** Overall score Anime.*/
 	readonly score: number | null;
 
 	/** User score Anime.*/
-	readonly user__score: number | null;
+	readonly user_score: number | null;
 
 	/** Numbers of studios.*/
 	readonly studios: number[];
@@ -63,5 +63,5 @@ export type AnimeDto = {
 	readonly previous: string | null;
 
 	/** Info about Anime.*/
-	readonly result: AnimeResults;
+	readonly results: AnimeDtoResults[];
 };

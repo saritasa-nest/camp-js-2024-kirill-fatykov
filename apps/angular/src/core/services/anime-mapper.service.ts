@@ -13,7 +13,7 @@ export class AnimeMapper {
 		* @param dto - D.
 		*/
 	public fromAnimeDto(dto: AnimeDto): AnimeDomain[] {
-		return dto.results.map((result: AnimeDtoResults): AnimeDomain => {
+		return dto.results.map((result: AnimeDtoResults): AnimeDomain => (
 			{
 				image: result.image,
 				titleEng: result.title_eng,
@@ -23,7 +23,7 @@ export class AnimeMapper {
 				},
 				type: result.type,
 				status: result.status,
-			};
-		});
+			}
+		));
 	}
 }

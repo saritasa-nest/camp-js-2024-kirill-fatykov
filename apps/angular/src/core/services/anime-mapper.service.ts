@@ -9,8 +9,8 @@ import { AnimeDomain } from '../models/anime-domain.model';
 })
 export class AnimeMapper {
 
-	/**
-		* @param dto - D.
+	/** Method from Dto to Domain.
+		* @param dto - Data from API.
 		*/
 	public fromAnimeDto(dto: AnimeDto): AnimeDomain[] {
 		return dto.results.map((result: AnimeDtoResults): AnimeDomain => (

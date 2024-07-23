@@ -4,12 +4,16 @@ import { Observable } from 'rxjs';
 
 import { AnimeDto } from '../models/anime-dto.model';
 
+import { AnimeMapper } from './anime-mapper.service';
+
 /** HTTPS requests. */
 @Injectable({
 	providedIn: 'root',
 })
 export class ProfileService {
 	private http: HttpClient = inject(HttpClient);
+
+	private animeMapper: AnimeMapper = inject(AnimeMapper);
 
 	/** Get JSON from API. */
 	public getAnime(): Observable<AnimeDto> {

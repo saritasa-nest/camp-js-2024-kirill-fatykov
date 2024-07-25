@@ -19,22 +19,13 @@ export class AnimeMapper {
 				titleEng: result.title_eng,
 				titleJpn: result.title_jpn,
 				aired: {
-					start: dateMapper(result.aired.start),
+					start: result.aired.start,
 				},
 				type: stingMapper(result.type),
 				status: stingMapper(result.status),
 			}
 		));
 	}
-}
-
-/** Change format for Dates.
-	* @param date - Value what change.
-	*/
-function dateMapper(date: string): string {
-	const regex = /(\d{4})-(\d{2})-(\d{2})/m;
-	const [, year, month, day] = date?.match(regex) ?? [];
-	return `${day || '00'}.${month || '00'}.${year || '0000'}`;
 }
 
 /** Change formats Stings.

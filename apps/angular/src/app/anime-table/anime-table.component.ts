@@ -1,4 +1,4 @@
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { AnimeDomain } from '@js-camp/angular/core/models/anime-domain.model';
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 	styleUrl: 'anime-table.component.css',
 	templateUrl: 'anime-table.component.html',
 	standalone: true,
-	imports: [MatTableModule, AsyncPipe],
+	imports: [MatTableModule, AsyncPipe, DatePipe],
 })
 export class AnimeTableComponent {
 	/** Variable where stored anime info. */

@@ -2,39 +2,70 @@
   <table mat-table [dataSource]="animeAll" class="mat-elevation-z8 anime-table">
 
     <!-- Image Column -->
+<<<<<<< HEAD
     <ng-container matColumnDef="image" class="anime-table__item anime-col">
       <th mat-header-cell *matHeaderCellDef class="anime-col__header"> Image </th>
       <td mat-cell *matCellDef="let anime" class="anime-col__content"> <img class="anime-col__image" src={{anime.image}} alt={anime.titleJpn}}> </td>
+=======
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef class="anime-table__title typography_title"> Image </th>
+      <td mat-cell *matCellDef="let anime" class="anime-table__content typography_content"> <img class="anime-table__image" src={{anime.image}} alt={anime.titleJpn}}> </td>
+>>>>>>> 0e189a8 (update app JC-641)
     </ng-container>
   
     <!-- Title English Column -->
     <ng-container matColumnDef="titleEng">
+<<<<<<< HEAD
       <th mat-header-cell *matHeaderCellDef> Title English </th>
       <td mat-cell *matCellDef="let anime"> {{anime.titleEng}}</td>
+=======
+      <th mat-header-cell *matHeaderCellDef class="anime-table__title typography_title"> Title English </th>
+      <td mat-cell *matCellDef="let anime"  class="anime-table__content typography_content"> {{anime.titleEng | replace}}</td>
+>>>>>>> 0e189a8 (update app JC-641)
     </ng-container>
   
       <!-- Title Japanese Column -->
     <ng-container matColumnDef="titleJpn">
+<<<<<<< HEAD
       <th mat-header-cell *matHeaderCellDef> Title Japanese </th>
       <td mat-cell *matCellDef="let anime"> {{anime.titleJpn}}</td>
+=======
+      <th mat-header-cell *matHeaderCellDef class="anime-table__title typography_title"> Title Japanese </th>
+      <td mat-cell *matCellDef="let anime"  class="anime-table__content typography_content"> {{anime.titleJpn}}</td>
+>>>>>>> 0e189a8 (update app JC-641)
     </ng-container>
   
     <!-- Aired start  Column -->
     <ng-container matColumnDef="airedStart">
+<<<<<<< HEAD
       <th mat-header-cell *matHeaderCellDef> Aired Start </th>
       <td mat-cell *matCellDef="let anime"> {{anime.aired.start | date}}</td>
+=======
+      <th mat-header-cell *matHeaderCellDef class="anime-table__title typography_title"> Aired Start </th>
+      <td mat-cell *matCellDef="let anime"  class="anime-table__content typography_content"> {{anime.aired.start | date | replace}}</td>
+>>>>>>> 0e189a8 (update app JC-641)
     </ng-container>
     
       <!-- Anime type Column -->
       <ng-container matColumnDef="type">
+<<<<<<< HEAD
         <th mat-header-cell *matHeaderCellDef> Type </th>
         <td mat-cell *matCellDef="let anime"> {{anime.type}}</td>
+=======
+        <th mat-header-cell *matHeaderCellDef class="anime-table__title typography_title"> Type </th>
+        <td mat-cell *matCellDef="let anime"  class="anime-table__content typography_content"> {{anime.type}}</td>
+>>>>>>> 0e189a8 (update app JC-641)
       </ng-container>
   
     <!-- Anime status Column -->
     <ng-container matColumnDef="status">
+<<<<<<< HEAD
       <th mat-header-cell *matHeaderCellDef> Status </th>
       <td mat-cell *matCellDef="let anime"> {{anime.status}}</td>
+=======
+      <th mat-header-cell *matHeaderCellDef class="anime-table__title typography_title"> Status </th>
+      <td mat-cell *matCellDef="let anime"  class="anime-table__content typography_content"> {{anime.status}}</td>
+>>>>>>> 0e189a8 (update app JC-641)
     </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

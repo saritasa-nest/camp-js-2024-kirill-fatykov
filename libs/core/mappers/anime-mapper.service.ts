@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { AnimeDto, AnimeDtoResults } from '../models/anime-dto.model';
+import { AnimeDto, AnimeDtoResults } from '../dtos/anime.dto';
 import { AnimeDomain } from '../models/anime-domain.model';
 
-/** */
+/** Service for mapping date.*/
 @Injectable({
 	providedIn: 'root',
 })

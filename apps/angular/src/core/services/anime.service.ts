@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
 
-import { AnimeDto } from '../models/anime-dto.model';
-import { AnimeDomain } from '../models/anime-domain.model';
+import { AnimeDto } from '@js-camp/core/dtos/anime.dto';
+import { AnimeDomain } from '@js-camp/core/models/anime-domain.model';
 
-import { AnimeMapper } from './anime-mapper.service';
+import { AnimeMapper } from '@js-camp/core/mappers/anime-mapper.service';
 
 /** HTTPS requests. */
 @Injectable({

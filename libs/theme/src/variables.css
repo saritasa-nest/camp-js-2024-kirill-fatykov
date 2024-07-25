@@ -10,6 +10,7 @@
   */
 
   /** Prevalent color in the application */
+<<<<<<< HEAD
   --primary-color: #f97316;
   --primary-contrast-color: white;
   --primary-dark-color: #ea580c;
@@ -19,4 +20,32 @@
   --background-color: white;
   --background-contrast-color: black;
   --error-color: red;
+=======
+  --primary-color: rgb(249 115 22);
+  --primary-contrast-color: white;
+  --primary-dark-color: rgb(234 88 12);
+  --primary-dark-contrast-color: white;
+  --primary-light-color: rgb(251 146 60);
+  --primary-light-contrast-color: rgb(0 0 0);
+  --background-color: rgb(255 255 255);
+  --background-contrast-color: rgb(0 0 0);
+  --error-color: rgb(255 0 0);
+
+  /* Spaces */
+  --space-base: 4px;
+  --space-2: calc(var(--space-base) * 2);
+  --space-4: calc(var(--space-base) * 4);
+  --space-5: calc(var(--space-base) * 5);
+  --space-6: calc(var(--space-base) * 6);
+  --space-7: calc(var(--space-base) * 7);
+  --space-8: calc(var(--space-base) * 8);
+  --space-9: calc(var(--space-base) * 9);
+  --space-10: calc(var(--space-base) * 10);
+  --space-12: calc(var(--space-base) * 12);
+  --space-16: calc(var(--space-base) * 16);
+  --space-19: calc(var(--space-base) * 19);
+  --space-20: calc(var(--space-base) * 20);
+  --space-32: calc(var(--space-base) * 32);
+  --space-38: calc(var(--space-base) * 38);
+>>>>>>> 0e189a8 (update app JC-641)
 }

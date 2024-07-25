@@ -1,14 +1,14 @@
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
-import { AnimeDomain } from '@js-camp/angular/core/models/anime-domain.model';
+import { AnimeDomain } from '@js-camp/core/models/anime-domain.model';
 import { AnimeService } from '@js-camp/angular/core/services/anime.service';
 import { Observable } from 'rxjs';
 
 /** Table with Anime list. */
 @Component({
 	selector: 'anime-table',
-	styleUrl: 'anime-table.component.css',
+	styleUrls: ['../../theme/typography.css', './anime-table.component.css'],
 	templateUrl: 'anime-table.component.html',
 	standalone: true,
 	imports: [MatTableModule, AsyncPipe, DatePipe],

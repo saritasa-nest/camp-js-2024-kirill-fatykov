@@ -1,5 +1,5 @@
 import { AnimeDomain } from './anime-domain.model';
-import { AnimeDto } from './anime-dto.model';
+import { AnimeDto } from '../dtos/anime.dto';
 
 /** Type Anime Mapper.*/
 export type AnimeMapper = {

@@ -1,4 +1,5 @@
 /** Pagination meta info. */
+// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 export interface PaginationDto<T> {
 
 	/** Total count of items. */

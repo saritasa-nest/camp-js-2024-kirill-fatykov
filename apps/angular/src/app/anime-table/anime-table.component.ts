@@ -5,13 +5,15 @@ import { AnimeDomain } from '@js-camp/core/models/anime-domain.model';
 import { AnimeService } from '@js-camp/angular/core/services/anime.service';
 import { Observable } from 'rxjs';
 
+import { ReplaceEmptyStringPipe } from '../features/replaceEmptyString.pipe';
+
 /** Table with Anime list. */
 @Component({
 	selector: 'anime-table',
 	styleUrls: ['../../theme/typography.css', './anime-table.component.css'],
 	templateUrl: 'anime-table.component.html',
 	standalone: true,
-	imports: [MatTableModule, AsyncPipe, DatePipe],
+	imports: [MatTableModule, AsyncPipe, DatePipe, ReplaceEmptyStringPipe],
 })
 export class AnimeTableComponent {
 	/** Variable where stored anime info. */

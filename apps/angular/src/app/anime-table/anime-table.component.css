@@ -1,8 +1,6 @@
 :host {
 	display: block;
 }
-<<<<<<< HEAD
-=======
 
 .anime-table__header {
 	background-color: var(--primary-color);
@@ -22,4 +20,3 @@
 .anime-table__image {
 	width: 150px;
 }
->>>>>>> 0e189a8 (update app JC-641)

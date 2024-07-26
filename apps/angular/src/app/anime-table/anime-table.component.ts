@@ -26,6 +26,6 @@ export class AnimeTableComponent {
 	}
 
 	/** Name columns for table module. */
-	public displayedColumns: string[] = ['image', 'titleEng', 'titleJpn', 'airedStart', 'type', 'status'];
+	public displayedColumns = ['image', 'titleEng', 'titleJpn', 'airedStart', 'type', 'status'] as const;
 
 }

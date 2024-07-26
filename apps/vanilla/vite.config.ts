@@ -21,7 +21,7 @@ export default defineConfig({
     rollupOptions: {
       input: [
         resolve(root, 'index.html'),
-        resolve(root, 'bookCatalog', 'index.html')
+        resolve(root, 'book-catalog', 'index.html')
       ],
     },
   },

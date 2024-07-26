@@ -1,3 +1,4 @@
+/* eslint-disable jsdoc/require-jsdoc */
 import { configureStore } from '@reduxjs/toolkit';
 import {
 	TypedUseSelectorHook, useDispatch, useSelector,

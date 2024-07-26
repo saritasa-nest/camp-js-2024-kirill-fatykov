@@ -3,6 +3,7 @@ import { Navigate, RouteObject } from 'react-router-dom';
 
 const GenresPage = lazy(() => import('./pages/GenresPage').then(module => ({ default: module.GenresPage })));
 
+// eslint-disable-next-line jsdoc/require-jsdoc
 export const genresRoutes: RouteObject[] = [
 	{
 		path: 'genres',

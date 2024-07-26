@@ -43,10 +43,10 @@ export type AnimeDtoResults = {
 	readonly user_score: number | null;
 
 	/** Numbers of studios.*/
-	readonly studios: number[];
+	readonly studios: readonly number[];
 
 	/** Genres of Anime.*/
-	readonly genres: number[];
+	readonly genres: readonly number[];
 
 };
 
@@ -63,5 +63,5 @@ export type AnimeDto = {
 	readonly previous: string | null;
 
 	/** Info about Anime.*/
-	readonly results: AnimeDtoResults[];
+	readonly results: readonly AnimeDtoResults[];
 };

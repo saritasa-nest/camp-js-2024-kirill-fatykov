@@ -27,4 +27,5 @@ const GenresPageComponent: FC = () => {
 	);
 };
 
+// eslint-disable-next-line jsdoc/require-jsdoc
 export const GenresPage = memo(GenresPageComponent);

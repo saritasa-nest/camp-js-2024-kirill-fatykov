@@ -14,9 +14,6 @@ export class TurnGenerator extends Publisher<number> {
 	/** Change turn player and notify index all subscribers. */
 	public next(): void {
 		const currentPlayerIndex = this.currentTurn % this.playerCount;
-		if (this.currentTurn === this.playerCount) {
-			this.currentTurn = START_INDEX;
-		}
 		this.notify(currentPlayerIndex);
 		this.currentTurn += 1;
 	}

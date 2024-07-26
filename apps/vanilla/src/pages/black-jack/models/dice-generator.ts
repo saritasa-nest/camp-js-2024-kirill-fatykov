@@ -3,7 +3,7 @@ import { Subscriber } from '../type/subscriber';
 import { Publisher } from './publisher';
 const NUMBER_DICE = 6;
 
-/** Generating dice with publisher and subscriber func. */
+/** Generator for dice rolls. */
 export class DiceGenerator extends Publisher<number> implements Subscriber<number> {
 
 	public constructor(private readonly sideDice = NUMBER_DICE) {
@@ -21,9 +21,9 @@ export class DiceGenerator extends Publisher<number> implements Subscriber<numbe
 
 	/**
 		* Subscriber with current index give info about dice .
-		* @param currentPlayerIndex - Number.
+		* @param currentPlayerIndex - Current player index.
 		*/
-	public override notify(currentPlayerIndex: number): void {
+	protected override notify(currentPlayerIndex: number): void {
 		this.subscribers.forEach((sub, index) => {
 			if (currentPlayerIndex === index) {
 				sub.update(this.rollDice());
@@ -33,7 +33,7 @@ export class DiceGenerator extends Publisher<number> implements Subscriber<numbe
 
 	/**
 		* Give current player index from TurnGenerator.
-		* @param currentPlayerIndex - Number.
+		* @param currentPlayerIndex - Current player index.
 		*/
 	public update(currentPlayerIndex: number): void {
 		this.notify(currentPlayerIndex);

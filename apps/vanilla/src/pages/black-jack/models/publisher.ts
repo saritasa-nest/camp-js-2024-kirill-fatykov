@@ -30,7 +30,7 @@ export class Publisher<T> {
 		* Notify all subscribers.
 		* @param message - Message for subscribers.
 		*/
-	public notify(message: T): void {
+	protected notify(message: T): void {
 		this.subscribers.forEach(subscriber => subscriber.update(message));
 	}
 }

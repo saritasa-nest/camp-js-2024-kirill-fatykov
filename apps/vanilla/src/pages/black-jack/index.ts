@@ -1,7 +1,7 @@
-import { DiceGenerator } from './models/diceGenerator';
-import { TurnGenerator } from './models/turnGenerator';
+import { DiceGenerator } from './models/dice-generator';
+import { TurnGenerator } from './models/turn-generator';
 import { Player } from './models/player';
-import { AllResultsRollDice } from './models/allResultsRollDice';
+import { AllResultsRollDice } from './models/all-results-roll-rice';
 
 const buttonRollTheDice = document.querySelector<HTMLButtonElement>('.game__roll-the-dice');
 const containerPlayer1 = document.querySelector<HTMLElement>('#player1');
@@ -41,8 +41,11 @@ buttonRollTheDice?.addEventListener('click', () => {
 	* @param containerAllResults - Container for print results.
 	*/
 function displayAllResults(containerAllResults: HTMLElement): void {
-	if (containerAllResults.previousElementSibling !== null) {
-		containerAllResults.previousElementSibling.innerHTML = `Dice cap - ${allResults.getSumDices()}`;
+
+	const previousElementAllResults = containerAllResults.previousElementSibling?.querySelector('.game-stand__sum');
+
+	if (previousElementAllResults !== null && previousElementAllResults !== undefined) {
+		previousElementAllResults.innerHTML = `${allResults.getSumDices()}`;
 	}
 	containerAllResults.innerHTML = allResults.printResult();
 }
@@ -54,15 +57,13 @@ function displayAllResults(containerAllResults: HTMLElement): void {
 	*/
 function displayDiceResultAndWinner(player: Player, containerPlayer: HTMLElement): void {
 	if (player.getWinner()) {
-		containerPlayer.closest('.game__item')?.classList.add('game__winner');
+		containerPlayer.closest('.game__item')?.classList.add('game-winner');
 		buttonRollTheDice?.setAttribute('disabled', 'true');
 	}
-	const previousElement = containerPlayer.previousElementSibling;
-	const containerPlayerId = containerPlayer?.id;
+	const previousElement = containerPlayer.previousElementSibling?.querySelector('.game-stand__sum');
 
 	if (previousElement != null) {
-		previousElement.innerHTML = `${containerPlayerId[0].toUpperCase()}${containerPlayerId.slice(1)} 
-		- ${player.getScore()}`;
+		previousElement.innerHTML = `${player.getScore()}`;
 	}
 	containerPlayer.innerHTML = player.printResult();
 }

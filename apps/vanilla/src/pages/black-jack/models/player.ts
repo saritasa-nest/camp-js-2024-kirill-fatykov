@@ -10,7 +10,7 @@ export class Player extends Publisher<number> implements Subscriber<number> {
 
 	/**
 		* Push result dice roll in general array.
-		* @param dice - Number.
+		* @param dice - Dice.
 		*/
 	public result(dice: number): void {
 		this.diceResults.push(dice);
@@ -26,7 +26,7 @@ export class Player extends Publisher<number> implements Subscriber<number> {
 		return this.getScore() >= WIN_SCORE;
 	}
 
-	/** Make format dices for HtmlElements. */
+	/** Get result in a user-friendly format. */
 	public printResult(): string {
 		return this.diceResults.join(' ');
 	}
@@ -43,7 +43,7 @@ export class Player extends Publisher<number> implements Subscriber<number> {
 
 	/**
 		* Give diceRoll from DiceGenerator.
-		* @param diceResult - Number.
+		* @param diceResult - Result of throwing dice.
 		*/
 	public update(diceResult: number): void {
 		this.result(diceResult);

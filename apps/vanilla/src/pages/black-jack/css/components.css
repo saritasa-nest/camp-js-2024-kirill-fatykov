@@ -20,7 +20,7 @@
 	width: 100%;
 }
 
-.game__content {
+.game-stand__content {
 	height: var(--space-5);
 }
 
@@ -29,6 +29,6 @@
 	width: var(--space-25);
 }
 
-.game__winner {
+.game-winner {
 	background-color: var(--winner-color);
 }

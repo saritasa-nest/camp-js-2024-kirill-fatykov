@@ -21,6 +21,7 @@ export default defineConfig({
     rollupOptions: {
       input: [
         resolve(root, 'index.html'),
+        resolve(root, 'black-jack', 'index.html'),
         resolve(root, 'book-catalog', 'index.html')
       ],
     },

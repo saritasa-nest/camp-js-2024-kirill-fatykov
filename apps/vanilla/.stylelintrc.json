@@ -1,9 +1,16 @@
 {
-  "extends": ["../../.stylelintrc.json"],
-  "ignoreFiles": ["!**/*"],
+  "extends": [
+    "../../.stylelintrc.json"
+  ],
+  "ignoreFiles": [
+    "!**/*"
+  ],
   "overrides": [
     {
-      "files": ["**/*.css", "**/*.scss"],
+      "files": [
+        "**/*.css",
+        "**/*.scss"
+      ],
       "rules": {
         "indentation": "tab"
       }

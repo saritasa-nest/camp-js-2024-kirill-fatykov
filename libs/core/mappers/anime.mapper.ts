@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { AnimeDto, AnimeDtoResults } from '../dtos/anime.dto';
 import { AnimeDomain } from '../models/anime-domain.model';
 
+import { ANIME_TYPE_FROM_DTO } from './anime-type.mapper';
+import { ANIME_STATUS_FROM_DTO } from './anime-status.mapper';
+
 /** Service for mapping date.*/
 @Injectable({
 	providedIn: 'root',
@@ -21,17 +24,9 @@ export class AnimeMapper {
 				aired: {
 					start: result.aired.start,
 				},
-				type: stingMapper(result.type),
-				status: stingMapper(result.status),
+				type: ANIME_TYPE_FROM_DTO[result.type],
+				status: ANIME_STATUS_FROM_DTO[result.status],
 			}
 		));
 	}
-}
-
-/** Change formats Stings.
-	* @param string - Value what change.
-	*/
-function stingMapper(string: string): string {
-	const newString = string.split('_').join(' ');
-	return newString;
 }

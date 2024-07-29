@@ -1,3 +1,6 @@
+import { AnimeStatus } from './anime-status.model';
+import { AnimeType } from './anime-type.model';
+
 /** Anime domain for frontend's data.*/
 export type AnimeDomain = {
 
@@ -18,8 +21,8 @@ export type AnimeDomain = {
 	};
 
 	/** Anime type.*/
-	readonly type: string;
+	readonly type: AnimeType;
 
 	/** Anime status.*/
-	readonly status: string;
+	readonly status: AnimeStatus;
 };

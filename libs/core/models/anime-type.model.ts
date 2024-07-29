@@ -1,12 +1,11 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-/** */
+/** Anime type model.*/
 export enum AnimeType{
 	TV = 'TV',
 	OVA = 'OVA',
-	Movie = 'MOVIE',
-	Special = 'SPECIAL',
+	Movie = 'Movie',
+	Special = 'Special',
 	ONA = 'ONA',
-	MUSIC = 'MUSIC',
-	Promotional_Videos = 'PROMOTIONAL_VIDEOS',
-	Unknown = 'UNKNOWN',
+	Music = 'Music',
+	PromotionalVideos = 'Promotional Videos',
+	Unknown = 'Unknown',
 }

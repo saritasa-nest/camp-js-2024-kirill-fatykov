@@ -1,10 +1,10 @@
-export enum AnimeTypeDto{
+export enum AnimeTypeDto {
 	TV = 'TV',
 	OVA = 'OVA',
-	MOVIE = 'Movie',
-	SPECIAL = 'Special',
+	Movie = 'MOVIE',
+	Special = 'SPECIAL',
 	ONA = 'ONA',
-	MUSIC = 'Music',
-	PROMOTIONAL_VIDEOS = 'Promotional_Videos',
-	UNKNOWN = 'Unknown',
+	Music = 'MUSIC',
+	PromotionalVideos = 'PROMOTIONAL_VIDEOS',
+	Unknown = 'UNKNOWN',
 }

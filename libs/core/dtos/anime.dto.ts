@@ -1,4 +1,8 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+
+import { AnimeStatusDto } from './anime-status.dto';
+import { AnimeTypeDto } from './anime-type.dto';
+
 /** Array of objects with anime info.*/
 export type AnimeDtoResults = {
 
@@ -31,10 +35,10 @@ export type AnimeDtoResults = {
 	};
 
 	/** Anime type.*/
-	readonly type: string;
+	readonly type: AnimeTypeDto;
 
 	/** Anime status.*/
-	readonly status: string;
+	readonly status: AnimeStatusDto;
 
 	/** Overall score Anime.*/
 	readonly score: number | null;

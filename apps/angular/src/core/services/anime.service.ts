@@ -5,7 +5,7 @@ import { Observable, map } from 'rxjs';
 import { AnimeDto } from '@js-camp/core/dtos/anime.dto';
 import { AnimeDomain } from '@js-camp/core/models/anime-domain.model';
 
-import { AnimeMapper } from '@js-camp/core/mappers/anime-mapper.service';
+import { AnimeMapper } from '@js-camp/core/mappers/anime.mapper';
 
 /** HTTPS requests. */
 @Injectable({

@@ -1,5 +1,5 @@
 import { RouterModule } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 /** App component. */
 @Component({
@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 	styleUrls: ['./app.component.css'],
 	standalone: true,
 	imports: [RouterModule],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
 }

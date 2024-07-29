@@ -1,5 +1,5 @@
 import { AsyncPipe, DatePipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { Anime } from '@js-camp/core/models/anime.model';
 import { AnimeService } from '@js-camp/angular/core/services/anime.service';
@@ -14,6 +14,7 @@ import { ReplaceEmptyStringPipe } from '../features/replaceEmptyString.pipe';
 	templateUrl: 'anime-table.component.html',
 	standalone: true,
 	imports: [MatTableModule, AsyncPipe, DatePipe, ReplaceEmptyStringPipe],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AnimeTableComponent {
 	/** Variable where stored anime info. */

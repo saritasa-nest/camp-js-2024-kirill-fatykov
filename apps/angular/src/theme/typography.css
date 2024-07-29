@@ -1,11 +1,11 @@
-.typography_title {
-	font-size: 20px;
-	line-height: 120%;
-	font-weight: 600;
-}
-
 .typography_content {
-	font-size: 16px;
+	font-size: var(--font-size-md);
 	line-height: 120%;
 	font-weight: 500;
+}
+
+.typography_title {
+	font-size: var(--font-size-lg);
+	line-height: 120%;
+	font-weight: 600;
 }

@@ -1,7 +1,7 @@
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
-import { Anime } from '@js-camp/core/models/anime-domain.model';
+import { Anime } from '@js-camp/core/models/anime.model';
 import { AnimeService } from '@js-camp/angular/core/services/anime.service';
 import { Observable } from 'rxjs';
 

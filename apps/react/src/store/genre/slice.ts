@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchGenres } from './dispatchers';
 import { initialState } from './state';
 
-// eslint-disable-next-line jsdoc/require-jsdoc
+/** Genre slice.*/
 export const genresSlice = createSlice({
 	name: 'genres',
 	initialState,

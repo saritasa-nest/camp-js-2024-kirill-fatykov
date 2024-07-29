@@ -18,5 +18,5 @@ const GenreCardComponent: FC<Props> = ({ genre }: Props) => (
 	</div>
 );
 
-// eslint-disable-next-line jsdoc/require-jsdoc
+/**  Memoized genre card.*/
 export const GenreCard = memo(GenreCardComponent);

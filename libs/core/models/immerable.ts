@@ -9,5 +9,5 @@ export abstract class Immerable {
 	private readonly [immerable] = true;
 }
 
-// eslint-disable-next-line jsdoc/require-jsdoc
+/** Omit Immerable.*/
 export type OmitImmerable<T> = Omit<T, '[immerable]'>;

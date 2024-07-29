@@ -1,4 +1,4 @@
-// eslint-disable-next-line jsdoc/require-jsdoc
+/** Environment. */
 export const environment = {
 	production: true,
 };

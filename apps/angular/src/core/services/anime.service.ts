@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
 
 import { PaginationDto } from '@js-camp/core/dtos/anime.dto';
-import { Anime } from '@js-camp/core/models/anime-domain.model';
+import { Anime } from '@js-camp/core/models/anime.model';
 
 import { AnimeMapper } from '@js-camp/core/mappers/anime.mapper';
 

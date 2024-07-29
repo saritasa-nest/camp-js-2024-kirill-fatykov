@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { RootRouter } from './routes/RootRouter';
 import { store } from './store';
 
-// eslint-disable-next-line jsdoc/require-jsdoc
+/** App component. */
 export const App: FC = () => (
 	<Provider store={store}>
 		<BrowserRouter>

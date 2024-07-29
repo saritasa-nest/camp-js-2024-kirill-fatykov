@@ -13,7 +13,7 @@ export type GenresState = {
 	readonly isLoading: boolean;
 };
 
-// eslint-disable-next-line jsdoc/require-jsdoc
+/** Initial state. */
 export const initialState: GenresState = {
 	isLoading: false,
 	genres: [],

@@ -7,6 +7,8 @@ import { Anime } from '@js-camp/core/models/anime.model';
 
 import { AnimeMapper } from '@js-camp/core/mappers/anime.mapper';
 
+import { ApiConfig } from './api-config.service';
+
 /** HTTPS requests. */
 @Injectable({
 	providedIn: 'root',
@@ -16,13 +18,11 @@ export class AnimeService {
 
 	private animeMapper: AnimeMapper = inject(AnimeMapper);
 
+	private animeConfig = inject(ApiConfig);
+
 	/** Get anime list from API. */
 	public getList(): Observable<Anime[]> {
-		return this.http.get<PaginationDto>('https://api.camp-js.saritasa.rocks/api/v1/anime/anime/', {
-			headers: {
-				// eslint-disable-next-line @typescript-eslint/naming-convention
-				'Api-Key': 'c43958c3-a449-40ea-a4e1-4aa46a3f4ad6',
-			},
-		}).pipe(map(dto => this.animeMapper.fromAnimeDto(dto)));
+		return this.http.get<PaginationDto>(`${this.animeConfig.apiUrl}/anime/anime/`)
+			.pipe(map(dto => this.animeMapper.fromAnimeDto(dto)));
 	}
 }

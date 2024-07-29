@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 type EmptyString = string | null | undefined;
 
-const emptyStringTypeof = ['null', 'undefined', 'NaN'];
+const emptyStringTypeof = [null, undefined];
 
 /** Pipe for empty string.*/
 @Pipe({
@@ -14,8 +14,7 @@ export class ReplaceEmptyStringPipe implements PipeTransform {
 		* @param string - Value what replace.
 		* @param replaceValue - Value whit replace.
 		*/
-	public transform(string: EmptyString, replaceValue = '-'): EmptyString {
-		console.log(typeof string)
-		return string?.trim().length === 0 ? replaceValue : string;
+	public transform(string: string , replaceValue = '-'): EmptyString {
+		return string?.trim().length === 0 ||  string === null || string === undefined ? replaceValue : string;
 	}
 }

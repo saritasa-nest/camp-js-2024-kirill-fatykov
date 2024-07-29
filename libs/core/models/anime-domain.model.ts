@@ -5,7 +5,7 @@ import { AnimeType } from './anime-type.model';
 export type AnimeDomain = {
 
 	/** Image link.*/
-	readonly image: string;
+	readonly image: string | null;
 
 	/** Name title in English.*/
 	readonly titleEng: string;
@@ -17,7 +17,7 @@ export type AnimeDomain = {
 	aired: {
 
 		/** Start air date.*/
-		readonly start: string;
+		readonly start: string | null;
 	};
 
 	/** Anime type.*/

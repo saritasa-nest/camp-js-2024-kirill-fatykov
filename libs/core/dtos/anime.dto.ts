@@ -22,13 +22,13 @@ export type AnimeDtoResults = {
 	readonly title_jpn: string;
 
 	/** Image link.*/
-	readonly image: string;
+	readonly image: string | null;
 
 	/** Air date.*/
 	readonly aired: {
 
 		/** Start air date.*/
-		readonly start: string;
+		readonly start: string | null;
 
 		/** End air date. If null it's still on air.*/
 		readonly end: string | null;

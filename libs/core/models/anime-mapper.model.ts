@@ -1,10 +1,10 @@
-import { AnimeDto } from '../dtos/anime.dto';
+import { PaginationDto } from '../dtos/anime.dto';
 
-import { AnimeDomain } from './anime-domain.model';
+import { Anime } from './anime-domain.model';
 
-/** Type Anime Mapper.*/
+/** Type Anime Mapper. */
 export type AnimeMapper = {
 
-	/** Mapper method for Domain. */
-	fromDto(dto: AnimeDto): AnimeDomain;
+	/** Mapper method for . */
+	fromDto(dto: PaginationDto): Anime;
 };

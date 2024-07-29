@@ -3,69 +3,69 @@
 import { AnimeStatusDto } from './anime-status.dto';
 import { AnimeTypeDto } from './anime-type.dto';
 
-/** Array of objects with anime info.*/
-export type AnimeDtoResults = {
+/** Anime list from API. */
+export type AnimeDto = Readonly<{
 
-	/** Id Anime.*/
-	readonly id: number;
+	/** Id Anime. */
+	id: number;
 
-	/** Post creation date.*/
-	readonly created: string;
+	/** Post creation date. */
+	created: string;
 
-	/** Post modification date.*/
-	readonly modified: string;
+	/** Post modification date. */
+	modified: string;
 
-	/** Name title in English.*/
-	readonly title_eng: string;
+	/** Name title in English. */
+	title_eng: string;
 
-	/** Name title in Japanese.*/
-	readonly title_jpn: string;
+	/** Name title in Japanese. */
+	title_jpn: string;
 
-	/** Image link.*/
-	readonly image: string | null;
+	/** Image link. */
+	image: string | null;
 
-	/** Air date.*/
-	readonly aired: {
+	/** Air date. */
+	aired: {
 
-		/** Start air date.*/
-		readonly start: string | null;
+		/** Start air date. */
+		start: string | null;
 
-		/** End air date. If null it's still on air.*/
-		readonly end: string | null;
+		/** End air date. If null it's still on air. */
+		end: string | null;
 	};
 
-	/** Anime type.*/
-	readonly type: AnimeTypeDto;
+	/** Anime type. */
+	type: AnimeTypeDto;
 
-	/** Anime status.*/
-	readonly status: AnimeStatusDto;
+	/** Anime status. */
+	status: AnimeStatusDto;
 
-	/** Overall score Anime.*/
-	readonly score: number | null;
+	/** Overall score Anime. */
+	score: number | null;
 
-	/** User score Anime.*/
-	readonly user_score: number | null;
+	/** User score Anime. */
+	user_score: number | null;
 
-	/** Numbers of studios.*/
-	readonly studios: readonly number[];
+	/** Numbers of studios. */
+	studios: readonly number[];
 
-	/** Genres of Anime.*/
-	readonly genres: readonly number[];
+	/** Genres of Anime. */
+	genres: readonly number[];
 
-};
+}>;
 
-/** All JSON doc from API.*/
-export type AnimeDto = {
+/** Pagination info.*/
+export type PaginationDto = Readonly<{
 
 	/** Overall count of all Anime in API.*/
-	readonly count: number;
+	count: number;
 
-	/** Next 25 Anime.*/
-	readonly next: string;
+	/** Next Anime list.*/
+	next: string;
 
-	/** Previous 25 Anime.*/
-	readonly previous: string | null;
+	/** Previous Anime list.*/
+	previous: string | null;
 
 	/** Info about Anime.*/
-	readonly results: readonly AnimeDtoResults[];
-};
+	results: readonly AnimeDto[];
+}>;

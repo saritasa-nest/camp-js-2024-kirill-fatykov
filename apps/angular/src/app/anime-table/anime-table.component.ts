@@ -1,7 +1,7 @@
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
-import { AnimeDomain } from '@js-camp/core/models/anime-domain.model';
+import { Anime } from '@js-camp/core/models/anime-domain.model';
 import { AnimeService } from '@js-camp/angular/core/services/anime.service';
 import { Observable } from 'rxjs';
 
@@ -17,12 +17,12 @@ import { ReplaceEmptyStringPipe } from '../features/replaceEmptyString.pipe';
 })
 export class AnimeTableComponent {
 	/** Variable where stored anime info. */
-	public animeAll$: Observable<AnimeDomain[]>;
+	public animeList$: Observable<Anime[]>;
 
 	private animeService = inject(AnimeService);
 
 	public constructor() {
-		this.animeAll$ = this.animeService.getAnime();
+		this.animeList$ = this.animeService.getList();
 	}
 
 	/** Name columns for table module. */

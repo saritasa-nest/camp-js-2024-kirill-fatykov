@@ -1,28 +1,28 @@
 import { AnimeStatus } from './anime-status.model';
 import { AnimeType } from './anime-type.model';
 
-/** Anime domain for frontend's data.*/
-export type AnimeDomain = {
+/** Anime domain for frontend's data. */
+export type Anime = {
 
-	/** Image link.*/
+	/** Image link. */
 	readonly image: string | null;
 
-	/** Name title in English.*/
+	/** Name title in English. */
 	readonly titleEng: string;
 
-	/** Name title in Japanese.*/
+	/** Name title in Japanese. */
 	readonly titleJpn: string;
 
-	/** Air date.*/
+	/** Air date. */
 	aired: {
 
-		/** Start air date.*/
+		/** Start air date. */
 		readonly start: string | null;
 	};
 
-	/** Anime type.*/
+	/** Anime type. */
 	readonly type: AnimeType;
 
-	/** Anime status.*/
+	/** Anime status. */
 	readonly status: AnimeStatus;
 };

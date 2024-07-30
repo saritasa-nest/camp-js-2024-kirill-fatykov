@@ -1,5 +1,5 @@
 @if (animeList$ | async; as animeList){
-  <table mat-table [dataSource]="animeList" class="mat-elevation-z8 anime-table">
+  <table mat-table [dataSource]="animeList.results" class="mat-elevation-z8 anime-table">
 
     <!-- Image Column -->
     <ng-container matColumnDef="image">
@@ -40,5 +40,9 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns sticky:true" class="anime-table__header"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  <anime-paginator></anime-paginator>
+  <anime-paginator 
+  (addItemEvent)="handlePageEvent($event)"
+  [count]="animeList.count" 
+  [next]="animeList.next" 
+  [previous]="animeList.previous"></anime-paginator>
 }

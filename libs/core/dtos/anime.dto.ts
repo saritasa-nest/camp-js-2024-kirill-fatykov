@@ -53,19 +53,3 @@ export type AnimeDto = Readonly<{
 	genres: readonly number[];
 
 }>;
-
-/** Pagination info.*/
-export type PaginationDto = Readonly<{
-
-	/** Overall count of all Anime in API.*/
-	count: number;
-
-	/** Next Anime list.*/
-	next: string;
-
-	/** Previous Anime list.*/
-	previous: string | null;
-
-	/** Info about Anime.*/
-	results: readonly AnimeDto[];
-}>;

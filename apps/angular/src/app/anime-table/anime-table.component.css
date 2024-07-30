@@ -2,6 +2,10 @@
 	display: block;
 }
 
+.mat-mdc-table {
+	background-color: white;
+}
+
 .anime-table__header {
 	background-color: var(--primary-color);
 	color: var(--primary-light-contrast-color);
@@ -9,10 +13,12 @@
 
 .anime-table__title {
 	text-align: center;
+	border: none;
 }
 
 .anime-table__content {
 	padding: var(--space-5) 0;
+	border-color: var(--primary-light-color);
 	color: var(--primary-light-contrast-color);
 	text-align: center;
 }

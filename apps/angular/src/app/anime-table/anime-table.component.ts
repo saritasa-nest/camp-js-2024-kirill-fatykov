@@ -7,13 +7,21 @@ import { Observable } from 'rxjs';
 
 import { ReplaceEmptyStringPipe } from '../features/replaceEmptyString.pipe';
 
+import { AnimePaginatorComponent } from './anime-paginator/anime-paginator.component';
+
 /** Table with Anime list. */
 @Component({
 	selector: 'anime-table',
 	styleUrls: ['../../theme/typography.css', './anime-table.component.css'],
 	templateUrl: 'anime-table.component.html',
 	standalone: true,
-	imports: [MatTableModule, AsyncPipe, DatePipe, ReplaceEmptyStringPipe],
+	imports: [
+		MatTableModule,
+		AnimePaginatorComponent,
+		AsyncPipe,
+		DatePipe,
+		ReplaceEmptyStringPipe,
+	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AnimeTableComponent {

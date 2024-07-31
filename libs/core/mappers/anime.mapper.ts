@@ -6,7 +6,7 @@ import { Anime } from '../models/anime.model';
 import { ANIME_TYPE_FROM_DTO } from './anime-type.mapper';
 import { ANIME_STATUS_FROM_DTO } from './anime-status.mapper';
 
-/** Service for mapping date. */
+/** Anime mapper. */
 @Injectable({
 	providedIn: 'root',
 })

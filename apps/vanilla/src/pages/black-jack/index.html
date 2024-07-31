@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./css/index.css" />
+	<title>BlackJack by Dice</title>
+</head>
+
+<body>
+	<main class="game">
+			<div class="game__item game-stand">
+				<h2 class="game-stand__title">Dice cap - <span class="game-stand__sum"></span></h2>
+				<div class="game-stand__content" id="allResults"></div>
+			</div>
+			<div class="game__item game-stand">
+				<h2 class="game-stand__title">Player1 - <span class="game-stand__sum"></span></h2>
+				<div class="game-stand__content" id="player1"></div>
+			</div>
+			<div class="game__item game-stand">
+				<h2 class="game-stand__title">Player2 - <span class="game-stand__sum"></span></h2>
+				<div class="game-stand__content" id="player2"></div>
+			</div>
+
+			<button class="game__roll-the-dice" type="button">Roll the dice</button>
+	</main>
+
+	<script type="module" src="./index.ts"></script>
+</body>
+
+</html>

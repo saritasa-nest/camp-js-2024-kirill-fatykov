@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Check out repository code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Install nodejs
       uses: actions/setup-node@v3
@@ -28,8 +28,8 @@ jobs:
         PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
         REPO_NAME=camp-js-2024-kirill-fatykov
         npm run angular:build -- --baseHref=/$REPO_NAME/pr-preview/pr-$PR_NUMBER/
-
+        
     - name: Deploy preview
       uses: rossjrw/pr-preview-action@v1
       with:
-        source-dir: dist/apps/angular
+        source-dir: dist/apps/vanilla

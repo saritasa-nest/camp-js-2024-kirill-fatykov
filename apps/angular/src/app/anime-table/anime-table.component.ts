@@ -1,10 +1,11 @@
 import { AsyncPipe, DatePipe } from '@angular/common';
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy, OnInit, signal } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { Anime } from '@js-camp/core/models/anime.model';
-import { AnimePagination } from '@js-camp/core/models/anime-pagination';
+
+// import { AnimePagination } from '@js-camp/core/models/anime-pagination';
 import { AnimeService } from '@js-camp/angular/core/services/anime.service';
-import { Observable } from 'rxjs';
+import { map } from 'rxjs';
 
 import { ReplaceEmptyStringPipe } from '../features/replaceEmptyString.pipe';
 
@@ -25,23 +26,36 @@ import { AnimePaginatorComponent } from './anime-paginator/anime-paginator.compo
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AnimeTableComponent {
+export class AnimeTableComponent implements OnInit {
 
 	private index = 0;
 
 	/** Variable where stored anime info. */
-	public animeList$: Observable<AnimePagination<Anime>>;
+	public animeList = signal<Anime[]>([]);
 
 	private animeService = inject(AnimeService);
 
 	public constructor() {
-		this.animeList$ = this.animeService.getList();
+	}
+
+	/** */
+	public ngOnInit(): void {
+		this.getAnime();
+	}
+
+	/** */
+	public getAnime(): void {
+		this.animeService.getList(String(this.index * 25))
+			.pipe(map(data => data.results))
+			.subscribe(data => {
+				this.animeList.set([...data]);
+			});
 	}
 
 	/** @param item  A. */
 	public handlePageEvent(item: number): void {
 		this.index = item;
-		this.animeList$ = this.animeService.getList(String(this.index * 25));
+		this.getAnime();
 	}
 
 	/** Name columns for table module. */

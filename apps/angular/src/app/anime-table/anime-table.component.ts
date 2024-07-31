@@ -26,6 +26,9 @@ import { AnimePaginatorComponent } from './anime-paginator/anime-paginator.compo
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AnimeTableComponent {
+
+	private index = 0;
+
 	/** Variable where stored anime info. */
 	public animeList$: Observable<AnimePagination<Anime>>;
 
@@ -37,10 +40,8 @@ export class AnimeTableComponent {
 
 	/** @param item  A. */
 	public handlePageEvent(item: number): void {
-		this.animeService.getList()
-			.subscribe(res => {
-				console.log(res.next)
-			});
+		this.index = item;
+		this.animeList$ = this.animeService.getList(String(this.index * 25));
 	}
 
 	/** Name columns for table module. */

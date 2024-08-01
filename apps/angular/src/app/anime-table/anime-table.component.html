@@ -46,7 +46,8 @@
               class="anime-paginator"
               (page)="handlePaginatorEvent($event)"
               [length]="animeLength()"
-              [pageSize]="25"
+              [pageSize]="limit"
+              [showFirstLastButtons]="showFirstLastButtons"
               [pageSizeOptions]="[25, 50, 75, 100]"
               aria-label="Select page">
 </mat-paginator>

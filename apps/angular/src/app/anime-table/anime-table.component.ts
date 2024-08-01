@@ -27,6 +27,11 @@ import { ReplaceEmptyStringPipe } from '../features/replaceEmptyString.pipe';
 })
 export class AnimeTableComponent implements OnInit {
 
+	private animeService = inject(AnimeService);
+
+	/** Variable where stored anime info. */
+	public animeList = signal<Anime[]>([]);
+
 	private offset = 0;
 
 	/** Anime length. */
@@ -37,10 +42,8 @@ export class AnimeTableComponent implements OnInit {
 
 	private index = 0;
 
-	/** Variable where stored anime info. */
-	public animeList = signal<Anime[]>([]);
-
-	private animeService = inject(AnimeService);
+	/** Show first and last buttons in paginator. */
+	public showFirstLastButtons = true;
 
 	public constructor() {
 	}

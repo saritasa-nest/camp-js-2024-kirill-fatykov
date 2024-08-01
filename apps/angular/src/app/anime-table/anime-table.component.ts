@@ -6,8 +6,9 @@ import { Sort, MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
@@ -26,6 +27,8 @@ import { ReplaceEmptyStringPipe } from '../features/replaceEmptyString.pipe';
 		MatFormFieldModule,
 		MatInputModule,
 		FormsModule,
+		MatSelectModule,
+		ReactiveFormsModule,
 		MatButtonModule,
 		MatIconModule,
 		MatPaginatorModule,
@@ -58,6 +61,12 @@ export class AnimeTableComponent implements OnInit {
 
 	/** Search Value. */
 	public searchValue = '';
+
+	/** A. */
+	public toppings = new FormControl('');
+
+	/** A. */
+	public toppingList: string[] = ['TV', 'OVA', 'MOVIE', 'SPECIAL', 'ONA', 'MUSIC', 'PROMOTIONAL_VIDEOS', 'UNKNOWN'];
 
 	/** Show first and last buttons in paginator. */
 	public showFirstLastButtons = true;
@@ -92,7 +101,7 @@ export class AnimeTableComponent implements OnInit {
 
 	/** Loading Anime list. */
 	public loadingAnime(): void {
-		this.animeService.getList(`search=${this.searchValue}`)
+		this.animeService.getList(`type__in=${this.toppings.value}`)
 			.pipe(map(data => data.results))
 			.subscribe(list => {
 				this.animeList.set([...list]);

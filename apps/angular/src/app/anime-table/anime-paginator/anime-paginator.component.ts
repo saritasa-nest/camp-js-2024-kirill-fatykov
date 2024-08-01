@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 /** Anime paginator. */
@@ -11,15 +11,6 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AnimePaginatorComponent {
-
-	/** Count anime items. */
-	@Input() public count = 0;
-
-	/** Next page. */
-	@Input() public next: string | null = '';
-
-	/** Previous page. */
-	@Input() public previous: string | null = '';
 
 	/** */
 	@Output() public addItemEvent = new EventEmitter<number>();

@@ -1,6 +1,7 @@
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { Component, inject, ChangeDetectionStrategy, OnInit, signal } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { Anime } from '@js-camp/core/models/anime.model';
 
 // import { AnimePagination } from '@js-camp/core/models/anime-pagination';
@@ -18,6 +19,7 @@ import { AnimePaginatorComponent } from './anime-paginator/anime-paginator.compo
 	templateUrl: 'anime-table.component.html',
 	standalone: true,
 	imports: [
+		MatPaginatorModule,
 		MatTableModule,
 		AnimePaginatorComponent,
 		AsyncPipe,
@@ -27,6 +29,14 @@ import { AnimePaginatorComponent } from './anime-paginator/anime-paginator.compo
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AnimeTableComponent implements OnInit {
+
+	private offset = 0;
+
+	/** Anime length. */
+	public animeLength = signal(0);
+
+	/** Anime limit. */
+	public limit = 25;
 
 	private index = 0;
 
@@ -40,22 +50,45 @@ export class AnimeTableComponent implements OnInit {
 
 	/** */
 	public ngOnInit(): void {
-		this.getAnime();
+		this.loadingAnime();
+		this.loadingAnimeLength();
 	}
 
-	/** */
-	public getAnime(): void {
-		this.animeService.getList(String(this.index * 25))
-			.pipe(map(data => data.results))
-			.subscribe(data => {
-				this.animeList.set([...data]);
+	/** Get anime limit. */
+	public getLimit(): string {
+		return String(this.limit);
+	}
+
+	/** Get anime offset. */
+	public getOffset(): string {
+		return String(this.index * this.limit);
+	}
+
+	/** Loading anime length. */
+	public loadingAnimeLength(): void {
+		this.animeService.getList()
+			.pipe(map(data => data.count))
+			.subscribe(count => {
+				this.animeLength.set(count);
 			});
 	}
 
-	/** @param item  A. */
-	public handlePageEvent(item: number): void {
-		this.index = item;
-		this.getAnime();
+	/** Loading Anime list. */
+	public loadingAnime(): void {
+		this.animeService.getList(this.getLimit(), this.getOffset())
+			.pipe(map(data => data.results))
+			.subscribe(list => {
+				this.animeList.set([...list]);
+			});
+	}
+
+	/**
+		* Handle paginator event.
+		* @param e  - Event. */
+	public handlePaginatorEvent(e: PageEvent): void {
+		this.index = e.pageIndex;
+		this.limit = e.pageSize;
+		this.loadingAnime();
 	}
 
 	/** Name columns for table module. */

@@ -26,3 +26,7 @@
 .anime-table__image {
 	width: 150px;
 }
+
+.anime-paginator {
+	background-color: var(--primary-color);
+}

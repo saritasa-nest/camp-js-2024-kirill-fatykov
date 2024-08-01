@@ -22,8 +22,8 @@ export class AnimeService {
 	private animeConfig = inject(ApiConfig);
 
 	/** Get anime list from API. */
-	public getList(limit = '25', offset = '0'): Observable<AnimePagination<Anime>> {
-		return this.http.get<PaginationDto<AnimeDto>>(`${this.animeConfig.apiUrl}/anime/anime/?limit=${limit}&offset=${offset}`)
+	public getList(value = ''): Observable<AnimePagination<Anime>> {
+		return this.http.get<PaginationDto<AnimeDto>>(`${this.animeConfig.apiUrl}/anime/anime/?${value}`)
 			.pipe(map(dto => this.animeMapper.fromAnimeDto(dto)));
 	}
 }

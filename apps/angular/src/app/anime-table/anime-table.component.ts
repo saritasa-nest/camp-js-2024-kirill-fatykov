@@ -1,12 +1,18 @@
+import { map } from 'rxjs';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { Component, inject, ChangeDetectionStrategy, OnInit, signal } from '@angular/core';
+
+import { Sort, MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
-import { Anime } from '@js-camp/core/models/anime.model';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
-// import { AnimePagination } from '@js-camp/core/models/anime-pagination';
+import { Anime } from '@js-camp/core/models/anime.model';
 import { AnimeService } from '@js-camp/angular/core/services/anime.service';
-import { map } from 'rxjs';
 
 import { ReplaceEmptyStringPipe } from '../features/replaceEmptyString.pipe';
 
@@ -17,7 +23,13 @@ import { ReplaceEmptyStringPipe } from '../features/replaceEmptyString.pipe';
 	templateUrl: 'anime-table.component.html',
 	standalone: true,
 	imports: [
+		MatFormFieldModule,
+		MatInputModule,
+		FormsModule,
+		MatButtonModule,
+		MatIconModule,
 		MatPaginatorModule,
+		MatSortModule,
 		MatTableModule,
 		AsyncPipe,
 		DatePipe,
@@ -32,8 +44,6 @@ export class AnimeTableComponent implements OnInit {
 	/** Variable where stored anime info. */
 	public animeList = signal<Anime[]>([]);
 
-	private offset = 0;
-
 	/** Anime length. */
 	public animeLength = signal(0);
 
@@ -42,16 +52,23 @@ export class AnimeTableComponent implements OnInit {
 
 	private index = 0;
 
+	private paginatorValue = '';
+
+	private sortValue = '';
+
+	/** Search Value. */
+	public searchValue = '';
+
 	/** Show first and last buttons in paginator. */
 	public showFirstLastButtons = true;
 
 	public constructor() {
 	}
 
-	/** */
+	/** Initialization anime list. */
 	public ngOnInit(): void {
 		this.loadingAnime();
-		this.loadingAnimeLength();
+		this.getLength();
 	}
 
 	/** Get anime limit. */
@@ -65,7 +82,7 @@ export class AnimeTableComponent implements OnInit {
 	}
 
 	/** Loading anime length. */
-	public loadingAnimeLength(): void {
+	public getLength(): void {
 		this.animeService.getList()
 			.pipe(map(data => data.count))
 			.subscribe(count => {
@@ -75,7 +92,7 @@ export class AnimeTableComponent implements OnInit {
 
 	/** Loading Anime list. */
 	public loadingAnime(): void {
-		this.animeService.getList(this.getLimit(), this.getOffset())
+		this.animeService.getList(`search=${this.searchValue}`)
 			.pipe(map(data => data.results))
 			.subscribe(list => {
 				this.animeList.set([...list]);
@@ -88,10 +105,31 @@ export class AnimeTableComponent implements OnInit {
 	public handlePaginatorEvent(e: PageEvent): void {
 		this.index = e.pageIndex;
 		this.limit = e.pageSize;
+		this.paginatorValue = `limit=${this.getLimit()}&offset=${this.getOffset()}`;
+		this.loadingAnime();
+	}
+
+	/**
+		* Announce the change in sort state.
+		* @param sortState - Sort state.
+		* */
+	public announceSortChange(sortState: Sort): void {
+		const sortDirection: Record<string, string> = {
+			asc: '',
+			desc: '-',
+		};
+
+		this.sortValue = sortState.direction.trim().length === 0 ?
+			'' : `ordering=${sortDirection[sortState.direction]}${sortState.active}`;
+		this.loadingAnime();
+	}
+
+	/** A. */
+	public searchAnime(): void {
 		this.loadingAnime();
 	}
 
 	/** Name columns for table module. */
-	public displayedColumns = ['image', 'titleEng', 'titleJpn', 'airedStart', 'type', 'status'] as const;
+	public displayedColumns = ['image', 'title_eng', 'title_jpn', 'aired__startswith', 'type', 'status'] as const;
 
 }

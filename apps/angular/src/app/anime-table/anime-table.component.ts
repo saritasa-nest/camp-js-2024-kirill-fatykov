@@ -10,8 +10,6 @@ import { map } from 'rxjs';
 
 import { ReplaceEmptyStringPipe } from '../features/replaceEmptyString.pipe';
 
-import { AnimePaginatorComponent } from './anime-paginator/anime-paginator.component';
-
 /** Table with Anime list. */
 @Component({
 	selector: 'anime-table',
@@ -21,7 +19,6 @@ import { AnimePaginatorComponent } from './anime-paginator/anime-paginator.compo
 	imports: [
 		MatPaginatorModule,
 		MatTableModule,
-		AnimePaginatorComponent,
 		AsyncPipe,
 		DatePipe,
 		ReplaceEmptyStringPipe,

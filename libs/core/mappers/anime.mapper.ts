@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { AnimeDto } from '../dtos/anime.dto';
 import { Anime } from '../models/anime.model';
 import { PaginationDto } from '../dtos/pagination.dto';
-import { AnimePagination } from '../models/anime-pagination';
+import { AnimePagination } from '../models/anime-pagination.model';
 
 import { ANIME_TYPE_FROM_DTO } from './anime-type.mapper';
 import { ANIME_STATUS_FROM_DTO } from './anime-status.mapper';

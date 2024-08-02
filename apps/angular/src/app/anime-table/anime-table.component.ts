@@ -1,18 +1,7 @@
-/* eslint-disable jsdoc/require-jsdoc */
-type Results = {
-	paginator?: {
-		pageIndex: number;
-		pageSize: number;
-	};
-	sort?: {
-		active: string;
-		direction: string;
-	};
-};
-
-import { map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { AsyncPipe, DatePipe } from '@angular/common';
-import { Component, inject, ChangeDetectionStrategy, OnInit, signal } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy, signal } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
 
 import { Sort, MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
@@ -26,6 +15,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { Anime } from '@js-camp/core/models/anime.model';
 import { AnimeService } from '@js-camp/angular/core/services/anime.service';
+import { AnimePagination } from '@js-camp/core/models/anime-pagination.model';
+import { QueryService } from '@js-camp/angular/core/services/query.service';
+import { AnimeEvents } from '@js-camp/core/models/anime-events.model';
 
 import { ReplaceEmptyStringPipe } from '../features/replaceEmptyString.pipe';
 
@@ -52,26 +44,25 @@ import { ReplaceEmptyStringPipe } from '../features/replaceEmptyString.pipe';
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AnimeTableComponent implements OnInit {
+export class AnimeTableComponent {
 
 	private animeService = inject(AnimeService);
 
-	private results = signal<Results>({});
+	private filter = inject(QueryService).filter;
+
+	private results = signal<AnimeEvents>({});
+
+	// eslint-disable-next-line rxjs/finnish
+	private results$ = toObservable(this.results)
+		.pipe(
+			map(item => this.filter(item)),
+		);
 
 	/** Variable where stored anime info. */
-	public animeList = signal<Anime[]>([]);
+	public animeList$: Observable<AnimePagination<Anime>>;
 
 	/** Anime length. */
 	public animeLength = signal(0);
-
-	/** Anime limit. */
-	public limit = 25;
-
-	private index = 0;
-
-	private paginatorValue = '';
-
-	private sortValue = '';
 
 	/** Search Value. */
 	public searchValue = '';
@@ -82,40 +73,9 @@ export class AnimeTableComponent implements OnInit {
 	/** Show first and last buttons in paginator. */
 	public showFirstLastButtons = true;
 
-	public constructor() {}
-
-	/** Initialization anime list. */
-	public ngOnInit(): void {
-		this.loadingAnime();
-		this.getLength();
-	}
-
-	/** Get anime limit. */
-	public getLimit(): string {
-		return String(this.limit);
-	}
-
-	/** Get anime offset. */
-	public getOffset(): string {
-		return String(this.index * this.limit);
-	}
-
-	/** Loading anime length. */
-	public getLength(): void {
-		this.animeService.getList()
-			.pipe(map(data => data.count))
-			.subscribe(count => {
-				this.animeLength.set(count);
-			});
-	}
-
-	/** Loading Anime list. */
-	public loadingAnime(): void {
-		this.animeService.getList()
-			.pipe(map(data => data.results))
-			.subscribe(list => {
-				this.animeList.set([...list]);
-			});
+	public constructor() {
+		this.animeList$ = this.animeService.getList();
+		this.results$.subscribe(item => this.animeService.getList(item));
 	}
 
 	/**

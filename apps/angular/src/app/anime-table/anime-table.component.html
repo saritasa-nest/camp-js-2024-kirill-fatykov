@@ -19,7 +19,8 @@
   </mat-select>
 </mat-form-field> -->
 
-<table mat-table [dataSource]="animeList()" matSort (matSortChange)="sortChangeAnime($event)"
+@if(animeList$ | async; as animeList){
+<table mat-table [dataSource]="animeList.results" matSort (matSortChange)="sortChangeAnime($event)"
   class="mat-elevation-z8 anime-table">
 
   <!-- Image Column -->
@@ -67,6 +68,7 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns sticky:true" class="anime-table__header"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-<mat-paginator class="anime-paginator" (page)="handlePaginatorEvent($event)" [length]="animeLength()" [pageSize]="limit"
+<mat-paginator class="anime-paginator" (page)="handlePaginatorEvent($event)" [length]="2500" [pageSize]="25"
   [showFirstLastButtons]="showFirstLastButtons" [pageSizeOptions]="[25, 50, 75, 100]" aria-label="Select page">
 </mat-paginator>
+}

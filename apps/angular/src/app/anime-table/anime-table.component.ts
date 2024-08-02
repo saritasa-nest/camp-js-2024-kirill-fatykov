@@ -1,3 +1,15 @@
+/* eslint-disable jsdoc/require-jsdoc */
+type Results = {
+	paginator?: {
+		pageIndex: number;
+		pageSize: number;
+	};
+	sort?: {
+		active: string;
+		direction: string;
+	};
+};
+
 import { map } from 'rxjs';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { Component, inject, ChangeDetectionStrategy, OnInit, signal } from '@angular/core';
@@ -8,7 +20,7 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
@@ -44,6 +56,8 @@ export class AnimeTableComponent implements OnInit {
 
 	private animeService = inject(AnimeService);
 
+	private results = signal<Results>({});
+
 	/** Variable where stored anime info. */
 	public animeList = signal<Anime[]>([]);
 
@@ -62,17 +76,13 @@ export class AnimeTableComponent implements OnInit {
 	/** Search Value. */
 	public searchValue = '';
 
-	/** A. */
-	public toppings = new FormControl('');
-
-	/** A. */
+	/** Type list. */
 	public toppingList: string[] = ['TV', 'OVA', 'MOVIE', 'SPECIAL', 'ONA', 'MUSIC', 'PROMOTIONAL_VIDEOS', 'UNKNOWN'];
 
 	/** Show first and last buttons in paginator. */
 	public showFirstLastButtons = true;
 
-	public constructor() {
-	}
+	public constructor() {}
 
 	/** Initialization anime list. */
 	public ngOnInit(): void {
@@ -101,7 +111,7 @@ export class AnimeTableComponent implements OnInit {
 
 	/** Loading Anime list. */
 	public loadingAnime(): void {
-		this.animeService.getList(`type__in=${this.toppings.value}`)
+		this.animeService.getList()
 			.pipe(map(data => data.results))
 			.subscribe(list => {
 				this.animeList.set([...list]);
@@ -110,33 +120,28 @@ export class AnimeTableComponent implements OnInit {
 
 	/**
 		* Handle paginator event.
-		* @param e  - Event. */
-	public handlePaginatorEvent(e: PageEvent): void {
-		this.index = e.pageIndex;
-		this.limit = e.pageSize;
-		this.paginatorValue = `limit=${this.getLimit()}&offset=${this.getOffset()}`;
-		this.loadingAnime();
+		* @param paginatorEvent  - Event. */
+	public handlePaginatorEvent(paginatorEvent: PageEvent): void {
+		this.results.set({ ...this.results(), paginator: { pageIndex: paginatorEvent.pageIndex, pageSize: paginatorEvent.pageSize } });
 	}
 
 	/**
 		* Announce the change in sort state.
 		* @param sortState - Sort state.
 		* */
-	public announceSortChange(sortState: Sort): void {
-		const sortDirection: Record<string, string> = {
-			asc: '',
-			desc: '-',
-		};
-
-		this.sortValue = sortState.direction.trim().length === 0 ?
-			'' : `ordering=${sortDirection[sortState.direction]}${sortState.active}`;
-		this.loadingAnime();
+	public sortChangeAnime(sortState: Sort): void {
+		this.results.set({ ...this.results(), sort: sortState });
 	}
 
-	/** A. */
-	public searchAnime(): void {
-		this.loadingAnime();
-	}
+	// /** A. */
+	// public searchAnime(): void {
+	// 	console.log(this.searchValue);
+	// }
+
+	// /** A. */
+	// public selectChange(): void {
+
+	// }
 
 	/** Name columns for table module. */
 	public displayedColumns = ['image', 'title_eng', 'title_jpn', 'aired__startswith', 'type', 'status'] as const;

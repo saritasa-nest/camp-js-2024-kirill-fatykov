@@ -1,25 +1,26 @@
-<mat-form-field class="example-form-field">
+<!-- <mat-form-field class="example-form-field">
   <mat-label>Enter value</mat-label>
   <input matInput type="text" [(ngModel)]="searchValue">
   @if (searchValue) {
-    <button type="button" matSuffix mat-icon-button aria-label="Clear" (click)="searchValue=''">
-      <mat-icon>close</mat-icon>
-    </button>
+  <button type="button" matSuffix mat-icon-button aria-label="Clear" (click)="searchValue=''">
+    <mat-icon>close</mat-icon>
+  </button>
   }
 </mat-form-field>
 
 <button type="button" mat-raised-button (click)="searchAnime()">Search</button>
 
-<mat-form-field>
+<mat-form-field >
   <mat-label>Toppings</mat-label>
   <mat-select [formControl]="toppings" multiple>
     @for (topping of toppingList; track topping) {
-      <mat-option [value]="topping">{{topping}}</mat-option>
+    <mat-option [value]="topping">{{topping}}</mat-option>
     }
   </mat-select>
-</mat-form-field>
+</mat-form-field> -->
 
-<table mat-table [dataSource]="animeList()" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8 anime-table">
+<table mat-table [dataSource]="animeList()" matSort (matSortChange)="sortChangeAnime($event)"
+  class="mat-elevation-z8 anime-table">
 
   <!-- Image Column -->
   <ng-container matColumnDef="image">
@@ -30,7 +31,8 @@
 
   <!-- Title English Column -->
   <ng-container matColumnDef="title_eng">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Title English" class="anime-table__title typography_title"> Title English </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Title English"
+      class="anime-table__title typography_title"> Title English </th>
     <td mat-cell *matCellDef="let anime" class="anime-table__content typography_content"> {{anime.titleEng | replace}}
     </td>
   </ng-container>
@@ -43,7 +45,8 @@
 
   <!-- Aired start  Column -->
   <ng-container matColumnDef="aired__startswith">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by aired start" class="anime-table__title typography_title"> Aired Start </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by aired start"
+      class="anime-table__title typography_title"> Aired Start </th>
     <td mat-cell *matCellDef="let anime" class="anime-table__content typography_content"> {{anime.aired.start | date |
       replace }}</td>
   </ng-container>
@@ -56,19 +59,14 @@
 
   <!-- Anime status Column -->
   <ng-container matColumnDef="status">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by status" class="anime-table__title typography_title"> Status </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by status"
+      class="anime-table__title typography_title"> Status </th>
     <td mat-cell *matCellDef="let anime" class="anime-table__content typography_content"> {{anime.status}}</td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns sticky:true" class="anime-table__header"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-<mat-paginator
-              class="anime-paginator"
-              (page)="handlePaginatorEvent($event)"
-              [length]="animeLength()"
-              [pageSize]="limit"
-              [showFirstLastButtons]="showFirstLastButtons"
-              [pageSizeOptions]="[25, 50, 75, 100]"
-              aria-label="Select page">
+<mat-paginator class="anime-paginator" (page)="handlePaginatorEvent($event)" [length]="animeLength()" [pageSize]="limit"
+  [showFirstLastButtons]="showFirstLastButtons" [pageSizeOptions]="[25, 50, 75, 100]" aria-label="Select page">
 </mat-paginator>

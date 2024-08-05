@@ -1,4 +1,4 @@
-import { Observable, map } from 'rxjs';
+import { Observable, map, switchMap } from 'rxjs';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { Component, inject, ChangeDetectionStrategy, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
@@ -52,10 +52,10 @@ export class AnimeTableComponent {
 
 	private results = signal<AnimeEvents>({});
 
-	// eslint-disable-next-line rxjs/finnish
 	private results$ = toObservable(this.results)
 		.pipe(
 			map(item => this.filter(item)),
+			switchMap(filter => this.animeService.getList(filter)),
 		);
 
 	/** Variable where stored anime info. */
@@ -74,8 +74,7 @@ export class AnimeTableComponent {
 	public showFirstLastButtons = true;
 
 	public constructor() {
-		this.animeList$ = this.animeService.getList();
-		this.results$.subscribe(item => this.animeService.getList(item));
+		this.animeList$ = this.results$;
 	}
 
 	/**

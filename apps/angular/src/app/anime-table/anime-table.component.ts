@@ -7,7 +7,7 @@ import { Sort, MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSelectModule } from '@angular/material/select';
+import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -61,14 +61,8 @@ export class AnimeTableComponent {
 	/** Variable where stored anime info. */
 	public animeList$: Observable<AnimePagination<Anime>>;
 
-	/** Anime length. */
-	public animeLength = signal(0);
-
-	/** Search Value. */
-	public searchValue = '';
-
 	/** Type list. */
-	public toppingList: string[] = ['TV', 'OVA', 'MOVIE', 'SPECIAL', 'ONA', 'MUSIC', 'PROMOTIONAL_VIDEOS', 'UNKNOWN'];
+	public typeList: string[] = ['TV', 'OVA', 'MOVIE', 'SPECIAL', 'ONA', 'MUSIC', 'PROMOTIONAL_VIDEOS', 'UNKNOWN'];
 
 	/** Show first and last buttons in paginator. */
 	public showFirstLastButtons = true;
@@ -92,15 +86,27 @@ export class AnimeTableComponent {
 		this.results.set({ ...this.results(), sort: sortState });
 	}
 
-	// /** A. */
-	// public searchAnime(): void {
-	// 	console.log(this.searchValue);
-	// }
+	/** Search Value. */
+	public searchValue = '';
 
-	// /** A. */
-	// public selectChange(): void {
+	/** Search anime event. */
+	public searchAnime(): void {
+		this.results.set({ search: this.searchValue });
+	}
 
-	// }
+	/** Clear search value. */
+	public clearSearchValue(): void {
+		this.searchValue = '';
+		this.results.set({ search: this.searchValue });
+	}
+
+	/**
+		* Select change type anime.
+		* @param selectEvent - Select Event.
+		* */
+	public selectChange(selectEvent: MatSelectChange): void {
+		this.results.set({ select: selectEvent.value });
+	}
 
 	/** Name columns for table module. */
 	public displayedColumns = ['image', 'title_eng', 'title_jpn', 'aired__startswith', 'type', 'status'] as const;

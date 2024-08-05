@@ -1,7 +1,7 @@
-/** Anime Events. */
+/** Anime events values. */
 export type AnimeEvents = {
 
-	/** Paginator event. */
+	/** Paginator event value. */
 	paginator?: {
 
 		/** Page index. */
@@ -11,7 +11,7 @@ export type AnimeEvents = {
 		pageSize: number;
 	} | undefined;
 
-	/** Sort event. */
+	/** Sort event value. */
 	sort?: {
 
 		/** Active sort. */
@@ -20,4 +20,10 @@ export type AnimeEvents = {
 		/** Sort direction. */
 		direction: string | undefined;
 	} | undefined;
+
+	/** Sort event value. */
+	search?: string | undefined;
+
+	/** Select event value. */
+	select?: string[] | undefined;
 };

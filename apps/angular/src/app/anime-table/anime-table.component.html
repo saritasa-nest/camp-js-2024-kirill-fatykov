@@ -1,8 +1,8 @@
-<!-- <mat-form-field class="example-form-field">
+<mat-form-field class="example-form-field">
   <mat-label>Enter value</mat-label>
   <input matInput type="text" [(ngModel)]="searchValue">
   @if (searchValue) {
-  <button type="button" matSuffix mat-icon-button aria-label="Clear" (click)="searchValue=''">
+  <button type="button" matSuffix mat-icon-button aria-label="Clear" (click)="clearSearchValue()">
     <mat-icon>close</mat-icon>
   </button>
   }
@@ -12,12 +12,12 @@
 
 <mat-form-field >
   <mat-label>Toppings</mat-label>
-  <mat-select [formControl]="toppings" multiple>
-    @for (topping of toppingList; track topping) {
-    <mat-option [value]="topping">{{topping}}</mat-option>
+  <mat-select multiple (selectionChange)="selectChange($event)">
+    @for (type of typeList; track type) {
+    <mat-option [value]="type">{{type}}</mat-option>
     }
   </mat-select>
-</mat-form-field> -->
+</mat-form-field>
 
 @if(animeList$ | async; as animeList){
 <table mat-table [dataSource]="animeList.results" matSort (matSortChange)="sortChangeAnime($event)"

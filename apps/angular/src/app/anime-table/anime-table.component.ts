@@ -64,6 +64,14 @@ export class AnimeTableComponent {
 	/** Type list. */
 	public typeList: string[] = ['TV', 'OVA', 'MOVIE', 'SPECIAL', 'ONA', 'MUSIC', 'PROMOTIONAL_VIDEOS', 'UNKNOWN'];
 
+	/** In start page size. */
+	public startPageSize = signal(25);
+
+	/** Page Index. */
+	public pageIndex = signal(0);
+
+	private startPage = { pageIndex: 0, pageSize: this.startPageSize() };
+
 	/** Show first and last buttons in paginator. */
 	public showFirstLastButtons = true;
 
@@ -91,12 +99,14 @@ export class AnimeTableComponent {
 
 	/** Search anime event. */
 	public searchAnime(): void {
-		this.results.set({ search: this.searchValue });
+		this.pageIndex.set(0);
+		this.results.set({ paginator: this.startPage, search: this.searchValue });
 	}
 
 	/** Clear search value. */
 	public clearSearchValue(): void {
 		this.searchValue = '';
+		this.pageIndex.set(0);
 		this.results.set({ search: this.searchValue });
 	}
 
@@ -105,7 +115,8 @@ export class AnimeTableComponent {
 		* @param selectEvent - Select Event.
 		* */
 	public selectChange(selectEvent: MatSelectChange): void {
-		this.results.set({ select: selectEvent.value });
+		this.pageIndex.set(0);
+		this.results.set({ paginator: this.startPage, select: selectEvent.value });
 	}
 
 	/** Name columns for table module. */

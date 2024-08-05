@@ -1,23 +1,26 @@
-<mat-form-field class="example-form-field">
-  <mat-label>Enter value</mat-label>
-  <input matInput type="text" [(ngModel)]="searchValue">
-  @if (searchValue) {
-  <button type="button" matSuffix mat-icon-button aria-label="Clear" (click)="clearSearchValue()">
-    <mat-icon>close</mat-icon>
-  </button>
-  }
-</mat-form-field>
+<div class="anime-inputs">
+  <mat-form-field class="anime-inputs__select-type">
+    <mat-label>Toppings</mat-label>
+    <mat-select multiple (selectionChange)="selectChange($event)">
+      @for (type of typeList; track type) {
+      <mat-option [value]="type">{{type}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
 
-<button type="button" mat-raised-button (click)="searchAnime()">Search</button>
-
-<mat-form-field >
-  <mat-label>Toppings</mat-label>
-  <mat-select multiple (selectionChange)="selectChange($event)">
-    @for (type of typeList; track type) {
-    <mat-option [value]="type">{{type}}</mat-option>
-    }
-  </mat-select>
-</mat-form-field>
+  <div class="search">
+    <mat-form-field class="search__input">
+      <mat-label>Enter value</mat-label>
+      <input matInput type="text" [(ngModel)]="searchValue">
+      @if (searchValue) {
+      <button type="button" matSuffix mat-icon-button aria-label="Clear" (click)="clearSearchValue()">
+        <mat-icon>close</mat-icon>
+      </button>
+      }
+    </mat-form-field>
+    <button class="search__button" type="button" mat-raised-button (click)="searchAnime()">Search</button>
+  </div>
+</div>
 
 @if(animeList$ | async; as animeList){
 <table mat-table [dataSource]="animeList.results" matSort (matSortChange)="sortChangeAnime($event)"
@@ -68,7 +71,8 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns sticky:true" class="anime-table__header"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-<mat-paginator class="anime-paginator" (page)="handlePaginatorEvent($event)" [length]="animeList.count" [pageSize]="25"
-  [showFirstLastButtons]="showFirstLastButtons" [pageSizeOptions]="[25, 50, 75, 100]" aria-label="Select page">
+<mat-paginator class="anime-paginator" (page)="handlePaginatorEvent($event)" [length]="animeList.count"
+  [pageSize]="startPageSize()" [pageIndex]="pageIndex()" [showFirstLastButtons]="showFirstLastButtons"
+  [pageSizeOptions]="[25, 50, 75, 100]" aria-label="Select page">
 </mat-paginator>
 }

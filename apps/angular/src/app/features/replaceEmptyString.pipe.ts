@@ -8,12 +8,12 @@ type InputValue = string | number | null | undefined;
 	name: 'replace',
 })
 export class ReplaceEmptyStringPipe implements PipeTransform {
-	/** 
+	/**
 		* Can choose what value replace.
 		* @param value - Value what replace.
 		* @param replaceValue - Value whit replace.
 		*/
-	public transform(value: InputValue, replaceValue = '-'): string | number {
+	public transform(value: InputValue, replaceValue: string | undefined = '-'): string | number {
 		switch (typeof value) {
 			case 'string':
 				return value?.trim().length === 0 ? replaceValue : value;

@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Check out repository code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Install nodejs
       uses: actions/setup-node@v3
@@ -32,4 +32,4 @@ jobs:
     - name: Deploy preview
       uses: rossjrw/pr-preview-action@v1
       with:
-        source-dir: dist/apps/angular
+        source-dir: dist/apps/vanilla

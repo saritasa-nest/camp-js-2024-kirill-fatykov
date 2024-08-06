@@ -1,0 +1,24 @@
+.typography_logo {
+	font-size: var(--font-size-xl);
+	line-height: 24px;
+	font-weight: 700;
+}
+
+.typography_subtitle {
+	font-size: var(--font-size-lg);
+	line-height: 24px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.typography_body {
+	font-size: var(--font-size-xl);
+	line-height: 32px;
+	font-weight: 400;
+}
+
+.typography_body_small {
+	font-size: var(--font-size-md);
+	line-height: 24px;
+	font-weight: 500;
+}

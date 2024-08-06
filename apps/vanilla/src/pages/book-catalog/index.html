@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="./css/index.css" />
+	<title>Books App</title>
+</head>
+
+<body>
+	<div class="main-container">
+		<header class="header">
+			<h1 class="app-title header__logo typography_logo">📚 Books app</h1>
+		</header>
+
+		<main class="main">
+			<section class="books">
+				<div class="books__group">
+					<h2 class="books__header typography_subtitle">
+						2020 year
+					</h2>
+					<ul class="book">
+						<li class="book__item">
+							<img class="book__image" src="./image/image-3.png" alt="Refactoring UI">
+
+							<span class="book__title typography_body_small">Refactoring UI</span>
+						</li>
+						<li class="book__item">
+							<img class="book__image" src="./image/image-1.png" alt="Master the Skill of Debugging CSS">
+
+							<span class="book__title typography_body_small">Master the Skill of Debugging CSS</span>
+						</li>
+						<li class="book__item">
+							<img class="book__image" src="./image/image-9.png" alt="Blue Period">
+
+							<span class="book__title typography_body_small">Blue Period</span>
+						</li>
+
+					</ul>
+				</div>
+				<div class="books__group">
+					<h2 class="books__header typography_subtitle">
+						1980 year
+					</h2>
+					<ul class="book">
+						<li class="book__item">
+							<img class="book__image" src="./image/image-10.png" alt="Yokohama Kaidashi Kikou">
+
+							<span class="book__title typography_body_small">Yokohama Kaidashi Kikou</span>
+						</li>
+						<li class="book__item">
+							<img class="book__image" src="./image/image-4.png" alt="Learning JavaScript Design Patterns">
+
+							<span class="book__title typography_body_small">Learning JavaScript Design Patterns</span>
+						</li>
+						<li class="book__item">
+							<img class="book__image" src="./image/image-11.png" alt="Yotsuba to!">
+
+							<span class="book__title typography_body_small">Yotsuba to!</span>
+						</li>
+						<li class="book__item">
+							<img class="book__image" src="./image/image-5.png" alt="Domain-Driven Design">
+
+							<span class="book__title typography_body_small">Domain-Driven Design</span>
+						</li>
+						<li class="book__item">
+							<img class="book__image" src="./image/image-6.png" alt="Implementing Domain-Driven">
+
+							<span class="book__title typography_body_small">Implementing Domain-Driven</span>
+						</li>
+						<li class="book__item">
+							<img class="book__image" src="./image/image-8.png" alt="7 Навыков высокэффективных">
+
+							<span class="book__title typography_body_small">7 Навыков высокэффективных</span>
+						</li>
+					</ul>
+				</div>
+			</section>
+
+			<div class="main__sidebar-wrapper">
+				<div class="main__sidebar sidebar">
+					<span class="sidebar__title typography_subtitle">Filters</span>
+					<form class="sidebar__inputs">
+						<input class="sidebar__search typography_body" type="search" name="search"
+							placeholder="e.g. “Refactoring”">
+
+						<select class="sidebar__select typography_body" name="sort-select">
+							<option value="" selected disabled>Choose sort field</option>
+							<option value="Length">Length</option>
+							<option value="Short">Short</option>
+						</select>
+
+
+						<label class="sidebar__checkbox-container typography_body">
+							<input class="sidebar__checkbox" type="checkbox" name="Show comics">
+							Show comics
+							<span class="sidebar__checkbox-mark"></span>
+						</label>
+					</form>
+				</div>
+			</div>
+		</main>
+
+		<footer class="footer">
+			<div class="footer__info">
+				<div class="footer__copyright">
+					<div class="app-logo footer__logo typography_logo">Books app</div>
+					<div class="footer__year typography_body">&copy; 2023</div>
+				</div>
+				<nav class="footer__nav"><a class="footer__nav-link typography_body"
+						href="github.com">Github</a></nav>
+			</div>
+
+			<a href="#" class="footer__go-top typography_body">Go to top ↑</a>
+		</footer>
+	</div>
+</body>
+
+</html>

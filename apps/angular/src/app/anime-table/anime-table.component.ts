@@ -46,32 +46,32 @@ import { ReplaceEmptyStringPipe } from '../features/replaceEmptyString.pipe';
 })
 export class AnimeTableComponent {
 
-	private animeService = inject(AnimeService);
+	private readonly animeService = inject(AnimeService);
 
-	private filter = inject(QueryService).filter;
+	private readonly filter = inject(QueryService).filter;
 
-	private results = signal<AnimeEvents>({});
+	private readonly results = signal<AnimeEvents>({});
 
-	private results$ = toObservable(this.results)
+	private readonly results$ = toObservable(this.results)
 		.pipe(
 			map(item => this.filter(item)),
 			switchMap(filter => this.animeService.getList(filter)),
 		);
 
 	/** Variable where stored anime info. */
-	public animeList$: Observable<AnimePagination<Anime>>;
+	protected readonly animeList$: Observable<AnimePagination<Anime>>;
 
 	/** Type list. */
-	public typeList: string[] = ['TV', 'OVA', 'MOVIE', 'SPECIAL', 'ONA', 'MUSIC', 'PROMOTIONAL_VIDEOS', 'UNKNOWN'];
+	protected readonly typeList: string[] = ['TV', 'OVA', 'MOVIE', 'SPECIAL', 'ONA', 'MUSIC', 'PROMOTIONAL_VIDEOS', 'UNKNOWN'];
 
 	/** In start page size. */
-	public pageSize = 25;
+	protected pageSize = 25;
 
 	/** Page Index. */
-	public pageIndex = 0;
+	protected pageIndex = 0;
 
 	/** Show first and last buttons in paginator. */
-	public showFirstLastButtons = true;
+	protected showFirstLastButtons = true;
 
 	public constructor() {
 		this.animeList$ = this.results$;
@@ -80,7 +80,7 @@ export class AnimeTableComponent {
 	/**
 		* Handle paginator event.
 		* @param paginatorEvent  - Event. */
-	public handlePaginatorEvent(paginatorEvent: PageEvent): void {
+	protected handlePaginatorEvent(paginatorEvent: PageEvent): void {
 		this.results.set({ ...this.results(), paginator: { pageIndex: paginatorEvent.pageIndex, pageSize: paginatorEvent.pageSize } });
 		this.pageIndex = paginatorEvent.pageIndex;
 		this.pageSize = paginatorEvent.pageSize;
@@ -90,21 +90,21 @@ export class AnimeTableComponent {
 		* Announce the change in sort state.
 		* @param sortState - Sort state.
 		* */
-	public sortChangeAnime(sortState: Sort): void {
+	protected sortChangeAnime(sortState: Sort): void {
 		this.results.set({ ...this.results(), sort: sortState });
 	}
 
 	/** Search Value. */
-	public searchValue = '';
+	protected searchValue = '';
 
 	/** Search anime event. */
-	public searchAnime(): void {
+	protected searchAnime(): void {
 		this.results.set({ paginator: { pageIndex: 0, pageSize: this.pageSize }, search: this.searchValue });
 		this.pageIndex = 0;
 	}
 
 	/** Clear search value. */
-	public clearSearchValue(): void {
+	protected clearSearchValue(): void {
 		this.searchValue = '';
 		this.pageIndex = 0;
 		this.results.set({ paginator: { pageIndex: 0, pageSize: this.pageSize }, search: this.searchValue });
@@ -114,12 +114,11 @@ export class AnimeTableComponent {
 		* Select change type anime.
 		* @param selectEvent - Select Event.
 		* */
-	public selectChange(selectEvent: MatSelectChange): void {
+	protected selectChange(selectEvent: MatSelectChange): void {
 		this.results.set({ paginator: { pageIndex: 0, pageSize: this.pageSize }, select: selectEvent.value });
 		this.pageIndex = 0;
 	}
 
 	/** Name columns for table module. */
-	public displayedColumns = ['image', 'title_eng', 'title_jpn', 'aired__startswith', 'type', 'status'] as const;
-
+	protected readonly displayedColumns = ['image', 'title_eng', 'title_jpn', 'aired__startswith', 'type', 'status'] as const;
 }

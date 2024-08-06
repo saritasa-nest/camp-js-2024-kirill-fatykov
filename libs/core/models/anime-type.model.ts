@@ -1,5 +1,5 @@
 /** Anime type model. */
-export enum AnimeType{
+export enum AnimeType {
 	TV = 'TV',
 	OVA = 'OVA',
 	Movie = 'Movie',

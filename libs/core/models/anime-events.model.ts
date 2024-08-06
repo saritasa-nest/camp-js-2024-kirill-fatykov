@@ -1,5 +1,5 @@
 /** Anime events values. */
-export type AnimeEvents = {
+export type AnimeEvents = Readonly<{
 
 	/** Paginator event value. */
 	paginator?: {
@@ -26,4 +26,4 @@ export type AnimeEvents = {
 
 	/** Select event value. */
 	select?: string[] | undefined;
-};
+}>;

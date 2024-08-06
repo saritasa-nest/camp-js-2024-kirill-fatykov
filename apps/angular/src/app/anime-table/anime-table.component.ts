@@ -65,12 +65,10 @@ export class AnimeTableComponent {
 	public typeList: string[] = ['TV', 'OVA', 'MOVIE', 'SPECIAL', 'ONA', 'MUSIC', 'PROMOTIONAL_VIDEOS', 'UNKNOWN'];
 
 	/** In start page size. */
-	public startPageSize = signal(25);
+	public pageSize = 25;
 
 	/** Page Index. */
-	public pageIndex = signal(0);
-
-	private startPage = { pageIndex: 0, pageSize: this.startPageSize() };
+	public pageIndex = 0;
 
 	/** Show first and last buttons in paginator. */
 	public showFirstLastButtons = true;
@@ -84,6 +82,8 @@ export class AnimeTableComponent {
 		* @param paginatorEvent  - Event. */
 	public handlePaginatorEvent(paginatorEvent: PageEvent): void {
 		this.results.set({ ...this.results(), paginator: { pageIndex: paginatorEvent.pageIndex, pageSize: paginatorEvent.pageSize } });
+		this.pageIndex = paginatorEvent.pageIndex;
+		this.pageSize = paginatorEvent.pageSize;
 	}
 
 	/**
@@ -99,15 +99,15 @@ export class AnimeTableComponent {
 
 	/** Search anime event. */
 	public searchAnime(): void {
-		this.pageIndex.set(0);
-		this.results.set({ paginator: this.startPage, search: this.searchValue });
+		this.results.set({ paginator: { pageIndex: 0, pageSize: this.pageSize }, search: this.searchValue });
+		this.pageIndex = 0;
 	}
 
 	/** Clear search value. */
 	public clearSearchValue(): void {
 		this.searchValue = '';
-		this.pageIndex.set(0);
-		this.results.set({ search: this.searchValue });
+		this.pageIndex = 0;
+		this.results.set({ paginator: { pageIndex: 0, pageSize: this.pageSize }, search: this.searchValue });
 	}
 
 	/**
@@ -115,8 +115,8 @@ export class AnimeTableComponent {
 		* @param selectEvent - Select Event.
 		* */
 	public selectChange(selectEvent: MatSelectChange): void {
-		this.pageIndex.set(0);
-		this.results.set({ paginator: this.startPage, select: selectEvent.value });
+		this.results.set({ paginator: { pageIndex: 0, pageSize: this.pageSize }, select: selectEvent.value });
+		this.pageIndex = 0;
 	}
 
 	/** Name columns for table module. */

@@ -71,8 +71,14 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns sticky:true" class="anime-table__header"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-<mat-paginator class="anime-paginator" (page)="handlePaginatorEvent($event)" [length]="animeList.count"
-  [pageSize]="startPageSize()" [pageIndex]="pageIndex()" [showFirstLastButtons]="showFirstLastButtons"
-  [pageSizeOptions]="[25, 50, 75, 100]" aria-label="Select page">
+<mat-paginator 
+  class="anime-paginator" 
+  (page)="handlePaginatorEvent($event)" 
+  [length]="animeList.count"
+  [pageSize]="pageSize" 
+  [pageIndex]="pageIndex" 
+  [showFirstLastButtons]="showFirstLastButtons"
+  [pageSizeOptions]="[25, 50, 75, 100]" 
+  aria-label="Select page">
 </mat-paginator>
 }

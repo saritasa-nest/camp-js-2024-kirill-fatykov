@@ -9,7 +9,7 @@ export type AnimeEvents = Readonly<{
 
 		/** Page size. */
 		pageSize: number;
-	} | undefined;
+	};
 
 	/** Sort event value. */
 	sort?: {
@@ -19,7 +19,7 @@ export type AnimeEvents = Readonly<{
 
 		/** Sort direction. */
 		direction: string | undefined;
-	} | undefined;
+	};
 
 	/** Sort event value. */
 	search?: string | undefined;

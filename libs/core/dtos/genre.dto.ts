@@ -1,6 +1,5 @@
 /** Genre DTO. */
-// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
-export interface GenreDto {
+export type GenreDto = {
 
 	/** Id. */
 	readonly id: number;
@@ -16,4 +15,4 @@ export interface GenreDto {
 
 	/** DTO type. */
 	readonly type: 'GENRES';
-}
+};

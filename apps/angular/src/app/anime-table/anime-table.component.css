@@ -3,7 +3,7 @@
 }
 
 .anime-table {
-	background-color: white;
+	background-color: var(--background-color);
 }
 
 .anime-table__header {

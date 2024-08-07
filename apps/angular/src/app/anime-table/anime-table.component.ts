@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
+import { AnimeTypeDto } from '@js-camp/core/dtos/anime-type.dto';
 import { Anime } from '@js-camp/core/models/anime.model';
 import { AnimeService } from '@js-camp/angular/core/services/anime.service';
 import { AnimePagination } from '@js-camp/core/models/anime-pagination.model';
@@ -61,8 +62,8 @@ export class AnimeTableComponent {
 	/** Variable where stored anime info. */
 	protected readonly animeList$: Observable<AnimePagination<Anime>>;
 
-	/** Type list. */
-	protected readonly typeList: string[] = ['TV', 'OVA', 'MOVIE', 'SPECIAL', 'ONA', 'MUSIC', 'PROMOTIONAL_VIDEOS', 'UNKNOWN'];
+	/** List of anime types. */
+	protected readonly animeTypeList: string[] = Object.values(AnimeTypeDto);
 
 	/** In start page size. */
 	protected pageSize = 25;
@@ -78,43 +79,43 @@ export class AnimeTableComponent {
 	}
 
 	/**
-		* Handle paginator event.
-		* @param paginatorEvent  - Event. */
-	protected handlePaginatorEvent(paginatorEvent: PageEvent): void {
+		* Handle the anime paginator event.
+		* @param paginatorEvent  - Paginator event. */
+	protected onPaginatorAnime(paginatorEvent: PageEvent): void {
 		this.results.set({ ...this.results(), paginator: { pageIndex: paginatorEvent.pageIndex, pageSize: paginatorEvent.pageSize } });
 		this.pageIndex = paginatorEvent.pageIndex;
 		this.pageSize = paginatorEvent.pageSize;
 	}
 
 	/**
-		* Announce the change in sort state.
-		* @param sortState - Sort state.
+		* Handles anime sorting changes.
+		* @param sortEvent - Sort event.
 		* */
-	protected sortChangeAnime(sortState: Sort): void {
-		this.results.set({ ...this.results(), sort: sortState });
+	protected onSortAnime(sortEvent: Sort): void {
+		this.results.set({ ...this.results(), sort: sortEvent });
 	}
 
 	/** Search Value. */
 	protected searchValue = '';
 
-	/** Search anime event. */
-	protected searchAnime(): void {
+	/** Handles the anime search event. */
+	protected onSearchAnime(): void {
 		this.results.set({ paginator: { pageIndex: 0, pageSize: this.pageSize }, search: this.searchValue });
 		this.pageIndex = 0;
 	}
 
-	/** Clear search value. */
-	protected clearSearchValue(): void {
+	/** Reset search value. */
+	protected resetSearchValue(): void {
 		this.searchValue = '';
 		this.pageIndex = 0;
 		this.results.set({ paginator: { pageIndex: 0, pageSize: this.pageSize }, search: this.searchValue });
 	}
 
 	/**
-		* Select change type anime.
-		* @param selectEvent - Select Event.
+		* Handles the selection of anime type.
+		* @param selectEvent - Select event.
 		* */
-	protected selectChange(selectEvent: MatSelectChange): void {
+	protected onTypeSelect(selectEvent: MatSelectChange): void {
 		this.results.set({ paginator: { pageIndex: 0, pageSize: this.pageSize }, select: selectEvent.value });
 		this.pageIndex = 0;
 	}

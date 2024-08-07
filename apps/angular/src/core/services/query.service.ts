@@ -8,8 +8,8 @@ import { AnimeEvents } from '@js-camp/core/models/anime-events.model';
 export class QueryService {
 
 	/**
-		* Filter.
-		* @param object - Object with events.
+		* Query filter.
+		* @param object - Object with queries.
 		*/
 	public filter(object: AnimeEvents): string {
 		const result: string[] = [];
@@ -63,11 +63,3 @@ export class QueryService {
 	}
 
 }
-
-// /**
-// 	* Check empty object.
-// 	* @param value - Object.
-// 	*/
-// function isEmptyObject(value: object): boolean {
-// 	return Object.keys(value).length === 0;
-// }

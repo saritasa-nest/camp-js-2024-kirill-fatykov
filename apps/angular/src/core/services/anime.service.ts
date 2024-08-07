@@ -10,7 +10,7 @@ import { AnimeMapper } from '@js-camp/core/mappers/anime.mapper';
 
 import { ApiConfig } from './api-config.service';
 
-/** HTTPS requests. */
+/** Anime service. */
 @Injectable({
 	providedIn: 'root',
 })
@@ -22,7 +22,7 @@ export class AnimeService {
 	private animeConfig = inject(ApiConfig);
 
 	/**
-		* Get anime list from API.
+		* Fetch anime list from an API.
 		* @param queryString - Query string.
 		* */
 	public getList(queryString: string | undefined = ''): Observable<AnimePagination<Anime>> {

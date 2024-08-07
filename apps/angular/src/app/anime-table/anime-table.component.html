@@ -1,29 +1,29 @@
 <div class="anime-inputs">
   <mat-form-field class="anime-inputs__select-type">
-    <mat-label>Toppings</mat-label>
-    <mat-select multiple (selectionChange)="selectChange($event)">
-      @for (type of typeList; track type) {
-      <mat-option [value]="type">{{type}}</mat-option>
+    <mat-label>Anime types</mat-label>
+    <mat-select multiple (selectionChange)="onTypeSelect($event)">
+      @for (animeType of animeTypeList; track animeType) {
+      <mat-option [value]="animeType">{{animeType}}</mat-option>
       }
     </mat-select>
   </mat-form-field>
 
   <div class="search">
     <mat-form-field class="search__input">
-      <mat-label>Enter value</mat-label>
+      <mat-label>Search</mat-label>
       <input matInput type="text" [(ngModel)]="searchValue">
       @if (searchValue) {
-      <button type="button" matSuffix mat-icon-button aria-label="Clear" (click)="clearSearchValue()">
+      <button type="button" matSuffix mat-icon-button aria-label="Clear" (click)="resetSearchValue()">
         <mat-icon>close</mat-icon>
       </button>
       }
     </mat-form-field>
-    <button class="search__button" type="button" mat-raised-button (click)="searchAnime()">Search</button>
+    <button class="search__button" type="button" mat-raised-button (click)="onSearchAnime()">Search</button>
   </div>
 </div>
 
 @if(animeList$ | async; as animeList){
-<table mat-table [dataSource]="animeList.results" matSort (matSortChange)="sortChangeAnime($event)"
+<table mat-table [dataSource]="animeList.results" matSort (matSortChange)="onSortAnime($event)"
   class="mat-elevation-z8 anime-table">
 
   <!-- Image Column -->
@@ -73,7 +73,7 @@
 </table>
 <mat-paginator 
   class="anime-paginator" 
-  (page)="handlePaginatorEvent($event)" 
+  (page)="onPaginatorAnime($event)" 
   [length]="animeList.count"
   [pageSize]="pageSize" 
   [pageIndex]="pageIndex" 

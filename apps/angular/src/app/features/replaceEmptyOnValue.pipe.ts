@@ -1,19 +1,19 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-type InputValue = string | number | null | undefined;
+type InputEmptyValue = string | number | null | undefined;
 
-/** Pipe for empty string. */
+/** Pipe for empty value. */
 @Pipe({
 	standalone: true,
-	name: 'replace',
+	name: 'empty',
 })
-export class ReplaceEmptyStringPipe implements PipeTransform {
+export class ReplaceEmptyOnValuePipe implements PipeTransform {
 	/**
-		* Can choose what value replace.
+		* Check empty value and replace on value.
 		* @param value - Value what replace.
 		* @param replaceValue - Value whit replace.
 		*/
-	public transform(value: InputValue, replaceValue: string | undefined = '-'): string | number {
+	public transform(value: InputEmptyValue, replaceValue: string | undefined = '-'): string | number {
 		switch (typeof value) {
 			case 'string':
 				return value?.trim().length === 0 ? replaceValue : value;

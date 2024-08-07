@@ -100,7 +100,7 @@ export class AnimeTableComponent {
 
 	/** Handles the anime search event. */
 	protected onSearchAnime(): void {
-		this.results.set({ paginator: { pageIndex: 0, pageSize: this.pageSize }, search: this.searchValue });
+		this.results.set({ ...this.results(), paginator: { pageIndex: 0, pageSize: this.pageSize }, search: this.searchValue });
 		this.pageIndex = 0;
 	}
 
@@ -108,7 +108,7 @@ export class AnimeTableComponent {
 	protected resetSearchValue(): void {
 		this.searchValue = '';
 		this.pageIndex = 0;
-		this.results.set({ paginator: { pageIndex: 0, pageSize: this.pageSize }, search: this.searchValue });
+		this.results.set({ ...this.results(), paginator: { pageIndex: 0, pageSize: this.pageSize }, search: this.searchValue });
 	}
 
 	/**
@@ -116,7 +116,7 @@ export class AnimeTableComponent {
 		* @param selectEvent - Select event.
 		* */
 	protected onTypeSelect(selectEvent: MatSelectChange): void {
-		this.results.set({ paginator: { pageIndex: 0, pageSize: this.pageSize }, select: selectEvent.value });
+		this.results.set({ ...this.results(), paginator: { pageIndex: 0, pageSize: this.pageSize }, select: selectEvent.value });
 		this.pageIndex = 0;
 	}
 

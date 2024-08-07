@@ -18,15 +18,15 @@ import { ReplaceEmptyStringPipe } from '../features/replaceEmptyString.pipe';
 })
 export class AnimeTableComponent {
 	/** Variable where stored anime info. */
-	public animeList$: Observable<Anime[]>;
+	protected readonly animeList$: Observable<Anime[]>;
 
-	private animeService = inject(AnimeService);
+	private readonly animeService = inject(AnimeService);
 
 	public constructor() {
 		this.animeList$ = this.animeService.getList();
 	}
 
 	/** Name columns for table module. */
-	public displayedColumns = ['image', 'titleEng', 'titleJpn', 'airedStart', 'type', 'status'] as const;
+	protected readonly displayedColumns = ['image', 'titleEng', 'titleJpn', 'airedStart', 'type', 'status'] as const;
 
 }

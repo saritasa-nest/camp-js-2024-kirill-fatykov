@@ -18,12 +18,12 @@ export type AnimeEvents = Readonly<{
 		active: string;
 
 		/** Sort direction. */
-		direction: string | undefined;
+		direction?: string;
 	};
 
-	/** Sort event value. */
-	search?: string | undefined;
+	/** Search event value. */
+	search?: string;
 
 	/** Select event value. */
-	select?: string[] | undefined;
+	select?: string[];
 }>;

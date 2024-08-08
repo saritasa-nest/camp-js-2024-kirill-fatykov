@@ -1,7 +1,6 @@
-import { Observable, map, switchMap } from 'rxjs';
+import { BehaviorSubject, EMPTY, Observable, map, switchMap } from 'rxjs';
 import { AsyncPipe, DatePipe } from '@angular/common';
-import { Component, inject, ChangeDetectionStrategy, signal } from '@angular/core';
-import { toObservable } from '@angular/core/rxjs-interop';
+import { Component, inject, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
 import { Sort, MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
@@ -9,7 +8,7 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
@@ -45,22 +44,19 @@ import { ReplaceEmptyOnValuePipe } from '../features/replaceEmptyOnValue.pipe';
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AnimeTableComponent {
+export class AnimeTableComponent implements OnInit {
 
 	private readonly animeService = inject(AnimeService);
 
 	private readonly filter = inject(QueryService).filter;
 
-	private readonly results = signal<AnimeEvents>({});
-
-	private readonly results$ = toObservable(this.results)
-		.pipe(
-			map(item => this.filter(item)),
-			switchMap(filter => this.animeService.getList(filter)),
-		);
+	/** */
+	public searchForm = new FormGroup({
+		search: new FormControl<string>('', { nonNullable: true }),
+	});
 
 	/** Variable where stored anime info. */
-	protected readonly animeList$: Observable<AnimePagination<Anime>>;
+	protected animeList$: Observable<AnimePagination<Anime>> = EMPTY;
 
 	/** List of anime types. */
 	protected readonly animeTypeList: string[] = Object.values(AnimeTypeDto);
@@ -74,17 +70,35 @@ export class AnimeTableComponent {
 	/** Show first and last buttons in paginator. */
 	protected showFirstLastButtons = true;
 
+	/** Results of all events. */
+	protected results: AnimeEvents = {};
+
+	private readonly results$ = new BehaviorSubject<AnimeEvents>({});
+
+	/** Initial anime list. */
+	public ngOnInit(): void {
+		this.animeList$ = this.results$
+			.pipe(
+				map(item => this.filter(item)),
+				switchMap(filter => this.animeService.getList(filter)),
+			);
+	}
+
 	public constructor() {
-		this.animeList$ = this.results$;
+	}
+
+	/** Update anime list. */
+	protected updateAnimeList(): void {
+		this.results$.next(this.results);
 	}
 
 	/**
 		* Handle the anime paginator event.
 		* @param paginatorEvent  - Paginator event. */
 	protected onPaginatorAnime(paginatorEvent: PageEvent): void {
-		this.results.set({ ...this.results(), paginator: { pageIndex: paginatorEvent.pageIndex, pageSize: paginatorEvent.pageSize } });
 		this.pageIndex = paginatorEvent.pageIndex;
 		this.pageSize = paginatorEvent.pageSize;
+		this.results = { ...this.results, paginator: { pageIndex: paginatorEvent.pageIndex, pageSize: paginatorEvent.pageSize } };
 	}
 
 	/**
@@ -92,23 +106,23 @@ export class AnimeTableComponent {
 		* @param sortEvent - Sort event.
 		* */
 	protected onSortAnime(sortEvent: Sort): void {
-		this.results.set({ ...this.results(), sort: sortEvent });
+		this.results = { ...this.results, sort: sortEvent };
+		this.updateAnimeList();
 	}
-
-	/** Search Value. */
-	protected searchValue = '';
 
 	/** Handles the anime search event. */
 	protected onSearchAnime(): void {
-		this.results.set({ ...this.results(), paginator: { pageIndex: 0, pageSize: this.pageSize }, search: this.searchValue });
 		this.pageIndex = 0;
+		this.results = { ...this.results, paginator: { pageIndex: 0, pageSize: this.pageSize }, ...this.searchForm.value };
+		this.updateAnimeList();
 	}
 
 	/** Reset search value. */
 	protected resetSearchValue(): void {
-		this.searchValue = '';
+		this.searchForm.setValue({ search: '' });
 		this.pageIndex = 0;
-		this.results.set({ ...this.results(), paginator: { pageIndex: 0, pageSize: this.pageSize }, search: this.searchValue });
+		this.results = { ...this.results, paginator: { pageIndex: 0, pageSize: this.pageSize }, ...this.searchForm.value };
+		this.updateAnimeList();
 	}
 
 	/**
@@ -116,8 +130,9 @@ export class AnimeTableComponent {
 		* @param selectEvent - Select event.
 		* */
 	protected onTypeSelect(selectEvent: MatSelectChange): void {
-		this.results.set({ ...this.results(), paginator: { pageIndex: 0, pageSize: this.pageSize }, select: selectEvent.value });
 		this.pageIndex = 0;
+		this.results = { ...this.results, paginator: { pageIndex: 0, pageSize: this.pageSize }, select: selectEvent.value };
+		this.updateAnimeList();
 	}
 
 	/** Name columns for table module. */

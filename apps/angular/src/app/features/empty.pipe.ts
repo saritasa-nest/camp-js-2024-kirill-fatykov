@@ -7,9 +7,9 @@ type InputEmptyValue = string | number | null | undefined;
 	standalone: true,
 	name: 'empty',
 })
-export class ReplaceEmptyOnValuePipe implements PipeTransform {
+export class EmptyPipe implements PipeTransform {
 	/**
-		* Check empty value and replace on value.
+		* Check empty value and replace on new value.
 		* @param value - Value what replace.
 		* @param replaceValue - Value whit replace.
 		*/

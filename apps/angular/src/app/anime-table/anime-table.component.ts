@@ -19,7 +19,7 @@ import { AnimePagination } from '@js-camp/core/models/anime-pagination.model';
 import { QueryService } from '@js-camp/angular/core/services/query.service';
 import { AnimeEvents } from '@js-camp/core/models/anime-events.model';
 
-import { ReplaceEmptyOnValuePipe } from '../features/replaceEmptyOnValue.pipe';
+import { EmptyPipe } from '../features/empty.pipe';
 
 /** Table with Anime list. */
 @Component({
@@ -40,7 +40,7 @@ import { ReplaceEmptyOnValuePipe } from '../features/replaceEmptyOnValue.pipe';
 		MatTableModule,
 		AsyncPipe,
 		DatePipe,
-		ReplaceEmptyOnValuePipe,
+		EmptyPipe,
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })

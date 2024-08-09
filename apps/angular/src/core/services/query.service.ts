@@ -6,58 +6,46 @@ import { AnimeFilters } from '@js-camp/core/models/anime-filters.model';
 	providedIn: 'root',
 })
 export class QueryService {
+	private readonly directionMapper: object = {
+		asc: '',
+		desc: '-',
+	};
+
 	/**
-	 * Query filter.
-	 * @param object Object with queries.
+	 * Method for filtering a queries to the server.
+	 * @param queries Object with queries.
 	 */
-	public filter(object: AnimeFilters): string {
-		const result: string[] = [];
+	public filter(queries: AnimeFilters): string {
+		const searchParams = new URLSearchParams();
 
-		const entiresEvents = Object.entries(object);
-
-		entiresEvents.forEach(([key, value]) => {
-			switch (key) {
-				case 'paginator': {
-					const [pageIndex, pageSize] = Object.values(value);
-					result.push(`limit=${pageSize}&offset=${pageIndex * pageSize}`);
-					break;
-				}
-
-				case 'sort': {
-					let [, direction] = Object.values(value);
-					const [active] = Object.values(value);
-
-					if (direction === '') {
-						result.push('');
-						break;
-					}
-
-					direction = direction === 'asc' ? '' : '-';
-					result.push(`ordering=${direction}${active}`);
-					break;
-				}
-
-				case 'search': {
-					if (value === '') {
-						result.push('');
-						break;
-					}
-					result.push(`search=${value}`);
-					break;
-				}
-
-				case 'select': {
-					if (Object.values(value).length === 0) {
-						result.push('');
-						break;
-					}
-					result.push(`type__in=${value}`);
-					break;
-				}
-				default:
-					result.push('');
+		if (queries.paginator != null) {
+			const { pageIndex, pageSize } = queries.paginator;
+			searchParams.append('limit', String(pageSize));
+			searchParams.append('offset', String(pageIndex * pageSize));
+		}
+		if (queries.sort != null) {
+			const { active, direction } = queries.sort;
+			if (direction !== '') {
+				searchParams.append('ordering', `${direction}${active}`);
+			} else {
+				searchParams.delete('ordering');
 			}
-		});
-		return result.filter(item => item !== '').join('&');
+		}
+		if (queries.select != null) {
+			if (queries.select.length !== 0) {
+				searchParams.append('type__in', String(queries.select));
+			} else {
+				searchParams.delete('type__in');
+			}
+		}
+
+		if (queries.search != null) {
+			if (queries.search !== '') {
+				searchParams.append('search', String(queries.search));
+			} else {
+				searchParams.delete('search');
+			}
+		}
+		return searchParams.toString();
 	}
 }

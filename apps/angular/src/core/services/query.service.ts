@@ -6,11 +6,6 @@ import { AnimeFilters } from '@js-camp/core/models/anime-filters.model';
 	providedIn: 'root',
 })
 export class QueryService {
-	private readonly directionMapper: object = {
-		asc: '',
-		desc: '-',
-	};
-
 	/**
 	 * Method for filtering a queries to the server.
 	 * @param queries Object with queries.
@@ -23,28 +18,18 @@ export class QueryService {
 			searchParams.append('limit', String(pageSize));
 			searchParams.append('offset', String(pageIndex * pageSize));
 		}
-		if (queries.sort != null) {
-			const { active, direction } = queries.sort;
-			if (direction !== '') {
-				searchParams.append('ordering', `${direction}${active}`);
-			} else {
-				searchParams.delete('ordering');
-			}
+		if (queries.sort != null && queries.sort.direction !== '') {
+			const { active } = queries.sort;
+			let { direction } = queries.sort;
+			direction = direction === 'asc' ? '' : '-';
+			searchParams.append('ordering', `${direction}${active}`);
 		}
-		if (queries.select != null) {
-			if (queries.select.length !== 0) {
-				searchParams.append('type__in', String(queries.select));
-			} else {
-				searchParams.delete('type__in');
-			}
+		if (queries.select != null && queries.select.length !== 0) {
+			searchParams.append('type__in', String(queries.select));
 		}
 
-		if (queries.search != null) {
-			if (queries.search !== '') {
-				searchParams.append('search', String(queries.search));
-			} else {
-				searchParams.delete('search');
-			}
+		if (queries.search != null && queries.search !== '') {
+			searchParams.append('search', String(queries.search));
 		}
 		return searchParams.toString();
 	}

@@ -101,7 +101,7 @@
 </table>
 <mat-paginator
 	class="anime-paginator"
-	(page)="onPaginatorAnime($event)"
+	(page)="onPageChange($event)"
 	[length]="animeList.count"
 	[pageSize]="pageSize"
 	[pageIndex]="pageIndex"

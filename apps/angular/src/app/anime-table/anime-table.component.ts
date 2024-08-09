@@ -72,7 +72,7 @@ export class AnimeTableComponent {
 		search: this.fb.control(''),
 	});
 
-	/** In start page size. */
+	/** Page size. */
 	protected pageSize = 25;
 
 	/** Page Index. */
@@ -84,10 +84,10 @@ export class AnimeTableComponent {
 	/** Results of all events. */
 	protected results: AnimeFilters = {};
 
-	private readonly results$ = new BehaviorSubject<AnimeFilters>({});
+	private readonly filter$ = new BehaviorSubject<AnimeFilters>({});
 
 	public constructor() {
-		this.animeList$ = this.results$.pipe(
+		this.animeList$ = this.filter$.pipe(
 			map(item => this.filter(item)),
 			switchMap(filter => this.animeService.getList(filter)),
 		);
@@ -95,13 +95,14 @@ export class AnimeTableComponent {
 
 	/** Update anime list. */
 	protected updateAnimeList(): void {
-		this.results$.next(this.results);
+		this.filter$.next(this.results);
 	}
 
 	/**
 	 * Handle the anime paginator event.
-	 * @param paginatorEvent Paginator event. */
-	protected onPaginatorAnime(paginatorEvent: PageEvent): void {
+	 * @param paginatorEvent Paginator event.
+	 * */
+	protected onPageChange(paginatorEvent: PageEvent): void {
 		this.pageIndex = paginatorEvent.pageIndex;
 		this.pageSize = paginatorEvent.pageSize;
 		this.results = {

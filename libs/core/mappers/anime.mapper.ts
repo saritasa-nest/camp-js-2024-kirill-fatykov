@@ -13,18 +13,17 @@ import { ANIME_STATUS_FROM_DTO } from './anime-status.mapper';
 	providedIn: 'root',
 })
 export class AnimeMapper {
-
 	/**
-		* Method from Dto to model.
-		* @param dto - Data from API.
-		*/
+	 * Method from Dto to model.
+	 * @param dto Data from API.
+	 */
 	public fromAnimeDto(dto: PaginationDto<AnimeDto>): AnimePagination<Anime> {
 		return {
 			count: dto.count,
 			next: dto.next,
 			previous: dto.previous,
-			results: dto.results.map((result: AnimeDto): Anime => (
-				{
+			results: dto.results.map(
+				(result: AnimeDto): Anime => ({
 					image: result.image,
 					titleEng: result.title_eng,
 					titleJpn: result.title_jpn,
@@ -34,8 +33,8 @@ export class AnimeMapper {
 					},
 					type: ANIME_TYPE_FROM_DTO[result.type],
 					status: ANIME_STATUS_FROM_DTO[result.status],
-				}
-			)),
+				}),
+			),
 		};
 	}
 }

@@ -10,5 +10,4 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 	imports: [RouterModule],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
-}
+export class AppComponent {}

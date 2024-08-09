@@ -1,5 +1,5 @@
-/** Anime events values. */
-export type AnimeEvents = Readonly<{
+/** Anime filters. */
+export type AnimeFilters = Readonly<{
 
 	/** Paginator event value. */
 	paginator?: {

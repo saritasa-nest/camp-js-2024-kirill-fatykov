@@ -1,30 +1,29 @@
 import { Injectable } from '@angular/core';
-import { AnimeEvents } from '@js-camp/core/models/anime-events.model';
+import { AnimeFilters } from '@js-camp/core/models/anime-filters.model';
 
 /** Query Service. */
 @Injectable({
 	providedIn: 'root',
 })
 export class QueryService {
-
 	/**
-		* Query filter.
-		* @param object - Object with queries.
-		*/
-	public filter(object: AnimeEvents): string {
+	 * Query filter.
+	 * @param object Object with queries.
+	 */
+	public filter(object: AnimeFilters): string {
 		const result: string[] = [];
 
 		const entiresEvents = Object.entries(object);
 
 		entiresEvents.forEach(([key, value]) => {
 			switch (key) {
-				case ('paginator'): {
+				case 'paginator': {
 					const [pageIndex, pageSize] = Object.values(value);
 					result.push(`limit=${pageSize}&offset=${pageIndex * pageSize}`);
 					break;
 				}
 
-				case ('sort'): {
+				case 'sort': {
 					let [, direction] = Object.values(value);
 					const [active] = Object.values(value);
 
@@ -38,7 +37,7 @@ export class QueryService {
 					break;
 				}
 
-				case ('search'): {
+				case 'search': {
 					if (value === '') {
 						result.push('');
 						break;
@@ -47,7 +46,7 @@ export class QueryService {
 					break;
 				}
 
-				case ('select'): {
+				case 'select': {
 					if (Object.values(value).length === 0) {
 						result.push('');
 						break;
@@ -61,5 +60,4 @@ export class QueryService {
 		});
 		return result.filter(item => item !== '').join('&');
 	}
-
 }

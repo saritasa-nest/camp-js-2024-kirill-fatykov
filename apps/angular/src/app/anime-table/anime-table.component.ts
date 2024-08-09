@@ -81,9 +81,6 @@ export class AnimeTableComponent {
 	/** Show first and last buttons in paginator. */
 	protected showFirstLastButtons = true;
 
-	/** Results of all events. */
-	protected results: AnimeFilters = {};
-
 	private readonly filter$ = new BehaviorSubject<AnimeFilters>({});
 
 	public constructor() {
@@ -93,11 +90,6 @@ export class AnimeTableComponent {
 		);
 	}
 
-	/** Update anime list. */
-	protected updateAnimeList(): void {
-		this.filter$.next(this.results);
-	}
-
 	/**
 	 * Handle the anime paginator event.
 	 * @param paginatorEvent Paginator event.
@@ -105,10 +97,10 @@ export class AnimeTableComponent {
 	protected onPageChange(paginatorEvent: PageEvent): void {
 		this.pageIndex = paginatorEvent.pageIndex;
 		this.pageSize = paginatorEvent.pageSize;
-		this.results = {
-			...this.results,
+		this.filter$.next({
+			...this.filter$,
 			paginator: { pageIndex: paginatorEvent.pageIndex, pageSize: paginatorEvent.pageSize },
-		};
+		});
 	}
 
 	/**
@@ -116,23 +108,20 @@ export class AnimeTableComponent {
 	 * @param sortEvent Sort event.
 	 * */
 	protected onSortAnime(sortEvent: Sort): void {
-		this.results = { ...this.results, sort: sortEvent };
-		this.updateAnimeList();
+		this.filter$.next({ ...this.filter$, sort: sortEvent });
 	}
 
 	/** Handles the anime search event. */
 	protected onSearchAnime(): void {
 		this.pageIndex = 0;
-		this.results = { ...this.results, paginator: { pageIndex: 0, pageSize: this.pageSize }, ...this.searchForm.value };
-		this.updateAnimeList();
+		this.filter$.next({ ...this.filter$, paginator: { pageIndex: 0, pageSize: this.pageSize }, ...this.searchForm.value });
 	}
 
 	/** Reset search value. */
 	protected resetSearchValue(): void {
 		this.searchForm.setValue({ search: '' });
 		this.pageIndex = 0;
-		this.results = { ...this.results, paginator: { pageIndex: 0, pageSize: this.pageSize }, ...this.searchForm.value };
-		this.updateAnimeList();
+		this.filter$.next({ ...this.filter$, paginator: { pageIndex: 0, pageSize: this.pageSize }, ...this.searchForm.value });
 	}
 
 	/**
@@ -141,7 +130,6 @@ export class AnimeTableComponent {
 	 * */
 	protected onTypeSelect(selectEvent: MatSelectChange): void {
 		this.pageIndex = 0;
-		this.results = { ...this.results, paginator: { pageIndex: 0, pageSize: this.pageSize }, select: selectEvent.value };
-		this.updateAnimeList();
+		this.filter$.next({ ...this.filter$, paginator: { pageIndex: 0, pageSize: this.pageSize }, select: selectEvent.value });
 	}
 }

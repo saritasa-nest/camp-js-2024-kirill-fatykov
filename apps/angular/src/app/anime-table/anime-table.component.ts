@@ -1,6 +1,6 @@
-import { BehaviorSubject, EMPTY, Observable, map, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, map, switchMap } from 'rxjs';
 import { AsyncPipe, DatePipe } from '@angular/common';
-import { Component, inject, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 
 import { Sort, MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
@@ -8,7 +8,7 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, NonNullableFormBuilder } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
@@ -44,19 +44,21 @@ import { EmptyPipe } from '../features/empty.pipe';
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AnimeTableComponent implements OnInit {
+export class AnimeTableComponent {
 
 	private readonly animeService = inject(AnimeService);
 
 	private readonly filter = inject(QueryService).filter;
 
-	/** */
-	public searchForm = new FormGroup({
-		search: new FormControl<string>('', { nonNullable: true }),
+	private readonly fb = inject(NonNullableFormBuilder);
+
+	/** Form for search. */
+	protected readonly searchForm = this.fb.group({
+		search: this.fb.control(''),
 	});
 
 	/** Variable where stored anime info. */
-	protected animeList$: Observable<AnimePagination<Anime>> = EMPTY;
+	protected readonly animeList$: Observable<AnimePagination<Anime>>;
 
 	/** List of anime types. */
 	protected readonly animeTypeList: string[] = Object.values(AnimeTypeDto);
@@ -75,16 +77,12 @@ export class AnimeTableComponent implements OnInit {
 
 	private readonly results$ = new BehaviorSubject<AnimeEvents>({});
 
-	/** Initial anime list. */
-	public ngOnInit(): void {
+	public constructor() {
 		this.animeList$ = this.results$
 			.pipe(
 				map(item => this.filter(item)),
 				switchMap(filter => this.animeService.getList(filter)),
 			);
-	}
-
-	public constructor() {
 	}
 
 	/** Update anime list. */

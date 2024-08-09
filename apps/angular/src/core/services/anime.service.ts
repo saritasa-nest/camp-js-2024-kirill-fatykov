@@ -17,15 +17,15 @@ import { ApiConfig } from './api-config.service';
 export class AnimeService {
 	private readonly http = inject(HttpClient);
 
-	private animeMapper: AnimeMapper = inject(AnimeMapper);
+	private readonly animeMapper: AnimeMapper = inject(AnimeMapper);
 
-	private animeConfig = inject(ApiConfig);
+	private readonly animeConfig = inject(ApiConfig);
 
 	/**
 		* Fetch anime list from an API.
 		* @param queryString Query string.
 		* */
-	public getList(queryString: string | null = ''): Observable<AnimePagination<Anime>> {
+	public getList(queryString = ''): Observable<AnimePagination<Anime>> {
 		return this.http.get<PaginationDto<AnimeDto>>(`${this.animeConfig.apiUrl}/anime/anime/?${queryString}`)
 			.pipe(map(dto => this.animeMapper.fromAnimeDto(dto)));
 	}

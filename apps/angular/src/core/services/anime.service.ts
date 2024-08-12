@@ -27,6 +27,6 @@ export class AnimeService {
 		* */
 	public getList(queryString: string | null = ''): Observable<AnimePagination<Anime>> {
 		return this.http.get<PaginationDto<AnimeDto>>(`${this.animeConfig.apiUrl}/anime/anime/?${queryString}`)
-			.pipe(map(dto => this.animeMapper.fromAnimeDto(dto)));
+			.pipe(map(dto => this.animeMapper.fromDto(dto)));
 	}
 }

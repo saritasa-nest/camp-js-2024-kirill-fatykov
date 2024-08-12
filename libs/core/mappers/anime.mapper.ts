@@ -8,7 +8,7 @@ import { AnimePagination } from '../models/anime-pagination.model';
 import { ANIME_TYPE_FROM_DTO } from './anime-type.mapper';
 import { ANIME_STATUS_FROM_DTO } from './anime-status.mapper';
 
-/** Service for mapping date. */
+/** Service for mapping data. */
 @Injectable({
 	providedIn: 'root',
 })
@@ -17,7 +17,7 @@ export class AnimeMapper {
 	 * Method from Dto to model.
 	 * @param dto Data from API.
 	 */
-	public fromAnimeDto(dto: PaginationDto<AnimeDto>): AnimePagination<Anime> {
+	public fromDto(dto: PaginationDto<AnimeDto>): AnimePagination<Anime> {
 		return {
 			count: dto.count,
 			next: dto.next,

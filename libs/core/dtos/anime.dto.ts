@@ -2,6 +2,7 @@
 
 import { AnimeStatusDto } from './anime-status.dto';
 import { AnimeTypeDto } from './anime-type.dto';
+import { DateRangeDto } from './date-range.dto';
 
 /** Anime list from API. */
 export type AnimeDto = Readonly<{
@@ -9,10 +10,10 @@ export type AnimeDto = Readonly<{
 	/** Id Anime. */
 	id: number;
 
-	/** Post creation date. */
+	/** Post creation date. Example: 2024-07-17T06:10:09.161962Z. */
 	created: string;
 
-	/** Post modification date. */
+	/** Post modification date. Example:2024-07-17T06:10:09.161962Z. */
 	modified: string;
 
 	/** Name title in English. */
@@ -25,14 +26,7 @@ export type AnimeDto = Readonly<{
 	image: string | null;
 
 	/** Air date. */
-	aired: {
-
-		/** Start air date. */
-		start: string | null;
-
-		/** End air date. If null it's still on air. */
-		end: string | null;
-	};
+	aired: DateRangeDto;
 
 	/** Anime type. */
 	type: AnimeTypeDto;
@@ -46,7 +40,7 @@ export type AnimeDto = Readonly<{
 	/** User score Anime. */
 	user_score: number | null;
 
-	/** Numbers of studios. */
+	/** List of studios. */
 	studios: readonly number[];
 
 	/** Genres of Anime. */

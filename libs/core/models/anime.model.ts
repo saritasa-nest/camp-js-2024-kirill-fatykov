@@ -1,5 +1,6 @@
 import { AnimeStatus } from './anime-status.model';
 import { AnimeType } from './anime-type.model';
+import { DateRange } from './date-range.model';
 
 /** Anime domain for frontend's data. */
 export type Anime = Readonly<{
@@ -14,14 +15,7 @@ export type Anime = Readonly<{
 	titleJpn: string;
 
 	/** Air date. */
-	aired: {
-
-		/** Start air date. */
-		start: string | null;
-
-		/** End air date. */
-		end: string | null;
-	};
+	aired: DateRange;
 
 	/** Anime type. */
 	type: AnimeType;

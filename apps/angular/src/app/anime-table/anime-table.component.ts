@@ -19,7 +19,7 @@ import { AnimePagination } from '@js-camp/core/models/anime-pagination.model';
 import { QueryService } from '@js-camp/angular/core/services/query.service';
 import { AnimeFilters } from '@js-camp/core/models/anime-filters.model';
 
-import { EmptyPipe } from '../features/empty.pipe';
+import { EmptyPipe } from '../features/pipes/empty.pipe';
 
 /** Table with Anime list. */
 @Component({

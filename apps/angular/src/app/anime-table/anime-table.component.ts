@@ -114,14 +114,22 @@ export class AnimeTableComponent {
 	/** Handles the anime search event. */
 	protected onSearchAnime(): void {
 		this.pageIndex = 0;
-		this.filter$.next({ ...this.filter$, paginator: { pageIndex: 0, pageSize: this.pageSize }, ...this.searchForm.value });
+		this.filter$.next({
+			...this.filter$,
+			paginator: { pageIndex: 0, pageSize: this.pageSize },
+			...this.searchForm.value,
+		});
 	}
 
 	/** Reset search value. */
 	protected resetSearchValue(): void {
 		this.searchForm.setValue({ search: '' });
 		this.pageIndex = 0;
-		this.filter$.next({ ...this.filter$, paginator: { pageIndex: 0, pageSize: this.pageSize }, ...this.searchForm.value });
+		this.filter$.next({
+			...this.filter$,
+			paginator: { pageIndex: this.pageIndex, pageSize: this.pageSize },
+			...this.searchForm.value,
+		});
 	}
 
 	/**
@@ -130,6 +138,10 @@ export class AnimeTableComponent {
 	 * */
 	protected onTypeSelect(selectEvent: MatSelectChange): void {
 		this.pageIndex = 0;
-		this.filter$.next({ ...this.filter$, paginator: { pageIndex: 0, pageSize: this.pageSize }, select: selectEvent.value });
+		this.filter$.next({
+			...this.filter$,
+			paginator: { pageIndex: this.pageIndex, pageSize: this.pageSize },
+			select: selectEvent.value,
+		});
 	}
 }

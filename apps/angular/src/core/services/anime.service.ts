@@ -25,7 +25,7 @@ export class AnimeService {
 		* Fetch anime list from an API.
 		* @param queryString Query string.
 		* */
-	public getList(queryString = ''): Observable<AnimePagination<Anime>> {
+	public getList(queryString: string | null = ''): Observable<AnimePagination<Anime>> {
 		return this.http.get<PaginationDto<AnimeDto>>(`${this.animeConfig.apiUrl}/anime/anime/?${queryString}`)
 			.pipe(map(dto => this.animeMapper.fromAnimeDto(dto)));
 	}

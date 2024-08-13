@@ -23,7 +23,7 @@ export class AnimeMapper {
 			next: dto.next,
 			previous: dto.previous,
 			results: dto.results.map(
-				(result: AnimeDto): Anime => ({
+				result => ({
 					image: result.image,
 					titleEng: result.title_eng,
 					titleJpn: result.title_jpn,

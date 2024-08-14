@@ -23,6 +23,11 @@ export class RegisterComponent {
 		firstName: this.fb.control(''),
 		lastName: this.fb.control(''),
 		password: this.fb.control(''),
-		retypePasword: this.fb.control(''),
+		retypePassword: this.fb.control(''),
 	});
+
+	/** Handle register form. */
+	public onSubmit(): void {
+		console.log(this.registerForm.value);
+	}
 }

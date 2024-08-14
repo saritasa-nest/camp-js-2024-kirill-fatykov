@@ -1,32 +1,32 @@
-<form class="register-form" [formGroup]="registerForm">
+<form class="register-form" [formGroup]="registerForm" (submit)="onSubmit()">
 	<!-- Email filed -->
 	<mat-form-field>
 		<mat-label>Email</mat-label>
-		<input matInput type="text" />
+		<input matInput type="text" formControlName="email"/>
 	</mat-form-field>
 
 	<!-- First Name filed -->
 	<mat-form-field>
 		<mat-label>First Name</mat-label>
-		<input matInput type="text" />
+		<input matInput type="text" formControlName="firstName"/>
 	</mat-form-field>
 
 	<!-- Last Name filed -->
 	<mat-form-field>
 		<mat-label>Last Name</mat-label>
-		<input matInput type="text" />
+		<input matInput type="text" formControlName="lastName"/>
 	</mat-form-field>
 
 	<!-- Password filed -->
 	<mat-form-field>
 		<mat-label>Password</mat-label>
-		<input matInput type="text" />
+		<input matInput type="text" formControlName="password"/>
 	</mat-form-field>
 
 	<!-- Retype password filed -->
 	<mat-form-field>
 		<mat-label>Retype Password</mat-label>
-		<input matInput type="text" />
+		<input matInput type="text" formControlName="retypePassword"/>
 	</mat-form-field>
 
 	<!-- Submit button -->

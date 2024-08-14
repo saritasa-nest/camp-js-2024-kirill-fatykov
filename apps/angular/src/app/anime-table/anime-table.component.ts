@@ -105,7 +105,6 @@ export class AnimeTableComponent implements OnDestroy {
 	 * @param sortEvent Sort event.
 	 * */
 	protected onSortAnime(sortEvent: Sort): void {
-		// this.filter$.next({ sort: sortEvent });
 		this.updateValueFilter({ sort: sortEvent });
 	}
 

@@ -8,11 +8,11 @@
 		</mat-select>
 	</mat-form-field>
 
-	<div class="search" [formGroup]="searchForm">
+	<div class="search">
 		<mat-form-field class="search__input">
 			<mat-label>Search</mat-label>
-			<input matInput type="text" formControlName="search" />
-			@if (searchForm.value.search) {
+			<input matInput type="text"  [formControl]="searchControl" />
+			@if (searchControl.value) {
 				<button type="button" matSuffix mat-icon-button aria-label="Clear" (click)="resetSearchValue()">
 					<mat-icon>close</mat-icon>
 				</button>

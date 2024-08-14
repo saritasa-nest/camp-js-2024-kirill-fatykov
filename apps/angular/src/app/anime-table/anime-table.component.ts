@@ -1,6 +1,6 @@
-import { BehaviorSubject, Observable, map, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, first, map, switchMap, tap } from 'rxjs';
 import { AsyncPipe, DatePipe } from '@angular/common';
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 
 import { Sort, MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
@@ -44,7 +44,7 @@ import { EmptyPipe } from '../features/empty.pipe';
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AnimeTableComponent {
+export class AnimeTableComponent implements OnDestroy {
 	private readonly animeService = inject(AnimeService);
 
 	private readonly filter = inject(QueryService).filter;
@@ -68,9 +68,7 @@ export class AnimeTableComponent {
 	protected readonly animeTypeList: string[] = Object.values(AnimeTypeDto);
 
 	/** Form for search. */
-	protected readonly searchForm = this.fb.group({
-		search: this.fb.control(''),
-	});
+	protected readonly searchControl = this.fb.control('');
 
 	/** Page size. */
 	protected pageSize = 25;
@@ -97,8 +95,7 @@ export class AnimeTableComponent {
 	protected onPageChange(paginatorEvent: PageEvent): void {
 		this.pageIndex = paginatorEvent.pageIndex;
 		this.pageSize = paginatorEvent.pageSize;
-		this.filter$.next({
-			...this.filter$,
+		this.updateValueFilter({
 			paginator: { pageIndex: paginatorEvent.pageIndex, pageSize: paginatorEvent.pageSize },
 		});
 	}
@@ -108,27 +105,26 @@ export class AnimeTableComponent {
 	 * @param sortEvent Sort event.
 	 * */
 	protected onSortAnime(sortEvent: Sort): void {
-		this.filter$.next({ ...this.filter$, sort: sortEvent });
+		// this.filter$.next({ sort: sortEvent });
+		this.updateValueFilter({ sort: sortEvent });
 	}
 
 	/** Handles the anime search event. */
 	protected onSearchAnime(): void {
 		this.pageIndex = 0;
-		this.filter$.next({
-			...this.filter$,
+		this.updateValueFilter({
 			paginator: { pageIndex: 0, pageSize: this.pageSize },
-			...this.searchForm.value,
+			search: this.searchControl.value,
 		});
 	}
 
 	/** Reset search value. */
 	protected resetSearchValue(): void {
-		this.searchForm.setValue({ search: '' });
+		this.searchControl.setValue('');
 		this.pageIndex = 0;
-		this.filter$.next({
-			...this.filter$,
+		this.updateValueFilter({
 			paginator: { pageIndex: this.pageIndex, pageSize: this.pageSize },
-			...this.searchForm.value,
+			search: this.searchControl.value,
 		});
 	}
 
@@ -138,10 +134,27 @@ export class AnimeTableComponent {
 	 * */
 	protected onTypeSelect(selectEvent: MatSelectChange): void {
 		this.pageIndex = 0;
-		this.filter$.next({
-			...this.filter$,
+		this.updateValueFilter({
 			paginator: { pageIndex: this.pageIndex, pageSize: this.pageSize },
 			select: selectEvent.value,
 		});
+	}
+
+	/**
+	 * Update Values Filter.
+	 * @param filters Filters.
+	 * */
+	protected updateValueFilter(filters: AnimeFilters): void {
+		this.filter$
+			.pipe(
+				first(),
+				tap(value => this.filter$.next({ ...value, ...filters })),
+			)
+			.subscribe();
+	}
+
+	/** Unsubscribe from filters$. */
+	public ngOnDestroy(): void {
+		this.filter$.unsubscribe();
 	}
 }

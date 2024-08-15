@@ -1,6 +1,6 @@
 import { RouterModule } from '@angular/router';
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
-import { ReactiveFormsModule, NonNullableFormBuilder } from '@angular/forms';
+import { ReactiveFormsModule, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,15 +19,16 @@ export class RegisterComponent {
 
 	/** Register form. */
 	protected registerForm = this.fb.group({
-		email: this.fb.control(''),
-		firstName: this.fb.control(''),
-		lastName: this.fb.control(''),
-		password: this.fb.control(''),
-		retypePassword: this.fb.control(''),
+		email: this.fb.control('', [Validators.required, Validators.email, Validators.maxLength(254)]),
+		firstName: this.fb.control('', [Validators.required, Validators.maxLength(30)]),
+		lastName: this.fb.control('', [Validators.required, Validators.maxLength(30)]),
+		password: this.fb.control('', [Validators.required, Validators.maxLength(128)]),
+		retypePassword: this.fb.control('', [Validators.required, Validators.maxLength(128)]),
 	});
 
 	/** Handle register form. */
 	public onSubmit(): void {
-		console.log(this.registerForm.value);
+		console.warn(this.registerForm.errors);
+		console.warn(this.registerForm.value);
 	}
 }

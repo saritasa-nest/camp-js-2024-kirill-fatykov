@@ -16,10 +16,10 @@ export class FormErrorsService {
 	 * @param valueGroup FormControl.
 	 * @param nameControl Name control.
 	 */
-	public getErrorControl(valueGroup: FormControl): string {
+	public getNameErrorControl(valueGroup: FormControl): string {
 		if (valueGroup.errors != null) {
 			const nameError = Object.keys(valueGroup.errors)[0];
-			return this.errorsMap[nameError];
+			return this.errorsMap[nameError] ? this.errorsMap[nameError] : 'Incorrect input form';
 		}
 
 		return 'Not errors';

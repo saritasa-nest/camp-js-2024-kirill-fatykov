@@ -26,7 +26,16 @@ export class AnimeService {
 		* @param queryString Query string.
 		* */
 	public getList(queryString: string | null = ''): Observable<AnimePagination<Anime>> {
-		return this.http.get<PaginationDto<AnimeDto>>(`${this.animeConfig.apiUrl}/anime/anime/?${queryString}`)
+		return this.http
+			.get<PaginationDto<AnimeDto>>(`${this.animeConfig.apiUrl}/anime/anime/?${queryString}`)
 			.pipe(map(dto => this.animeMapper.fromDto(dto)));
+	}
+
+	/**
+	 * Fetch anime list from an API.
+	 * @param formLogin Query string.
+	 * */
+	public login(formLogin: Login): Observable<Object> {
+		return this.http.post(`${this.animeConfig.apiUrl}/auth/login/`, formLogin);
 	}
 }

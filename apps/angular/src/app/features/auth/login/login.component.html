@@ -3,14 +3,20 @@
 	<mat-form-field>
 		<mat-label>Email</mat-label>
 		<input matInput type="text" formControlName="email" />
+		@if (loginForm.controls.email.errors) {
+			<mat-error>{{serviceErrors.getErrorControl(loginForm.controls.email)}}</mat-error>
+		}
 	</mat-form-field>
 
 	<!-- Password filed -->
 	<mat-form-field>
 		<mat-label>Password</mat-label>
 		<input matInput type="text" formControlName="password" />
+		@if (loginForm.controls.password.errors) {
+			<mat-error>{{serviceErrors.getErrorControl(loginForm.controls.password)}}</mat-error>
+		}
 	</mat-form-field>
 
 	<!-- Submit button -->
-	<button mat-stroked-button type="submit">Register</button>
+	<button mat-stroked-button type="submit">Login</button>
 </form>

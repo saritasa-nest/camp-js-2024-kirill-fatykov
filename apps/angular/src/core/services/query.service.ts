@@ -13,8 +13,8 @@ export class QueryService {
 	public filter(queries: AnimeFilters): string {
 		const searchParams = new URLSearchParams();
 
-		if (queries.paginator != null) {
-			const { pageIndex, pageSize } = queries.paginator;
+		if (queries.pagination != null) {
+			const { pageIndex, pageSize } = queries.pagination;
 			searchParams.append('limit', String(pageSize));
 			searchParams.append('offset', String(pageIndex * pageSize));
 		}

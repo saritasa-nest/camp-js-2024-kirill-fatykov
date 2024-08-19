@@ -98,7 +98,7 @@ export class AnimeTableComponent {
 		this.pageIndex = paginatorEvent.pageIndex;
 		this.pageSize = paginatorEvent.pageSize;
 		this.updateValueFilter({
-			paginator: { pageIndex: paginatorEvent.pageIndex, pageSize: paginatorEvent.pageSize },
+			pagination: { pageIndex: paginatorEvent.pageIndex, pageSize: paginatorEvent.pageSize },
 		});
 	}
 
@@ -114,7 +114,7 @@ export class AnimeTableComponent {
 	protected onSearchAnime(): void {
 		this.pageIndex = 0;
 		this.updateValueFilter({
-			paginator: { pageIndex: 0, pageSize: this.pageSize },
+			pagination: { pageIndex: 0, pageSize: this.pageSize },
 			search: this.searchControl.value,
 		});
 	}
@@ -124,7 +124,7 @@ export class AnimeTableComponent {
 		this.searchControl.setValue('');
 		this.pageIndex = 0;
 		this.updateValueFilter({
-			paginator: { pageIndex: this.pageIndex, pageSize: this.pageSize },
+			pagination: { pageIndex: this.pageIndex, pageSize: this.pageSize },
 			search: this.searchControl.value,
 		});
 	}
@@ -136,7 +136,7 @@ export class AnimeTableComponent {
 	protected onTypeSelect(selectEvent: MatSelectChange): void {
 		this.pageIndex = 0;
 		this.updateValueFilter({
-			paginator: { pageIndex: this.pageIndex, pageSize: this.pageSize },
+			pagination: { pageIndex: this.pageIndex, pageSize: this.pageSize },
 			select: selectEvent.value,
 		});
 	}

@@ -1,8 +1,8 @@
 /** Anime filters. */
 export type AnimeFilters = Readonly<{
 
-	/** Paginator event value. */
-	paginator?: {
+	/** Pagination event value. */
+	pagination?: {
 
 		/** Page index. */
 		pageIndex: number;

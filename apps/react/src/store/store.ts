@@ -1,4 +1,3 @@
-/* eslint-disable jsdoc/require-jsdoc */
 import { configureStore } from '@reduxjs/toolkit';
 import {
 	TypedUseSelectorHook, useDispatch, useSelector,
@@ -6,6 +5,7 @@ import {
 
 import { genresSlice } from './genre/slice';
 
+/** Store. */
 export const store = configureStore({
 	reducer: {
 		genres: genresSlice.reducer,
@@ -18,9 +18,14 @@ export const store = configureStore({
 	}),
 });
 
+/** Root State type. */
 export type RootState = ReturnType<typeof store.getState>;
+
+/** AppDispatch type. */
 export type AppDispatch = typeof store.dispatch;
 
 /** Typed `useDispatch` hook. */
 export const useAppDispatch = (): AppDispatch => useDispatch<AppDispatch>();
+
+/** Selector for using types. */
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

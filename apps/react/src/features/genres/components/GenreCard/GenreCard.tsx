@@ -3,12 +3,11 @@ import { Genre } from '@js-camp/core/models/genre';
 
 import styles from './GenreCard.module.css';
 
-// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
-interface Props {
+type Props = {
 
 	/** Genre. */
 	readonly genre: Genre;
-}
+};
 
 /** Card with genre data. */
 const GenreCardComponent: FC<Props> = ({ genre }: Props) => (

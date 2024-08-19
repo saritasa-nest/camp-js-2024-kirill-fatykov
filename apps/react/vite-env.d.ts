@@ -1,14 +1,11 @@
-// eslint-disable-next-line spaced-comment
-/// <reference types="vite/client" />
+type ImportMetaEnv = {
 
-interface ImportMetaEnv {
+	/** Api base url. */
+	readonly VITE_APP_API_BASE_URL: string;
+};
 
-  /** Api base url. */
-  readonly VITE_APP_API_BASE_URL: string;
-}
+type ImportMeta = {
 
-interface ImportMeta {
-
-  /** Contains application environment data. */
-  readonly env: ImportMetaEnv;
-}
+	/** Contains application environment data. */
+	readonly env: ImportMetaEnv;
+};

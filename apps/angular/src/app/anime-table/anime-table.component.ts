@@ -1,7 +1,7 @@
 import { BehaviorSubject, Observable, first, map, switchMap, tap } from 'rxjs';
 import { AsyncPipe, DatePipe } from '@angular/common';
-import { Component, inject, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
-
+import { Component, inject, ChangeDetectionStrategy, DestroyRef } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Sort, MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
@@ -44,12 +44,14 @@ import { EmptyPipe } from '../features/empty.pipe';
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AnimeTableComponent implements OnDestroy {
+export class AnimeTableComponent {
 	private readonly animeService = inject(AnimeService);
 
 	private readonly filter = inject(QueryService).filter;
 
 	private readonly fb = inject(NonNullableFormBuilder);
+
+	private readonly destroyRef = inject(DestroyRef);
 
 	/** Variable where stored anime info. */
 	protected readonly animeList$: Observable<AnimePagination<Anime>>;
@@ -148,12 +150,8 @@ export class AnimeTableComponent implements OnDestroy {
 			.pipe(
 				first(),
 				tap(value => this.filter$.next({ ...value, ...filters })),
+				takeUntilDestroyed(this.destroyRef),
 			)
 			.subscribe();
-	}
-
-	/** Unsubscribe from filters$. */
-	public ngOnDestroy(): void {
-		this.filter$.unsubscribe();
 	}
 }

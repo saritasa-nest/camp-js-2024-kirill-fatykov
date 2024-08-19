@@ -1,6 +1,5 @@
 /** Pagination meta info. */
-// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
-export interface PaginationDto<T> {
+export type PaginationDto<T> = {
 
 	/** Total count of items. */
 	readonly count: number;
@@ -13,4 +12,4 @@ export interface PaginationDto<T> {
 
 	/** Array of items requested. */
 	readonly results: readonly T[];
-}
+};

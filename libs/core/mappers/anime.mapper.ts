@@ -24,6 +24,7 @@ export class AnimeMapper {
 			previous: dto.previous,
 			results: dto.results.map(
 				result => ({
+					id: result.id,
 					image: result.image,
 					titleEng: result.title_eng,
 					titleJpn: result.title_jpn,

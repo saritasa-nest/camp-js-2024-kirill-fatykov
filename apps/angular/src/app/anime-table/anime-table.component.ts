@@ -91,6 +91,15 @@ export class AnimeTableComponent {
 	}
 
 	/**
+	 * Track by function for anime list.
+	 * @param index Anime list item index.
+	 * @param item Item of anime list.
+	 */
+	protected trackByAnime(index: number, item: Anime): Anime['id'] {
+		return item.id;
+	}
+
+	/**
 	 * Handle the anime paginator event.
 	 * @param paginatorEvent Paginator event.
 	 * */

@@ -28,6 +28,7 @@
 		[dataSource]="animeList.results"
 		matSort
 		(matSortChange)="onSortAnime($event)"
+		[trackBy]="trackByAnime"
 		class="mat-elevation-z8 anime-table"
 	>
 		<!-- Image Column -->

@@ -5,6 +5,9 @@ import { DateRange } from './date-range.model';
 /** Anime domain for frontend's data. */
 export type Anime = Readonly<{
 
+	/** Id item. */
+	id: number;
+
 	/** Image link. */
 	image: string | null;
 

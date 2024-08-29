@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { environment } from '@js-camp/angular/environments/environment';
 
-/** API config. */
+/** Api config. */
 @Injectable({
 	providedIn: 'root',
 })
 export class ApiConfig {
 
-	/** Api-url. */
+	/** Api url. */
 	public readonly apiUrl = environment.apiUrl;
 
-	/** Api-key. */
+	/** Api key. */
 	public readonly apiKey = environment.apiKey;
 }

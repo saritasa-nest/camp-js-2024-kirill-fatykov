@@ -5,13 +5,16 @@ import { DateRange } from './date-range.model';
 /** Anime domain for frontend's data. */
 export type Anime = Readonly<{
 
+	/** Id item. */
+	id: number;
+
 	/** Image link. */
 	image: string | null;
 
-	/** Name title in English. */
+	/** Anime title in English. */
 	titleEng: string;
 
-	/** Name title in Japanese. */
+	/** Anime title in Japanese. */
 	titleJpn: string;
 
 	/** Air date. */

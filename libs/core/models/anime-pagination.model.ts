@@ -1,15 +1,14 @@
-/** Pagination meta info. */
-
-export type PaginationDto<T> = Readonly<{
+/** Pagination meta info.*/
+export type AnimePagination<T> = Readonly<{
 
 	/** Total count of items. */
 	count: number;
 
 	/** Next page of items. */
-	next: string;
+	next: string | null;
 
 	/** Previous page of items. */
-	previous: string;
+	previous: string | null;
 
 	/** Array of items requested. */
 	results: readonly T[];

@@ -1,36 +1,30 @@
 import { AnimeStatusDto } from './anime-status.dto';
 import { AnimeTypeDto } from './anime-type.dto';
+import { DateRangeDto } from './date-range.dto';
 
-/** /** Anime DTO. */
+/** Anime list from API. */
 export type AnimeDto = Readonly<{
 
 	/** Id Anime. */
 	id: number;
 
-	/** Creation date. */
+	/** Post creation date. Example: 2024-07-17T06:10:09.161962Z. */
 	created: string;
 
-	/** Modification date. */
+	/** Post modification date. Example:2024-07-17T06:10:09.161962Z. */
 	modified: string;
 
-	/** Anime title in English. */
+	/** Name title in English. */
 	title_eng: string;
 
-	/** Anime title in Japanese. */
+	/** Name title in Japanese. */
 	title_jpn: string;
 
 	/** Image link. */
 	image: string | null;
 
 	/** Air date. */
-	aired: {
-
-		/** Start air date. */
-		start: string | null;
-
-		/** End air date. If null it's still on air. */
-		end: string | null;
-	};
+	aired: DateRangeDto;
 
 	/** Anime type. */
 	type: AnimeTypeDto;
@@ -44,26 +38,10 @@ export type AnimeDto = Readonly<{
 	/** User score Anime. */
 	user_score: number | null;
 
-	/** Numbers of studios. */
+	/** List of studios. */
 	studios: readonly number[];
 
 	/** Genres of Anime. */
 	genres: readonly number[];
 
-}>;
-
-/** Pagination info.*/
-export type PaginationDto = Readonly<{
-
-	/** Overall count of all Anime in API.*/
-	count: number;
-
-	/** Next Anime list.*/
-	next: string;
-
-	/** Previous Anime list.*/
-	previous: string | null;
-
-	/** Info about Anime.*/
-	results: readonly AnimeDto[];
 }>;

@@ -6,8 +6,8 @@ import { ApiConfig } from '../services/api-config.service';
 
 /**
 	* Interceptor add header.
-	* @param req - Outgoing HttpRequest.
-	* @param next - Function representing the next processing step in the interceptor chain.
+	* @param req Outgoing HttpRequest.
+	* @param next Function representing the next processing step in the interceptor chain.
 	*/
 export function headerInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
 

@@ -1,43 +1,114 @@
-@if (animeList$ | async; as animeList){
-  <table mat-table [dataSource]="animeList" class="mat-elevation-z8 anime-table">
+<div class="anime-inputs">
+	<mat-form-field class="anime-inputs__select-type">
+		<mat-label>Anime types</mat-label>
+		<mat-select multiple (selectionChange)="onTypeSelect($event)">
+			@for (animeType of animeTypeList; track animeType) {
+				<mat-option [value]="animeType">{{ animeType }}</mat-option>
+			}
+		</mat-select>
+	</mat-form-field>
 
-    <!-- Image Column -->
-    <ng-container matColumnDef="image">
-      <th mat-header-cell *matHeaderCellDef class="anime-table__title typography_title"> Image </th>
-      <td mat-cell *matCellDef="let anime" class="anime-table__content typography_content"> <img class="anime-table__image" [src]='anime.image' [alt]='anime.titleJpn'> </td>
-    </ng-container>
-  
-    <!-- Title English Column -->
-    <ng-container matColumnDef="titleEng">
-      <th mat-header-cell *matHeaderCellDef class="anime-table__title typography_title"> Title English </th>
-      <td mat-cell *matCellDef="let anime"  class="anime-table__content typography_content"> {{anime.titleEng | replace}}</td>
-    </ng-container>
-  
-      <!-- Title Japanese Column -->
-    <ng-container matColumnDef="titleJpn">
-      <th mat-header-cell *matHeaderCellDef class="anime-table__title typography_title"> Title Japanese </th>
-      <td mat-cell *matCellDef="let anime"  class="anime-table__content typography_content"> {{anime.titleJpn}}</td>
-    </ng-container>
-  
-    <!-- Aired start  Column -->
-    <ng-container matColumnDef="airedStart">
-      <th mat-header-cell *matHeaderCellDef class="anime-table__title typography_title"> Aired Start </th>
-      <td mat-cell *matCellDef="let anime"  class="anime-table__content typography_content"> {{anime.aired.start | date | replace  }}</td>
-    </ng-container>
-    
-      <!-- Anime type Column -->
-      <ng-container matColumnDef="type">
-        <th mat-header-cell *matHeaderCellDef class="anime-table__title typography_title"> Type </th>
-        <td mat-cell *matCellDef="let anime"  class="anime-table__content typography_content"> {{anime.type}}</td>
-      </ng-container>
-  
-    <!-- Anime status Column -->
-    <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef class="anime-table__title typography_title"> Status </th>
-      <td mat-cell *matCellDef="let anime"  class="anime-table__content typography_content"> {{anime.status}}</td>
-    </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns sticky:true" class="anime-table__header"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+	<div class="search">
+		<mat-form-field class="search__input">
+			<mat-label>Search</mat-label>
+			<input matInput type="text"  [formControl]="searchControl" />
+			@if (searchControl.value) {
+				<button type="button" matSuffix mat-icon-button aria-label="Clear" (click)="resetSearchValue()">
+					<mat-icon>close</mat-icon>
+				</button>
+			}
+		</mat-form-field>
+		<button class="search__button" type="button" mat-raised-button (click)="onSearchAnime()">Search</button>
+	</div>
+</div>
+
+@if (animeList$ | async; as animeList) {
+	<table
+		mat-table
+		[dataSource]="animeList.results"
+		matSort
+		(matSortChange)="onSortAnime($event)"
+		[trackBy]="trackByAnime"
+		class="mat-elevation-z8 anime-table"
+	>
+		<!-- Image Column -->
+		<ng-container matColumnDef="image">
+			<th mat-header-cell *matHeaderCellDef class="anime-table__title typography_title">Image</th>
+			<td mat-cell *matCellDef="let anime" class="anime-table__content typography_content">
+				<img class="anime-table__image" [src]="anime.image" [alt]="anime.titleJpn" />
+			</td>
+		</ng-container>
+
+		<!-- Title English Column -->
+		<ng-container matColumnDef="title_eng">
+			<th
+				mat-header-cell
+				*matHeaderCellDef
+				mat-sort-header
+				sortActionDescription="Sort by Title English"
+				class="anime-table__title typography_title"
+			>
+				Title English
+			</th>
+			<td mat-cell *matCellDef="let anime" class="anime-table__content typography_content">
+				{{ anime.titleEng | empty }}
+			</td>
+		</ng-container>
+
+		<!-- Title Japanese Column -->
+		<ng-container matColumnDef="title_jpn">
+			<th mat-header-cell *matHeaderCellDef class="anime-table__title typography_title">Title Japanese</th>
+			<td mat-cell *matCellDef="let anime" class="anime-table__content typography_content">{{ anime.titleJpn }}</td>
+		</ng-container>
+
+		<!-- Aired start  Column -->
+		<ng-container matColumnDef="aired__startswith">
+			<th
+				mat-header-cell
+				*matHeaderCellDef
+				mat-sort-header
+				sortActionDescription="Sort by aired start"
+				class="anime-table__title typography_title"
+			>
+				Aired Start
+			</th>
+			<td mat-cell *matCellDef="let anime" class="anime-table__content typography_content">
+				{{ anime.aired.start | date | empty }}
+			</td>
+		</ng-container>
+
+		<!-- Anime type Column -->
+		<ng-container matColumnDef="type">
+			<th mat-header-cell *matHeaderCellDef class="anime-table__title typography_title">Type</th>
+			<td mat-cell *matCellDef="let anime" class="anime-table__content typography_content">{{ anime.type }}</td>
+		</ng-container>
+
+		<!-- Anime status Column -->
+		<ng-container matColumnDef="status">
+			<th
+				mat-header-cell
+				*matHeaderCellDef
+				mat-sort-header
+				sortActionDescription="Sort by status"
+				class="anime-table__title typography_title"
+			>
+				Status
+			</th>
+			<td mat-cell *matCellDef="let anime" class="anime-table__content typography_content">{{ anime.status }}</td>
+		</ng-container>
+
+		<tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="anime-table__header"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+	</table>
+	<mat-paginator
+		class="anime-paginator"
+		(page)="onPageChange($event)"
+		[length]="animeList.count"
+		[pageSize]="pageSize"
+		[pageIndex]="pageIndex"
+		[showFirstLastButtons]="showFirstLastButtons"
+		[pageSizeOptions]="[25, 50, 75, 100]"
+		aria-label="Select page"
+	>
+	</mat-paginator>
 }

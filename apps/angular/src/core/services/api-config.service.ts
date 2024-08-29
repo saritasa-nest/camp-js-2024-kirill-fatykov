@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '@js-camp/angular/environments/environment';
 
-/** ApiKey. */
+/** API config. */
 @Injectable({
 	providedIn: 'root',
 })

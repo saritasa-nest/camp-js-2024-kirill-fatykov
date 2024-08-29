@@ -1,22 +1,22 @@
 import { AnimeStatusDto } from './anime-status.dto';
 import { AnimeTypeDto } from './anime-type.dto';
 
-/** Anime list from API. */
+/** /** Anime DTO. */
 export type AnimeDto = Readonly<{
 
 	/** Id Anime. */
 	id: number;
 
-	/** Post creation date. */
+	/** Creation date. */
 	created: string;
 
-	/** Post modification date. */
+	/** Modification date. */
 	modified: string;
 
-	/** Name title in English. */
+	/** Anime title in English. */
 	title_eng: string;
 
-	/** Name title in Japanese. */
+	/** Anime title in Japanese. */
 	title_jpn: string;
 
 	/** Image link. */

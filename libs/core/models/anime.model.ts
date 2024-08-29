@@ -11,10 +11,10 @@ export type Anime = Readonly<{
 	/** Image link. */
 	image: string | null;
 
-	/** Name title in English. */
+	/** Anime title in English. */
 	titleEng: string;
 
-	/** Name title in Japanese. */
+	/** Anime title in Japanese. */
 	titleJpn: string;
 
 	/** Air date. */

@@ -2,8 +2,11 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+/** Environments. */
 export const environment = {
 	production: false,
+	apiUrl: 'https://api.camp-js.saritasa.rocks/api/v1',
+	apiKey: 'c43958c3-a449-40ea-a4e1-4aa46a3f4ad6',
 };
 
 /*
